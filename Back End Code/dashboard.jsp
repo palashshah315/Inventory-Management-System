@@ -165,14 +165,13 @@
 <script>
     AOS.init();
 </script>
-<!-- check if user is admin or not if it's admin then show add product -->
-<!-- <% 
+<% 
 if(position != "Admin"){
 %>
 <script type="text/javascript">
 	document.getElementById("addproduct").disabled="true";
-	
+	console.log("hii");
 </script>
-<%} %> -->
+<%} %>
 </body>
 </html>

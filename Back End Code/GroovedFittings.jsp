@@ -1,14 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="DAO.*,BeanClass.*,java.util.*" %>
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Threded Fitting</title>
-  <link rel="stylesheet" href="style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Grooved Fittings</title>
+    <%
+    	String firstname = (String) session.getAttribute("firstname");
+		String lastname =  (String) session.getAttribute("lastname");
+		Dao d = new Dao();
+		List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
+	
+    %>
 </head>
-<body>
+
+<!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.html">Fitwel Industries</a>
@@ -33,7 +49,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
+                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %><%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.html#profile">Your Profile</a></li>
                         <li><a class="dropdown-item" href="#">Reset Password</a>
@@ -45,9 +61,9 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
 </div>
-<table class="table table-dark table-striped" id="fittings">
+<table class="table table-dark table-striped mt-3" id="Gfittings">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -57,31 +73,17 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>-</td>
-            <td>
-                -
-            </td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
+    		<%
+    		for(GroovedFittingBean gb : list)
+    		{
+    		%>
+    		<tr>
+    			<td><%= gb.getId() %></td>
+    			<td><%= gb.getProductName() %></td>
+    			<td><%= gb.getProductSize() %></td>
+    			<td><%= gb.getNoOfProduct() %></td>
+        	</tr>
+          <% } %>
     </tbody>
 </table>
 <!-- Footer -->
@@ -124,4 +126,5 @@
     AOS.init();
 </script>
 </body>
+
 </html>
