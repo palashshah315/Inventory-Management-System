@@ -176,7 +176,7 @@ public class Dao {
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`groovedfitting` (`name`,`size`,`noofproduct`) values (?,?,?)`";
+			String sql = "insert into `ims`.`groovedfitting` (`name`,`size`,`noofproduct`) values (?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, gb.getProductName());
 			pstmt.setString(2, gb.getProductSize());
