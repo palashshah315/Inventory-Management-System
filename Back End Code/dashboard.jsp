@@ -15,46 +15,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <%
-		String uname = (String) session.getAttribute("username"); 
-		String pswd = (String) session.getAttribute("password");
-		Dao d = new Dao();
-		UserBean user = new UserBean();
-		
- 		user = d.getUserByLoginAndPassword(uname,pswd);
- 		int id = user.getId();
-		String firstname = user.getFirstname();
-		String lastname = user.getLastname();
-		String email = user.getEmail();
-		String address = user.getAddress();
-		String phone = user.getPhone();
-		String position = user.getPosition();
-		String username = user.getUsername();
-		String password = user.getPassword();
-		session.setAttribute("firstname", firstname);
-		session.setAttribute("lastname",lastname);
-		System.out.println(position);
-		
-		
+        String uname = (String) session.getAttribute("username"); 
+        String pswd = (String) session.getAttribute("password");
+        Dao d = new Dao();
+        UserBean user = new UserBean();
+        
+        user = d.getUserByLoginAndPassword(uname,pswd);
+        int id = user.getId();
+        String firstname = user.getFirstname();
+        String lastname = user.getLastname();
+        String email = user.getEmail();
+        String address = user.getAddress();
+        String phone = user.getPhone();
+        String position = user.getPosition();
+        String username = user.getUsername();
+        String password = user.getPassword();
+        session.setAttribute("firstname", firstname);
+        session.setAttribute("lastname",lastname);
+        session.setAttribute("position",position);
+        
  %>
+
 </head>
 <body>
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" id="addproduct" href="#">Add Product</a>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
+                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
@@ -66,8 +66,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="#">Reset Password</a>
-                        </li>
+                        <li><a class="dropdown-item"  href="#">Reset Password</a></li>
+                         <li><a class="dropdown-item" href="#">View Employee Details</a></li>
                     </ul>
                 </li>
             </ul>
@@ -75,7 +75,7 @@
     </div>
 </nav>
 <div class=" container py-5 bg-light mt-4" id="youraccount">
-	<form id="contactForm" data-sb-form-api-token="API_TOKEN">
+    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!--first Name input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="first-name" name="first-name" type="text" value="<%= firstname %>"required>
@@ -119,7 +119,7 @@
                                
                             </div>
                             -->
-							 <!-- Submit Button-->
+                             <!-- Submit Button-->
                             <div class="d-grid">
                                 <input class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Update Details">
                             </div>
@@ -162,16 +162,20 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <%
+if(position.equals("Employee"))
+{
+%>
 <script>
-    AOS.init();
+document.getElementById("addproduct").style.display = "none";
 </script>
+
 <% 
-if(position != "Admin"){
+}
 %>
 <script type="text/javascript">
-	document.getElementById("addproduct").disabled="true";
-	console.log("hii");
+AOS.init();
 </script>
-<%} %>
+
 </body>
 </html>

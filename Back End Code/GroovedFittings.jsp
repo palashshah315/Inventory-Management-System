@@ -16,31 +16,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Grooved Fittings</title>
     <%
-    	String firstname = (String) session.getAttribute("firstname");
-		String lastname =  (String) session.getAttribute("lastname");
-		Dao d = new Dao();
-		List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
-	
+        String firstname = (String) session.getAttribute("firstname");
+        String lastname =  (String) session.getAttribute("lastname");
+        String position = (String) session.getAttribute("position");
+        Dao d = new Dao();
+        List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
+    
     %>
 </head>
 
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittingTable.html">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" href="AddProduct.html">Add Product</a>
+                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
@@ -52,8 +53,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %><%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.html#profile">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Reset Password</a>
-                        </li>
+                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                         <li><a class="dropdown-item" href="#">View Employee Details</a></li>
                     </ul>
                 </li>
             </ul>
@@ -63,7 +64,7 @@
 <div class="container-fluid">
     <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
 </div>
-<table class="table table-dark table-striped mt-3" id="Gfittings">
+<table class="table table-dark table-striped mt-3 container" id="Gfittings">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -73,16 +74,16 @@
         </tr>
     </thead>
     <tbody>
-    		<%
-    		for(GroovedFittingBean gb : list)
-    		{
-    		%>
-    		<tr>
-    			<td><%= gb.getId() %></td>
-    			<td><%= gb.getProductName() %></td>
-    			<td><%= gb.getProductSize() %></td>
-    			<td><%= gb.getNoOfProduct() %></td>
-        	</tr>
+            <%
+            for(GroovedFittingBean gb : list)
+            {
+            %>
+            <tr>
+                <td><%= gb.getId() %></td>
+                <td><%= gb.getProductName() %></td>
+                <td><%= gb.getProductSize() %></td>
+                <td><%= gb.getNoOfProduct() %></td>
+            </tr>
           <% } %>
     </tbody>
 </table>
@@ -125,6 +126,16 @@
 <script>
     AOS.init();
 </script>
-</body>
+ <%
+if(position.equals("Employee"))
+{
+%>
+<script>
+document.getElementById("addproduct").style.display = "none";
+</script>
 
+<% 
+}
+%>
+</body>
 </html>

@@ -3,10 +3,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
+    
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
@@ -15,18 +17,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Threded Fittings</title>
     <%
-    	String firstname = (String) session.getAttribute("firstname");
-    	String lastname =  (String) session.getAttribute("lastname");
-    	Dao d = new Dao();
-    	List<ThrededFittingBean> list = d.getAllDetailsOfThrededFittings();
-    	
+        String firstname = (String) session.getAttribute("firstname");
+        String lastname =  (String) session.getAttribute("lastname");
+        String position = (String) session.getAttribute("position");
+        Dao d = new Dao();
+        List<ThrededFittingBean> list = d.getAllDetailsOfThrededFittings();
+        
     %>
 </head>
 
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -38,8 +41,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFitting.jsp">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" href="AddProduct.jsp">Add Product</a>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
@@ -51,18 +54,19 @@
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#profile">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Reset Password</a>
-                        </li>
+                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                         <li><a class="dropdown-item" href="#">View Employee Details</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<input type="text" id="myInput" placeholder="Search">
+<div class="container">
     <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
 </div>
-<table class="table table-dark table-striped" id="fittings">
+<table class="table table-dark table-striped container" id="fittings">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -71,17 +75,17 @@
             <th scope="col">NO. OF PRODUCTS</th>
         </tr>
     </thead>
-    <tbody>
-    	<%
-    	for(ThrededFittingBean tb : list)
-    	{
-    	%>
-    		<tr>
-    			<td><%= tb.getId() %></td>
-    			<td><%= tb.getProductName() %></td>
-    			<td><%= tb.getProductSize() %></td>
-    			<td><%= tb.getNoOfProduct() %></td>
-        	</tr>
+    <tbody id="myTable">
+        <%
+        for(ThrededFittingBean tb : list)
+        {
+        %>
+            <tr>
+                <td><%= tb.getId() %></td>
+                <td><%= tb.getProductName() %></td>
+                <td><%= tb.getProductSize() %></td>
+                <td><%= tb.getNoOfProduct() %></td>
+            </tr>
         <%} %>
     </tbody>
 </table>
@@ -124,6 +128,17 @@
 <script>
     AOS.init();
 </script>
+ <%
+if(position.equals("Employee"))
+{
+%>
+<script>
+document.getElementById("addproduct").style.display = "none";
+</script>
+
+<% 
+}
+%>
 </body>
 
 </html>
