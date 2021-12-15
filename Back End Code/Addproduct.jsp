@@ -22,7 +22,7 @@
 <body>
     <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -47,8 +47,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="#">Reset Password</a>
-                        </li>
+                        <li><a class="dropdown-item"  href="#">Reset Password</a></li>
+                        <li><a class="dropdown-item" href="#">View Employee Details</a></li>
                     </ul>
                 </li>
             </ul>
@@ -105,15 +105,6 @@
 </section>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
-    <div class="container px-5">
-        <div class="map">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d62653.60247627951!2d77.07063779521357!3d11.049859186796562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sSF%20535%2F7%2C%20Kollupalayam%2C%20Near%20Kaniyur%20Toll%20Gate%2C%20Coimbatore-641659%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sin!4v1635703290514!5m2!1sen!2sin"
-                width="1500" height="450" frameborder="0" style="border:0;" allowfullscreen="yes" aria-hidden="false"
-                tabindex="0"> </iframe>
-        </div>
-    </div>
-
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
