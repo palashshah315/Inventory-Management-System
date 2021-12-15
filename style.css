@@ -1,0 +1,76 @@
+.map{
+    overflow: hidden;
+    padding-bottom:470px;
+    position: relative;
+}
+.map iframe{
+    position: absolute;
+}
+#__register {
+    display: none;
+}
+
+.__nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+body{
+    background-color: white !important;
+    color: black !important;
+}
+.pro{
+    text-align: center;
+}
+h1{
+    color: black !important;
+}
+nav{
+    background-color: black;
+}
+.color{
+    color: white !important;
+}
+ #__register {
+            display: none;
+        }
+
+        .__nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .map{
+            overflow: hidden;
+            padding-bottom:470px;
+            position: relative;
+        }
+        .map iframe{
+            position: absolute;
+        }
+
+        .resetpage {
+            padding-top: 8px;
+            text-align: center;
+            color:rgba(128, 128, 128, 0.548);
+            text-decoration: none;
+        }
+
+        .link_bg {
+            text-align: center;
+            color:rgba(57, 105, 179, 0.507);
+            text-decoration: none;
+        }
+
+        /* .resetpage :hover{
+            text-align: center;
+            color:rgba(128, 128, 128, 0.548);
+            text-decoration: none;
+        } */
+
+        .indexpage{
+            text-align: center;
+        } 
