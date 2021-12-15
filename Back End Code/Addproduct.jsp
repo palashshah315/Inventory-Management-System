@@ -38,9 +38,16 @@
                         <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Comparison</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
@@ -48,7 +55,8 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
                         <li><a class="dropdown-item"  href="#">Reset Password</a></li>
-                        <li><a class="dropdown-item" href="#">View Employee Details</a></li>
+                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
+                         <li><a class="dropdown-item" href="#">Log Out</a>
                     </ul>
                 </li>
             </ul>
