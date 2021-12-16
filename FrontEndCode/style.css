@@ -34,32 +34,29 @@ nav{
 }
  #__register {
             display: none;
-        }
-
-        .__nav {
+}
+.__nav {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 10;
-        }
-
-        .map{
+}
+.map{
             overflow: hidden;
             padding-bottom:470px;
             position: relative;
-        }
-        .map iframe{
+}
+.map iframe{
             position: absolute;
-        }
-
-        .resetpage {
+}
+.resetpage {
             padding-top: 8px;
             text-align: center;
             color:rgba(128, 128, 128, 0.548);
             text-decoration: none;
         }
 
-        .link_bg {
+.link_bg {
             text-align: center;
             color:rgba(57, 105, 179, 0.507);
             text-decoration: none;
@@ -71,6 +68,45 @@ nav{
             text-decoration: none;
         } */
 
-        .indexpage{
+.indexpage{
             text-align: center;
         } 
+.order {
+            width: 50%;
+            margin: 50px auto;
+}
+.has-search .form-control {
+            padding-left: 2.375rem;
+}
+.has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+}
+#myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #myTable th, #myTable td {
+    background-color: black;
+    color: white;
+    text-align: left;
+    padding: 12px;
+  }
+  
+  #myTable tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;
+  }

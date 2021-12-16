@@ -66,34 +66,35 @@
     <div class="slide">
         <span class="show">
             <div class="arrow"></div>
-    <!--     <div class="details">
+            <div class="details">
                 <h4>Place Details</h4>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat voluptate accusamus quia, ratione
                     consequuntur voluptatibus, autem fuga omnis fugit magnam officia maiores aliquid nam, voluptatum
                     reiciendis? Fugit dolor voluptates et?</p>
-            </div> -->
+            </div>
             <img src="https://content.fortune.com/wp-content/uploads/2021/07/GettyImages-1283893061.jpg" alt="">
         </span>
         <span>
             <div class="arrow"></div>
-          <!--  <div class="details">
+            <!--  <div class="details">
                 <h4>Place Details</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores accusantium doloremque sunt eos,
                     repellendus, autem officia consectetur molestias error sequi nisi quasi provident amet libero, enim
                     fugit ea quis? Aut!</p>
             </div> -->
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdDWGBJh3LIFPBclM_NF4V7-SWofnbE30xgoXr5X7DM2u8YPJ4o7GGkkIRYee1oMPDlv0&usqp=CAU" alt="">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdDWGBJh3LIFPBclM_NF4V7-SWofnbE30xgoXr5X7DM2u8YPJ4o7GGkkIRYee1oMPDlv0&usqp=CAU"
+                alt="">
         </span>
         <span>
             <div class="arrow"></div>
-        <!--   <div class="details">
+            <!--   <div class="details">
                 <h4>Place Details</h4>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, omnis. Eaque aliquam odit ea nihil
                     minima voluptatem reiciendis, ad voluptatum libero esse fuga natus officia sunt quo sapiente nam!
                     Animi.
                 </p>
-            </div> -->  
+            </div> -->
             <img src="https://wallpaperaccess.com/full/1393625.jpg" alt="">
         </span>
     </div>
@@ -130,13 +131,13 @@
 </script>
 <script>
     let slide = document.querySelectorAll('.slide span');
-    for (var i=0; i < slide.length; i++) {
+    for (var i = 0; i < slide.length; i++) {
         slide[i].addEventListener('click', activateClass);
     }
-    function activateClass(e){
+    function activateClass(e) {
         let images = document.querySelector("#images")
-        let imgs = ["https://content.fortune.com/wp-content/uploads/2021/07/GettyImages-1283893061.jpg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdDWGBJh3LIFPBclM_NF4V7-SWofnbE30xgoXr5X7DM2u8YPJ4o7GGkkIRYee1oMPDlv0&usqp=CAU","https://wallpaperaccess.com/full/1393625.jpg"];
-        for (var i = 0; i < slide.length; i++){
+        let imgs = ["https://content.fortune.com/wp-content/uploads/2021/07/GettyImages-1283893061.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdDWGBJh3LIFPBclM_NF4V7-SWofnbE30xgoXr5X7DM2u8YPJ4o7GGkkIRYee1oMPDlv0&usqp=CAU", "https://wallpaperaccess.com/full/1393625.jpg"];
+        for (var i = 0; i < slide.length; i++) {
             slide[i].classList.remove('show');
         }
         e.target.classList.add('show');
