@@ -12,6 +12,17 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #carouselExampleIndicators {
+            height: 34rem;
+        }
+
+        img {
+            width: 100%;
+            height: 34rem;
+            object-fit: cover;
+        }
+    </style>
     <title>Dashboard</title>
 </head>
 
@@ -60,9 +71,39 @@
         </div>
     </div>
 </nav>
-
 <!--Carousel-->
-<!-- Footer -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="pic-1.jpg" class="d-block w-100" alt="Carousel Photo 1">
+        </div>
+        <div class="carousel-item">
+            <img src="pic-2.jpg" class="d-block w-100" alt="Carousel Photo 2">
+        </div>
+        <div class="carousel-item">
+            <img src="pic-3.jpg" class="d-block w-100" alt="Carousel Photo 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- Footer -->      
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
@@ -86,6 +127,7 @@
         </div>
     </div>
 </footer>
+
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
