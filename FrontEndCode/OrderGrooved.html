@@ -138,52 +138,48 @@
         <td>-</td>
     </tr>
 </table> -->
-<div class="order col-md-3">
-    <div class="form-group has-search ">
-        <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.." title="Type in a name">
-    </div>
+<div class="order">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input class="col-md-6" id="myInput" type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
 </div>
+    <div class="scroll">
+        <table class="order-table table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>No Of Product</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>john</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>jane</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Alfred</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <table id="table" class="table table-dark table-striped" >
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Product Name</th>
-                <th>Size</th>
-                <th>No Of Product</th>
-                <th>Order</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>john</td>
-                <td><input type="number" placeholder="size" required></td>
-                <td>
-                    <input type="number" placeholder="Number of Product" required>
-                </td>
-                <td><button type="button" class="btn btn-primary">Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Example</td>
-                <td><input type="number" placeholder="size" required></td>
-                <td><input type="number"  placeholder="Number of Product" required></td>
-                <td><button type="button" class="btn btn-primary">Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>alfred</td>
-                <td><input type="number" placeholder="size" required></td>
-                <td><input type="number"  placeholder="Number of Product" required></td>
-                <td><button type="button" class="btn btn-primary">Order</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+</section>
 
 
 <!-- Footer -->
