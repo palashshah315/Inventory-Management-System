@@ -12,8 +12,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
     <title>OrderThreded</title>
 </head>
 
@@ -21,125 +20,120 @@
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.html">Fitwel Industries</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Product</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="GroovedFittingTable.html">Grooved Fittings</a></li>
                         <li><a class="dropdown-item" href="AddProduct.html">Add Product</a>
                     </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="dashboard.html#profile">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Reset Password</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="dashboard.html#profile">Your Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Reset Password</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Employee Details</a></li>
+                            <li><a class="dropdown-item" href="#">Log Out</a>
+                        </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                        <li><a class="dropdown-item" href="#">Log Out</a>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
 </nav>
 
- <div class="order col-md-3">
-        <div class="form-group has-search">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.."
-                title="Type in a name">
-        </div>
+<div class="order col-md-3">
+    <div class="form-group has-search ">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.." title="Type in a name">
     </div>
-
-<table id="myTable">
-    <tr class="header">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Size</th>
-        <th>No Of Product</th>
-        <th>Order</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Germany</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Sweden</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>UK</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>Germany</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>Canada</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>Italy</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>UK</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>8</td>
-        <td>France</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-    </tr>
-</table>
+</div>
+<div class="scroll">
+    <table id="myTable" class="table table-dark table-striped">
+        <tr class="header">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>No Of Product</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Germany</td>
+            <td><input type="number" name="size" placeholder="size"></td>
+            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
+            <td><button class="btn bg-primary">order</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Sweden</td>
+            <td><input type="number" name="size" placeholder="size"></td>
+            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
+            <td><button class="btn bg-primary">order</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>UK</td>
+            <td><input type="number" name="size" placeholder="size"></td>
+            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
+            <td><button class="btn bg-primary">order</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Germany</td>
+            <td><input type="number" name="size" placeholder="size"></td>
+            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
+            <td><button class="btn bg-primary">order</button></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Canada</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Italy</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>UK</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>France</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+    </table>
+</div>
 <!-- <section class="container">
     <span class="fa fa-search form-control-feedback"></span>
     <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
-
     <table class="order-table table">
         <thead>
             <tr>
@@ -177,7 +171,6 @@
             </tr>
         </tbody>
     </table>
-
 </section> -->
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
@@ -185,11 +178,9 @@
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
+                <div class="big m-0 text-white">Fitwel Industries SF 535/7, Kollupalayam, </div>
                 <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
+                    Near Kaniyur Toll Gate, Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
@@ -211,32 +202,29 @@
 </script>
 <script>
     function myFunction() {
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 1; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }       
-      }
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
-    </script>
+</script>
 <!-- <script>
     (function (document) {
         'use strict';
-
         var LightTableFilter = (function (Arr) {
-
             var _input;
-
             function _onInputEvent(e) {
                 _input = e.target;
                 var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
@@ -246,12 +234,10 @@
                     });
                 });
             }
-
             function _filter(row) {
                 var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
                 row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
             }
-
             return {
                 init: function () {
                     var inputs = document.getElementsByClassName('light-table-filter');
@@ -261,13 +247,11 @@
                 }
             };
         })(Array.prototype);
-
         document.addEventListener('readystatechange', function () {
             if (document.readyState === 'complete') {
                 LightTableFilter.init();
             }
         });
-
     })(document);
 </script> -->
 </body>
