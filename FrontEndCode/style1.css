@@ -113,34 +113,40 @@ nav {
     pointer-events: none;
     color: #aaa;
 }
-table{
+
+table {
     border-style: none !important;
     border-bottom-width: 0px
 }
+
 td {
     text-align: left;
     padding: 8px;
     color: white;
     border-style: none;
-  }
-  th{
+}
+
+th {
     text-align: left;
     padding: 8px;
     background-color: black;
     color: white;
     border: 5px solid #ddd;
-  }
-  tr:nth-child(odd) {
+}
+
+tr:nth-child(odd) {
     background-color: #212529;
     color: white;
-  }
-
-  tr:nth-child(even) {
-    background-color: #2c3034;
-  }
-#table{
-    margin-top:50px;
 }
+
+tr:nth-child(even) {
+    background-color: #2c3034;
+}
+
+#table {
+    margin-top: 50px;
+}
+
 #carouselExampleIndicators {
     height: 34rem;
 }
@@ -150,7 +156,16 @@ img {
     height: 38rem;
     object-fit: cover;
 }
-tbody, td, tfoot,thead, tr {
+
+.header {
+    border-bottom: 3px solid white !important;
+}
+
+tbody,
+td,
+tfoot,
+thead,
+tr {
     border-color: inherit;
     border-style: none !important;
     border-width: 0;
