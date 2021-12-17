@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet prefetch'
         href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <title>OrderThreded</title>
+    <title>OrderGrooved</title>
 </head>
 
 <!-- Navbar -->
@@ -64,7 +64,7 @@
 </nav>
 
 <!--<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
-<!-- search box -->
+ search box -->
 <!-- <div class="order col-md-3">
         <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
@@ -138,11 +138,14 @@
         <td>-</td>
     </tr>
 </table> -->
-<section class="container">
-    <span class="fa fa-search form-control-feedback"></span>
-    <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+<div class="order col-md-3">
+    <div class="form-group has-search ">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.." title="Type in a name">
+    </div>
+</div>
 
-    <table class="order-table table">
+    <table id="table" class="table table-dark table-striped" >
         <thead>
             <tr>
                 <th>Id</th>
@@ -156,31 +159,33 @@
             <tr>
                 <td>1</td>
                 <td>john</td>
-                <td>-</td>
+                <td><input type="number" placeholder="size" required></td>
                 <td>
-                    <input type="number" required>
+                    <input type="number" placeholder="Number of Product" required>
                 </td>
-                <td><button type="button" class="btn btn-primary">Primary</button>
+                <td><button type="button" class="btn btn-primary">Order</button>
                 </td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Example</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td><input type="number" placeholder="size" required></td>
+                <td><input type="number"  placeholder="Number of Product" required></td>
+                <td><button type="button" class="btn btn-primary">Order</button>
+                </td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>alfred</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td><input type="number" placeholder="size" required></td>
+                <td><input type="number"  placeholder="Number of Product" required></td>
+                <td><button type="button" class="btn btn-primary">Order</button>
+                </td>
             </tr>
         </tbody>
     </table>
 
-</section>
+
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
