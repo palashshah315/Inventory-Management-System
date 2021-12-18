@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                            <li><a class="dropdown-item" href="">Your Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Your Profile</a></li>
                             <li><a class="dropdown-item" href="#">Reset Password</a>
                             </li>
                             <li><a class="dropdown-item" href="#">Employee Details</a></li>
@@ -58,120 +58,158 @@
     </div>
 </nav>
 
-<div class="order col-md-3">
-    <div class="form-group has-search ">
-        <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.." title="Type in a name">
+<!--<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+ search box -->
+<!-- <div class="order col-md-3">
+        <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for names.."
+                title="Type in a name">
+        </div>
     </div>
-</div>
-<div class="scroll">
-    <table id="myTable" class="table">
-        <tr class="header">
-            <th>Id</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>No Of Product</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Germany</td>
-            <td><input type="number" name="size" placeholder="size"></td>
-            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-            <td><button class="btn bg-primary">order</button></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Sweden</td>
-            <td><input type="number" name="size" placeholder="size"></td>
-            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-            <td><button class="btn bg-primary">order</button></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>UK</td>
-            <td><input type="number" name="size" placeholder="size"></td>
-            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-            <td><button class="btn bg-primary">order</button></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Germany</td>
-            <td><input type="number" name="size" placeholder="size"></td>
-            <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-            <td><button class="btn bg-primary">order</button></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Canada</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Italy</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>UK</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>France</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-    </table>
-</div>
+<table id="myTable">
+    <tr class="header">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>No Of Product</th>
+        <th>Order</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Germany</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Sweden</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>UK</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Germany</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Canada</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Italy</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>UK</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>France</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+    </tr>
+</table> -->
 <!-- <section class="container">
+<div class="order">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input class="col-md-6" id="myInput" type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+</div>
+    <div class="scroll">
+        <table class="order-table table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>No Of Product</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>john</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>jane</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Alfred</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section> -->
+
+
+<div class="order col-md-4 search">
     <span class="fa fa-search form-control-feedback"></span>
     <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
-    <table class="order-table table">
+</div>
+<div class="scroll container-fluid">
+    <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Product Name</th>
-                <th>Size</th>
-                <th>No Of Product</th>
-                <th>Order</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">No. Of Product</th>
+                <th scope="col">Order</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>john</td>
-                <td>-</td>
-                <td>
-                    <input type="number" required>
-                </td>
-                <td><button type="button" class="btn btn-primary">Primary</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Example</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>alfred</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
+            <!-- form tag is added for placing order-->
+            <!-- rows will generate dynamically -->
+            <form action="" method="post">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>alfred</td>
+                    <td>size</td>
+                    <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
+                    <td><input type="submit" class="btn btn-secondary" value="Place Order"></td>
+                </tr>
+            </form>
         </tbody>
     </table>
-</section> -->
+</div>
+
+
+
+
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
@@ -201,59 +239,47 @@
     AOS.init();
 </script>
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 1; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
-<!-- <script>
-    (function (document) {
+    (function(document) {
         'use strict';
-        var LightTableFilter = (function (Arr) {
+
+        var LightTableFilter = (function(Arr) {
+
             var _input;
+
             function _onInputEvent(e) {
                 _input = e.target;
                 var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                Arr.forEach.call(tables, function (table) {
-                    Arr.forEach.call(table.tBodies, function (tbody) {
+                Arr.forEach.call(tables, function(table) {
+                    Arr.forEach.call(table.tBodies, function(tbody) {
                         Arr.forEach.call(tbody.rows, _filter);
                     });
                 });
             }
+
             function _filter(row) {
-                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                var text = row.textContent.toLowerCase(),
+                    val = _input.value.toLowerCase();
                 row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
             }
+
             return {
-                init: function () {
+                init: function() {
                     var inputs = document.getElementsByClassName('light-table-filter');
-                    Arr.forEach.call(inputs, function (input) {
+                    Arr.forEach.call(inputs, function(input) {
                         input.oninput = _onInputEvent;
                     });
                 }
             };
         })(Array.prototype);
-        document.addEventListener('readystatechange', function () {
+
+        document.addEventListener('readystatechange', function() {
             if (document.readyState === 'complete') {
                 LightTableFilter.init();
             }
         });
+
     })(document);
-</script> -->
+</script>
 </body>
 
 </html>

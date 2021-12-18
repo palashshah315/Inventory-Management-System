@@ -180,39 +180,29 @@
     <span class="fa fa-search form-control-feedback"></span>
     <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
 </div>
-<div class="scroll">
+<div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Size</th>
-                <th>No. Of Product</th>
-                <th>Order</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">No. Of Product</th>
+                <th scope="col">Order</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>john</td>
-                <td><input type="number" name="size" placeholder="size"></td>
-                <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-                <td><button class="btn bg-primary">order</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>jane</td>
-                <td><input type="number" name="size" placeholder="size"></td>
-                <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-                <td><button class="btn bg-primary">order</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>alfred</td>
-                <td><input type="number" name="size" placeholder="size"></td>
-                <td><input type="number" name="noOfproduct" placeholder="Number of Product"></td>
-                <td><button class="btn bg-primary">order</button></td>
-            </tr>
+            <!-- rows will generate dynamically -->
+            <!-- form Tag is added for placing order -->
+            <form action="" method="post">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>alfred</td>
+                    <td>size</td>
+                    <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
+                    <td><input type="submit" class="btn btn-secondary" value="Place Order"></td>
+                </tr>
+            </form>
         </tbody>
     </table>
 </div>
