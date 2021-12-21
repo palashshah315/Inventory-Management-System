@@ -60,6 +60,10 @@
         </div>
     </div>
 </nav>
+<div class="order col-md-4 search mt-2 mx-2">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" id="myInput" placeholder="Filter">
+</div>
 <div class="container-fluid">
     <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
 </div>
@@ -72,7 +76,7 @@
             <th scope="col">NO. OF PRODUCTS</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="myTable">
         <tr>
             <th scope="row">1</th>
             <td>-</td>
@@ -126,6 +130,17 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <!-- for valdation if employee login then these both fields are none -->
 <!-- <script>
 document.getElementById("addproduct").style.display = "none";
