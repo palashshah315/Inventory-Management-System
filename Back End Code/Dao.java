@@ -185,4 +185,44 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}
+	public int placedGroovedOrder(OrderGroovedFittingBean ordergrooved) {
+		int status = 0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "insert into `ims`.`ordergrooved` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productquantity`) values (?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ordergrooved.getId());
+			pstmt.setInt(2, ordergrooved.getUserId());
+			pstmt.setString(3, ordergrooved.getUserFirstName());
+			pstmt.setString(4, ordergrooved.getUserLastName());
+			pstmt.setString(5, ordergrooved.getProductname());
+			pstmt.setString(6, ordergrooved.getProductsize());
+			pstmt.setString(7, ordergrooved.getProductquantity());
+			
+			status = pstmt.executeUpdate();
+		}
+		catch (Exception e) {e.printStackTrace();}
+		return status;
+	}
+	public int placedThrededOrder(OrderThrededFittingBean orderthreded) {
+		int status = 0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "insert into `ims`.`orderthreded` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productquantity`) values (?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, orderthreded.getId());
+			pstmt.setInt(2, orderthreded.getUserId());
+			pstmt.setString(3, orderthreded.getUserFirstName());
+			pstmt.setString(4, orderthreded.getUserLastName());
+			pstmt.setString(5, orderthreded.getProductname());
+			pstmt.setString(6, orderthreded.getProductsize());
+			pstmt.setString(7, orderthreded.getProductquantity());
+			
+			status = pstmt.executeUpdate();
+		}
+		catch (Exception e) {e.printStackTrace();}
+		return status;
+	}
 }

@@ -16,12 +16,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Grooved Fittings</title>
     <%
-        String firstname = (String) session.getAttribute("firstname");
-        String lastname =  (String) session.getAttribute("lastname");
-        String position = (String) session.getAttribute("position");
-        Dao d = new Dao();
-        List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
-    
+    	String firstname = (String) session.getAttribute("firstname");
+		String lastname =  (String) session.getAttribute("lastname");
+		String position = (String) session.getAttribute("position");
+		Dao d = new Dao();
+		List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
+	
     %>
 </head>
 
@@ -48,8 +48,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
@@ -61,16 +61,20 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.html#profile">Your Profile</a></li>
                         <li><a class="dropdown-item" href="#">Reset Password</a></li>
-                         <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                         <li><a class="dropdown-item" href="#">Log Out</a>
+                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
+                        <li><a id="employeedetail" class="dropdown-item" href="#">Log Out</a>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<div class="order col-md-4 search mt-2 mx-2">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" id="myInput" placeholder="Filter">
+</div>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b>Grooved Fittings</b></h2>
 </div>
 <table class="table table-dark table-striped mt-3 container" id="Gfittings">
     <thead>
@@ -81,17 +85,17 @@
             <th scope="col">NO. OF PRODUCTS</th>
         </tr>
     </thead>
-    <tbody>
-            <%
-            for(GroovedFittingBean gb : list)
-            {
-            %>
-            <tr>
-                <td><%= gb.getId() %></td>
-                <td><%= gb.getProductName() %></td>
-                <td><%= gb.getProductSize() %></td>
-                <td><%= gb.getNoOfProduct() %></td>
-            </tr>
+    <tbody id="myTable">
+    		<%
+    		for(GroovedFittingBean gb : list)
+    		{
+    		%>
+    		<tr>
+    			<td><%= gb.getId() %></td>
+    			<td><%= gb.getProductName() %></td>
+    			<td><%= gb.getProductSize() %></td>
+    			<td><%= gb.getNoOfProduct() %></td>
+        	</tr>
           <% } %>
     </tbody>
 </table>
@@ -121,16 +125,24 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    AOS.init();
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
- <%
-if(position.equals("Employee"))
+<% 
+ if(position.equals("Employee"))
 {
 %>
 <script>
 document.getElementById("addproduct").style.display = "none";
+document.getElementById("employeedetail").style.display = "none";
 </script>
 
 <% 
