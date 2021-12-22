@@ -99,8 +99,9 @@ nav {
 }
 
 .order {
-    width: 50%;
-    margin: 50px 35%;
+    float: right;
+    margin-top: 10px;
+    margin-right: 20px;
 }
 
 .has-search .form-control {
@@ -161,3 +162,38 @@ img {
     height: 38rem;
     object-fit: cover;
 }
+@media only screen 
+and (max-width : 320px)
+{
+    .order{
+        width: 50%;
+        margin: 50px 70px;
+    }
+}
+@media only screen 
+and (max-width : 380px)
+{
+    .order{
+        width: 50%;
+        margin: 50px 25%;
+    }
+}
+@media only screen 
+and (max-width : 430px)
+{
+    .order{
+        width: 50%;
+        margin: 50px 25%;
+    }
+.just{
+    visibility: hidden;
+}
+}
+#example1 {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.haver:hover {
+    border-color: lightgray;
+    height: 35px; 
+    background-color: lightcyan;
+  }

@@ -17,13 +17,13 @@
 
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container px-5">
+    <div class="container pr-5">
         <a class="navbar-brand" href="index.html">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
@@ -63,45 +63,33 @@
 <div class="container-fluid">
     <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
 </div>
-<table class="table table-dark table-striped mt-3" id="Gfittings">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">SIZE</th>
-            <th scope="col">NO. OF PRODUCTS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>-</td>
-            <td>
-                --
-            </td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">-</td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-    </tbody>
-</table>
+<div class="scroll container-fluid">
+    <table style="width: 100% !important;" class="order-table table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">No. Of Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- rows will generate dynamically -->
+            <!-- form Tag is added for placing order -->
+            <form action="" method="post">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>alfred</td>
+                    <td>size</td>
+                    <td>10</td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</div>
+
 <!-- Footer -->
-<footer class="bg-dark py-4 mt-auto">
+<footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
