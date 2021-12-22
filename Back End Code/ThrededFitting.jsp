@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  -->
     
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
@@ -16,12 +17,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Threded Fittings</title>
     <%
-        String firstname = (String) session.getAttribute("firstname");
-        String lastname =  (String) session.getAttribute("lastname");
-        String position = (String) session.getAttribute("position");
-        Dao d = new Dao();
-        List<ThrededFittingBean> list = d.getAllDetailsOfThrededFittings();
-        
+    	String firstname = (String) session.getAttribute("firstname");
+    	String lastname =  (String) session.getAttribute("lastname");
+    	String position = (String) session.getAttribute("position");
+    	Dao d = new Dao();
+    	List<ThrededFittingBean> list = d.getAllDetailsOfThrededFittings();
+    	
     %>
 </head>
 
@@ -48,8 +49,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
@@ -61,17 +62,20 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#profile">Your Profile</a></li>
                         <li><a class="dropdown-item" href="#">Reset Password</a></li>
-                         <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                          <li><a class="dropdown-item" href="#">Log Out</a>
+                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
+                        <li><a id="employeedetail" class="dropdown-item" href="#">Log Out</a>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<input type="text" id="myInput" placeholder="Search">
+<div class="order col-md-4 search mt-2 mx-2">
+    <span class="fa fa-search form-control-feedback"></span>
+    <input type="text" id="myInput" placeholder="Filter">
+</div>
 <div class="container">
-    <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b>Threded Fittings</b></h2>
 </div>
 <table class="table table-dark table-striped container" id="fittings">
     <thead>
@@ -83,22 +87,22 @@
         </tr>
     </thead>
     <tbody id="myTable">
-        <%
-        for(ThrededFittingBean tb : list)
-        {
-        %>
-            <tr>
-                <td><%= tb.getId() %></td>
-                <td><%= tb.getProductName() %></td>
-                <td><%= tb.getProductSize() %></td>
-                <td><%= tb.getNoOfProduct() %></td>
-            </tr>
+    	<%
+    	for(ThrededFittingBean tb : list)
+    	{
+    	%>
+    		<tr>
+    			<td><%= tb.getId() %></td>
+    			<td><%= tb.getProductName() %></td>
+    			<td><%= tb.getProductSize() %></td>
+    			<td><%= tb.getNoOfProduct() %></td>
+        	</tr>
         <%} %>
     </tbody>
 </table>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-auto">
-    <div class="container px-4 mt-auto">
+ 	<div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
@@ -122,17 +126,26 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
-    AOS.init();
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 
- <%
-if(position.equals("Employee"))
+<%
+ if(position.equals("Employee"))
 {
 %>
 <script>
 document.getElementById("addproduct").style.display = "none";
+document.getElementById("employeedetail").style.display = "none";
 </script>
 
 <% 

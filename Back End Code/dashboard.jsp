@@ -15,25 +15,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <%
-        String uname = (String) session.getAttribute("username"); 
-        String pswd = (String) session.getAttribute("password");
-        Dao d = new Dao();
-        UserBean user = new UserBean();
-        
-        user = d.getUserByLoginAndPassword(uname,pswd);
-        int id = user.getId();
-        String firstname = user.getFirstname();
-        String lastname = user.getLastname();
-        String email = user.getEmail();
-        String address = user.getAddress();
-        String phone = user.getPhone();
-        String position = user.getPosition();
-        String username = user.getUsername();
-        String password = user.getPassword();
-        session.setAttribute("firstname", firstname);
-        session.setAttribute("lastname",lastname);
-        session.setAttribute("position",position);
-        
+		String uname = (String) session.getAttribute("username"); 
+		String pswd = (String) session.getAttribute("password");
+		Dao d = new Dao();
+		UserBean user = new UserBean();
+		
+ 		user = d.getUserByLoginAndPassword(uname,pswd);
+ 		int id = user.getId();
+		String firstname = user.getFirstname();
+		String lastname = user.getLastname();
+		String email = user.getEmail();
+		String address = user.getAddress();
+		String phone = user.getPhone();
+		String position = user.getPosition();
+		String username = user.getUsername();
+		String password = user.getPassword();
+		session.setAttribute("firstname", firstname);
+		session.setAttribute("lastname",lastname);
+		session.setAttribute("position",position);
+		session.setAttribute("userid",id);
+		
  %>
 
 </head>
@@ -61,8 +62,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
@@ -74,65 +75,45 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
                         <li><a class="dropdown-item"  href="#">Reset Password</a></li>
-                         <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                          <li><a class="dropdown-item" href="#">Log Out</a>
+                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
+                        <li><a class="dropdown-item" href="#">Log Out</a> 
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class=" container py-5 bg-light mt-4" id="youraccount">
-    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!--first Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="first-name" name="first-name" type="text" value="<%= firstname %>"required>
-                                <label for="first-name">First name</label>
-                                
-                            </div>
-                            <!-- last name input -->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="last-name" name="last-name" type="text" value="<%= lastname %>"required>
-                                <label for="last-name">last name</label>
-                                
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" name="email" type="email" value="<%= email %>" required>
-                                <label for="email">Email address</label>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" name="phone" type="tel" value="<%= phone %>" required>
-                                <label for="phone">Phone number</label>
-                               
-                            </div>
-                            <!-- Address input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="address" name="address" style="height: 10rem" required><%= address %></textarea>
-                                <label for="address">Address</label>
-                                
-                            </div>
-                            <!-- Username  input-->
-                            <!-- <div class="form-floating mb-3">
-                                <input class="form-control" id="username" name="username" type="text" value=""  required>
-                                <label for="phone">Login Id</label>
-                               
-                            </div>
-                             -->
-                            <!-- Password input-->
-                            <!--   <div class="form-floating mb-3">
-                                <input class="form-control" id="password" name="password" type="text" value="" required>
-                                <label for="phone">Password</label>
-                               
-                            </div>
-                            -->
-                             <!-- Submit Button-->
-                            <div class="d-grid">
-                                <input class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Update Details">
-                            </div>
-                            
-                         </form>
+<!--Carousel-->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="pic-1.jpg" class="d-block w-100" alt="Carousel Photo 1">
+        </div>
+        <div class="carousel-item">
+            <img src="pic-2.jpg" class="d-block w-100" alt="Carousel Photo 2">
+        </div>
+        <div class="carousel-item">
+            <img src="pic-3.jpg" class="d-block w-100" alt="Carousel Photo 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
@@ -168,6 +149,7 @@ if(position.equals("Employee"))
 %>
 <script>
 document.getElementById("addproduct").style.display = "none";
+document.getElementById("employeedetail").style.display = "none";
 </script>
 
 <% 

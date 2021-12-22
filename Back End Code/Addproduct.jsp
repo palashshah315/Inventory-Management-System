@@ -56,7 +56,7 @@
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
                         <li><a class="dropdown-item"  href="#">Reset Password</a></li>
                         <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                         <li><a class="dropdown-item" href="#">Log Out</a>
+                        <li><a class="dropdown-item" href="#">Log Out</a>
                     </ul>
                 </li>
             </ul>
@@ -113,7 +113,7 @@
 </section>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
-    <div class="container px-4 mt-auto">
+	<div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
