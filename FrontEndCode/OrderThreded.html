@@ -293,7 +293,7 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
               alert(res);
               location.reload();
           }
-          xhttp.open("GET", "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity);
+          xhttp.open("GET", "ThrededOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity);
           xhttp.send();
     }
     

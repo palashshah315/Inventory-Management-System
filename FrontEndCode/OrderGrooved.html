@@ -199,15 +199,14 @@
         <tbody>
             <!-- rows will generate dynamically -->
             <!-- form Tag is added for placing order -->
-            <form action="" method="post">
+           
                 <tr>
                     <th scope="row">1</th>
                     <td>alfred</td>
                     <td>size</td>
                     <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
-                    <td><input type="submit" class="btn btn-secondary" value="Place Order"></td>
+                    <td><button clas="btn btn-secondary" onclick="placeOrder(productid,productQuantityId,productname,productsize,userId,userfirstname,userlastname)">Place Order</button></td>
                 </tr>
-            </form>
         </tbody>
     </table>
 </div>
@@ -235,9 +234,21 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
+<script type="text/javascript">
+function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname){
+    const productQuantity = productQuantityId.value;
+    if(productQuantity != null){
+        const xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+              var res = this.responseText;
+              alert(res);
+              location.reload();
+          }
+          xhttp.open("GET", "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity);
+          xhttp.send();
+    }
+    
+}
 </script>
 <script>
     (function (document) {
