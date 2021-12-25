@@ -45,7 +45,14 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
@@ -178,10 +185,10 @@
         </table>
     </div>
 </section> -->
-    <div class="order search">
-        <span class="fa fa-search form-control-feedback just"></span>
-        <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
-    </div>
+<div class="order search">
+    <span class="fa fa-search form-control-feedback just"></span>
+    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
+</div>
 <div class="container-fluid">
     <h2 class="pro mt-5"><b><u>Product Name</u></b></h2>
 </div>
@@ -192,25 +199,35 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Required</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Client Address</th>
                 <th scope="col">Order</th>
+                <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
+            <!-- form tag is added for placing order-->
             <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
-            <form action="" method="post">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>alfred</td>
-                    <td>size</td>
-                    <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
-                    <td><input type="submit" class="btn btn-secondary" value="Place Order"></td>
-                </tr>
-            </form>
+
+            <tr>
+                <th scope="row">1</th>
+                <td>alfred</td>
+                <td>size</td>
+                <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
+                <td><input type="text" name="productrequired" placeholder="Product Required"></td>
+                <td><input type="text" name="clientname" placeholder="Client Name"></td>
+                <td><textarea name="clientaddress" placeholder="Client Address"></textarea></td>
+                <td><button class="btn btn-secondary" onclick="document.getElementById('demo').style.backgroundColor='red'"
+                        onclick="placeOrder(productid,productQuantityId,productname,productsize,userId,userfirstname,userlastname)">place
+                        Order</button></td>
+                        <td> <span id="demo" id="demo2" class="dot"></span></td>
+            </tr>
         </tbody>
     </table>
 </div>
+
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
