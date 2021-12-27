@@ -12,7 +12,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Grooved Fittings</title>
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <title>ApprovalGrooved</title>
 </head>
 
 <!-- Navbar -->
@@ -74,8 +76,14 @@
         </div>
     </div>
 </nav>
+
+<!-- Approval Table-->
+<div class="order search">
+    <span class="fa fa-search form-control-feedback just"></span>
+    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
+</div>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b><u>Product Name</u></b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
@@ -84,23 +92,39 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Required</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Client Address</th>
+                <th scope="col">Order</th>
+                <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
-            <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
-            <form action="" method="post">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>alfred</td>
-                    <td>size</td>
-                    <td>10</td>
-                </tr>
-            </form>
+            <!-- form tag is added for placing order
+rows will generate dynamically -->
+
+ <tr>
+                <th scope="row">1</th>
+                <td>alfred</td>
+                <td>size</td>
+                <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
+                <td><input type="text" name="productrequired" placeholder="Product Required"></td>
+                <td><input type="text" id="result" name="clientname" placeholder="Client Name"></td>
+                <td><textarea name="clientaddress" placeholder="Client Address"></textarea></td>
+                <td><button class="btn btn-secondary"
+                        onclick="placeOrder(productid,productQuantityId,productname,productsize,userId,userfirstname,userlastname)">Approve</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
+
+<!-- API Call Table-->
+<!-- <div class="scroll container-fluid">
+    <table style="width: 100% !important;" id="demo" class="order-table table table-dark table-striped">
+    </table>
+</div> -->
 
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
@@ -108,11 +132,9 @@
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
+                <div class="big m-0 text-white">Fitwel Industries SF 535/7, Kollupalayam, </div>
                 <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
+                    Near Kaniyur Toll Gate, Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
@@ -128,17 +150,33 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+<!-- Script for API call-->
+<!-- <script>
+    {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xmlhttp.open("GET", "cd_catalog.xml", true);
+        xmlhttp.send();
+    }
+    function myFunction(xml) {
+        var i;
+        var xmlDoc = xml.responseXML;
+        var table = "<tr><th>Id</th><th>Product Id</th><th>Order Id</th><th>Employee First Name</th><th>Employee Last Name</th><th>Product Name</th><th>Product Size</th><th>Product Required</th><th>Client Name</th><th>Client Address</th><th>Order Placed Date</th><th>Order Placed Time</th><th>Status</th></tr>";
+        var x = xmlDoc.getElementsByTagName("CD");
+        for (i = 0; i < x.length; i++) {
+            table += "<tr><td>" +
+                x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                "</td></tr>";
+        }
+        document.getElementById("demo").innerHTML = table;
+    }
+</script> -->
 <!-- for valdation if employee login then these both fields are none -->
 <!-- <script>
 document.getElementById("addproduct").style.display = "none";

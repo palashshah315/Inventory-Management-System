@@ -44,13 +44,20 @@
                         <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApprovalGrooved.html">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
@@ -301,7 +308,6 @@
     })(document);
 </script>
 <script type="text/javascript">
-<<<<<<< HEAD
     function placeOrder(productId, productQuantityId, productName, productSize, userid, userfirstname, userlastname) {
         const productQuantity = productQuantityId.value;
         if (productQuantity != null) {
@@ -315,19 +321,6 @@
             xhttp.send();
         }
 
-=======
-function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname){
-    const productQuantity = productQuantityId.value;
-    if(productQuantity != null){
-        const xhttp = new XMLHttpRequest();
-          xhttp.onload = function() {
-              var res = this.responseText;
-              alert(res);
-              location.reload();
-          }
-          xhttp.open("GET", "ThrededOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity);
-          xhttp.send();
->>>>>>> da934c6b4a2f4c861617785702b3427dd4399f2d
     }
 </script>
 <!-- for valdation if employee login then these both fields are none -->
