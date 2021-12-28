@@ -9,11 +9,8 @@
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
     <title>ApprovalThreded</title>
 </head>
 
@@ -83,20 +80,23 @@
     <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
 </div>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Product Name</u></b></h2>
+    <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">Order Id </th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Product Size</th>
+                <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
-                <th scope="col">Order</th>
+                <th scope="col">Order Placed Date</th>
+                <th scope="col">Order Placed Time</th>
                 <th scope="col">Order Status</th>
             </tr>
         </thead>
@@ -106,26 +106,21 @@ rows will generate dynamically -->
 
  <tr>
                 <th scope="row">1</th>
-                <td>alfred</td>
-                <td>size</td>
-                <td><input type="text" name="noOfproduct" placeholder="Number of Product"></td>
-                <td><input type="text" name="productrequired" placeholder="Product Required"></td>
-                <td><input type="text" id="result" name="clientname" placeholder="Client Name"></td>
-                <td><textarea name="clientaddress" placeholder="Client Address"></textarea></td>
-                <td><button class="btn btn-secondary"
-                        onclick="placeOrder(productid,productQuantityId,productname,productsize,userId,userfirstname,userlastname)">Approve</button>
-                </td>
+                <td>product id</td>
+                <td>order id</td>
+                <td>employee name</td>
+                <td>product size</td>
+                <td>product Available</td>
+                <td>Product required</td>
+                <td>Client name</td>
+                <td>Client Address</td>
+                <td>Order Place Date</td>
+                <td>Order Placed Time</td>
+                <td>Order status</td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<!-- API Call Table-->
-<!-- <div class="scroll container-fluid">
-    <table style="width: 100% !important;" id="demo" class="order-table table table-dark table-striped">
-    </table>
-</div> -->
-
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
@@ -150,38 +145,52 @@ rows will generate dynamically -->
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Script for API call-->
-<!-- <script>
-    {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                myFunction(this);
+<script>
+    (function (document) {
+        'use strict';
+
+        var LightTableFilter = (function (Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function (table) {
+                    Arr.forEach.call(table.tBodies, function (tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
             }
-        };
-        xmlhttp.open("GET", "cd_catalog.xml", true);
-        xmlhttp.send();
-    }
-    function myFunction(xml) {
-        var i;
-        var xmlDoc = xml.responseXML;
-        var table = "<tr><th>Id</th><th>Product Id</th><th>Order Id</th><th>Employee First Name</th><th>Employee Last Name</th><th>Product Name</th><th>Product Size</th><th>Product Required</th><th>Client Name</th><th>Client Address</th><th>Order Placed Date</th><th>Order Placed Time</th><th>Status</th></tr>";
-        var x = xmlDoc.getElementsByTagName("CD");
-        for (i = 0; i < x.length; i++) {
-            table += "<tr><td>" +
-                x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
-                "</td><td>" +
-                x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
-                "</td></tr>";
-        }
-        document.getElementById("demo").innerHTML = table;
-    }
-</script> -->
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(),
+                    val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function () {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function (input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function () {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+</script>
 <!-- for valdation if employee login then these both fields are none -->
 <!-- <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script> -->
 </body>
-
 </html>
