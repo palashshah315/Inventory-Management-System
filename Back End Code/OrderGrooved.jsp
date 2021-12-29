@@ -9,7 +9,6 @@
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
@@ -50,8 +49,22 @@
                             <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                     <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
@@ -67,11 +80,11 @@
         </div>
     </div>
 </nav>
-<div class="order col-md-4 search">
-    <span class="fa fa-search form-control-feedback"></span>
-    <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter">
+<div class="order search">
+    <span class="fa fa-search form-control-feedback just"></span>
+    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
 </div>
-<div class="container-fluid text-center">
+<div class="container-fluid text-center mt-5">
     <h3>Grooved Fittings</h3>
 </div>
 <div class="scroll container-fluid">
@@ -81,20 +94,27 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
+                <th scope="col">Product Available</th>
+                <th scope="col">Product Required</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Client Address</th>
                 <th scope="col">Order</th>
+                
             </tr>
         </thead>
         <tbody>
-            <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
+           
            <%for(GroovedFittingBean gf : list){ %>
                 <tr id="<%= gf.getId() %>">
                     <th scope="row"><%= gf.getId() %></th>
                     <td><%= gf.getProductName() %></td>
                     <td><%= gf.getProductSize() %></td>
-                    <td><input type="text" id="<%= "Qty_"+gf.getId() %>" name="noOfproduct" value="<%= gf.getNoOfProduct() %>" placeholder="Number of Product"></td>
-                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`)" >place Order</button></td>
+                    <td><%= gf.getNoOfProduct()  %></td>
+                    <td><input type="number" id="<%= "Qty_"+gf.getId() %>" name="productrequired" placeholder="Product Required" ></td>
+                    <td><input type="text" id="<%= "client_"+gf.getId() %>" name="clientname" placeholder="Client Name"></td>
+                    <td><textarea id="<%= "add_"+gf.getId() %>"></textarea></td>
+                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+gf.getId() %>,<%="add_"+gf.getId()%>,`<%= gf.getNoOfProduct()%>`)" >place Order</button></td>
+                	
                 </tr>
             <%} %>
         </tbody>
@@ -124,7 +144,7 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     (function(document) {
         'use strict';
@@ -168,19 +188,22 @@
     })(document);
 </script>
 <script type="text/javascript">
-function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname){
+function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable){
 	const productQuantity = productQuantityId.value;
-	if(productQuantity != null){
+	const clientname = clientNameId.value;
+	const clientaddress = clientAddressId.value;
+	
+	
 		const xhttp = new XMLHttpRequest();
 		  xhttp.onload = function() {
 			  var res = this.responseText;
 			  alert(res);
 			  location.reload();
-		  }
-		  xhttp.open("GET", "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity);
+			}
+		 
+		  const url = "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress;
+		  xhttp.open("GET", url);
 		  xhttp.send();
-	}
-	
 }
 </script>
 <%

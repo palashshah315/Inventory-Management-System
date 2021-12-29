@@ -1,45 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="DAO.*,BeanClass.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Dashboard</title>
-    <%
-		String uname = (String) session.getAttribute("username"); 
-		String pswd = (String) session.getAttribute("password");
-		Dao d = new Dao();
-		UserBean user = new UserBean();
-		
- 		user = d.getUserByLoginAndPassword(uname,pswd);
- 		int id = user.getId();
-		String firstname = user.getFirstname();
-		String lastname = user.getLastname();
-		String email = user.getEmail();
-		String address = user.getAddress();
-		String phone = user.getPhone();
-		String position = user.getPosition();
-		String username = user.getUsername();
-		String password = user.getPassword();
-		session.setAttribute("firstname", firstname);
-		session.setAttribute("lastname",lastname);
-		session.setAttribute("position",position);
-		session.setAttribute("userid",id);
-		
- %>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<title>Approved Grooved</title>
+	<%
+        String firstname = (String) session.getAttribute("firstname");
+        String lastname =  (String) session.getAttribute("lastname");
+        String position = (String) session.getAttribute("position");
+    %>
 </head>
 <body>
-<!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
@@ -49,13 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittings">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
                  <li class="nav-item dropdown">
@@ -66,7 +44,7 @@
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-               <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
@@ -89,47 +67,14 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
                         <li><a class="dropdown-item"  href="#">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
-                        <li><a class="dropdown-item" href="#">Log Out</a> 
+                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
+                        <li><a class="dropdown-item" href="#">Log Out</a>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<!--Carousel-->
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="pic-1.jpg" class="d-block w-100" alt="Carousel Photo 1">
-        </div>
-        <div class="carousel-item">
-            <img src="pic-2.jpg" class="d-block w-100" alt="Carousel Photo 2">
-        </div>
-        <div class="carousel-item">
-            <img src="pic-3.jpg" class="d-block w-100" alt="Carousel Photo 3">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
 
     <div class="container px-4 mt-auto">
@@ -154,9 +99,7 @@
         </div>
     </div>
 </footer>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
- <%
+<%
 if(position.equals("Employee"))
 {
 %>
@@ -168,6 +111,5 @@ document.getElementById("employeedetail").style.display = "none";
 <% 
 }
 %>
-
 </body>
 </html>

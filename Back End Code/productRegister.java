@@ -51,8 +51,9 @@ public class ProductRegister extends HttpServlet {
 			if(status > 0) {
 				out.println("<script type = \"text/javascript\">");
 	    		out.println("alert('Product Added Successfully');");
+	    		out.println("location.reload()");
 	    		out.println("</script>");	
-	    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=AddProduct.jsp\">");
+	    		
 			}
 		}
 		

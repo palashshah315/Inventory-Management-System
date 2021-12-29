@@ -18,26 +18,55 @@ public class ThrededOrderPlaced extends HttpServlet {
 		String productId = request.getParameter("productid");
 		String productname = request.getParameter("productname");
 		String productsize = request.getParameter("productsize");
-		String noOfproduct = request.getParameter("productquantity");
+		String productreq = request.getParameter("productquantity");
+		String totalProduct = request.getParameter("productavailable"); 
+		String clientname = request.getParameter("clientname");
+		String clientaddress = request.getParameter("clientaddress");
+		String orderstatus = "pending";
 		int product_id = Integer.parseInt(productId);
 		int user_id = Integer.parseInt(userid);
+		
+		int totalproduct = Integer.parseInt(totalProduct);
+		int productrequired = Integer.parseInt(productreq);
+		int remainingproduct = totalproduct - productrequired;
+		
+		String remaining_product = Integer.toString(remainingproduct);
+		
 //		PrintWriter out = response.getWriter();
 		OrderThrededFittingBean orderthreded = new OrderThrededFittingBean();
 		orderthreded.setUserId(user_id);
 		orderthreded.setUserFirstName(userfirstname);
 		orderthreded.setUserLastName(userlastname);
-		orderthreded.setId(product_id);
+		orderthreded.setProductId(product_id);
 		orderthreded.setProductname(productname);
 		orderthreded.setProductsize(productsize);
-		orderthreded.setProductquantity(noOfproduct);
+		orderthreded.setProductrequired(productreq);
+		orderthreded.setClientName(clientname);
+		orderthreded.setClientAddress(clientaddress);
+		orderthreded.setTotalProduct(remaining_product);
+		orderthreded.setOrderStatus(orderstatus);
 		
 		Dao d = new Dao();
+		if(remainingproduct > 0 ) {
+			
 		
 		int status = d.placedThrededOrder(orderthreded);
-		if(status > 0) {
+		int flag = d.updateThrededTotalProduct(remaining_product,product_id);
+		
+			if(status > 0 && flag>0) {
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8"); 
+				String msg = "Your Order of "+productreq+" product quantity and "+productname+" product name has been placed you can see your order detail in approval section";
+				response.getWriter().write(msg); 
+				}
+			}
+		
+		else {
+			remainingproduct = totalproduct;
+			
 			response.setContentType("text/plain");
-			response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
-		    response.getWriter().write("Your Order Has been placed"); 
+			response.setCharacterEncoding("UTF-8"); 
+			response.getWriter().write("you cannot order "); 
 		}
 		
 	}

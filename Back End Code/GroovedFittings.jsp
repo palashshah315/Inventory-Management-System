@@ -52,8 +52,22 @@
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Approval</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
