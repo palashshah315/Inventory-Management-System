@@ -62,10 +62,17 @@ public class GroovedOrderPlaced extends HttpServlet {
 			}
 		
 		else {
-			response.setContentType("text/plain");
-			response.setCharacterEncoding("UTF-8"); 
-			response.getWriter().write("you cannot order "); 
-		}
+			remainingproduct = totalproduct;
+			String productrem = Integer.toString(remainingproduct);
+			int status = d.updateGroovedTotalProduct(productrem, user_id);
+			
+			if(status > 0) {
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8"); 
+				response.getWriter().write("you cannot order"); 
+				} 
+			
+			}
 		
 		}
 

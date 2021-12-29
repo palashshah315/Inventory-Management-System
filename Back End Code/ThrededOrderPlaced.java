@@ -63,10 +63,15 @@ public class ThrededOrderPlaced extends HttpServlet {
 		
 		else {
 			remainingproduct = totalproduct;
+			String productrem = Integer.toString(remainingproduct);
+			System.out.println(productrem);
+			int status = d.updateThrededTotalProduct(productrem, user_id);
 			
-			response.setContentType("text/plain");
-			response.setCharacterEncoding("UTF-8"); 
-			response.getWriter().write("you cannot order "); 
+			if(status > 0) {
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8"); 
+				response.getWriter().write("you cannot order "); 
+			}
 		}
 		
 	}
