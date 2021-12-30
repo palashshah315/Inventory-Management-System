@@ -223,7 +223,7 @@ public class Dao {
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`ordergrooved` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`clientname`,`clientaddress`,`orderstatus`) values (?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into `ims`.`ordergrooved` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`clientname`,`clientaddress`,`orderstatus`,`orderplaceddate`,`orderplacedtime`) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ordergrooved.getProductId());
 			pstmt.setInt(2, ordergrooved.getUserId());
@@ -236,6 +236,8 @@ public class Dao {
 			pstmt.setString(9, ordergrooved.getclientName());
 			pstmt.setString(10,ordergrooved.getClientAddress());
 			pstmt.setString(11,ordergrooved.getOrderStatus());
+			pstmt.setString(12, ordergrooved.getOrderPlacedDate());
+			pstmt.setString(13, ordergrooved.getOrderPlacedTime());
 			status = pstmt.executeUpdate();
 		}
 		catch (Exception e) {e.printStackTrace();}
@@ -246,7 +248,7 @@ public class Dao {
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`orderthreded` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`clientname`,`clientaddress`,`orderstatus`) values (?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into `ims`.`orderthreded` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`clientname`,`clientaddress`,`orderstatus`,`orderplaceddate`,`orderplacedtime`) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, orderthreded.getProductId());
 			pstmt.setInt(2, orderthreded.getUserId());
@@ -259,6 +261,8 @@ public class Dao {
 			pstmt.setString(9, orderthreded.getclientName());
 			pstmt.setString(10,orderthreded.getClientAddress());
 			pstmt.setString(11,orderthreded.getOrderStatus());
+			pstmt.setString(12, orderthreded.getOrderPlacedDate());
+			pstmt.setString(13, orderthreded.getOrderPlacedTime());
 			
 			status = pstmt.executeUpdate();
 		}

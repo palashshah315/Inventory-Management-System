@@ -22,6 +22,8 @@ public class GroovedOrderPlaced extends HttpServlet {
 		String totalProduct = request.getParameter("productavailable"); 
 		String clientname = request.getParameter("clientname");
 		String clientaddress = request.getParameter("clientaddress");
+		String orderplaceddate = request.getParameter("orderplaceddate");
+		String orderplacedtime = request.getParameter("orderplacedtime"); 
 		String orderstatus = "pending";
 		int product_id = Integer.parseInt(productId);
 		int user_id = Integer.parseInt(userid);
@@ -45,9 +47,11 @@ public class GroovedOrderPlaced extends HttpServlet {
 		ordergrooved.setClientAddress(clientaddress);
 		ordergrooved.setTotalProduct(remaining_product);
 		ordergrooved.setOrderStatus(orderstatus);
+		ordergrooved.setOrderPlacedDate(orderplaceddate);
+		ordergrooved.setOrderPlacedTime(orderplacedtime);
 		
 		Dao d = new Dao();
-		if(remainingproduct > 0 ) {
+		if(remainingproduct >= 0 ) {
 			
 		
 		int status = d.placedGroovedOrder(ordergrooved);

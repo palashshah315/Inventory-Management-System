@@ -14,14 +14,14 @@
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 <title>Order Grooved</title>
 <%
-	String firstname = (String) session.getAttribute("firstname");
-	String lastname =  (String) session.getAttribute("lastname");
-	String position = (String) session.getAttribute("position");
-	int userid = (Integer) session.getAttribute("userid");
-	Dao d = new Dao();	
-	List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
-	
-	
+    String firstname = (String) session.getAttribute("firstname");
+    String lastname =  (String) session.getAttribute("lastname");
+    String position = (String) session.getAttribute("position");
+    int userid = (Integer) session.getAttribute("userid");
+    Dao d = new Dao();  
+    List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
+    
+    
 %>
 </head>
 <body>
@@ -113,8 +113,8 @@
                     <td><input type="number" id="<%= "Qty_"+gf.getId() %>" name="productrequired" placeholder="Product Required" ></td>
                     <td><input type="text" id="<%= "client_"+gf.getId() %>" name="clientname" placeholder="Client Name"></td>
                     <td><textarea id="<%= "add_"+gf.getId() %>"></textarea></td>
-                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+gf.getId() %>,<%="add_"+gf.getId()%>,`<%= gf.getNoOfProduct()%>`)" >place Order</button></td>
-                	
+                    <td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+gf.getId() %>,<%="add_"+gf.getId()%>,`<%= gf.getNoOfProduct()%>`)" >place Order</button></td>
+                    
                 </tr>
             <%} %>
         </tbody>
@@ -189,21 +189,25 @@
 </script>
 <script type="text/javascript">
 function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable){
-	const productQuantity = productQuantityId.value;
-	const clientname = clientNameId.value;
-	const clientaddress = clientAddressId.value;
-	
-	
-		const xhttp = new XMLHttpRequest();
-		  xhttp.onload = function() {
-			  var res = this.responseText;
-			  alert(res);
-			  location.reload();
-			}
-		 
-		  const url = "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress;
-		  xhttp.open("GET", url);
-		  xhttp.send();
+    const productQuantity = productQuantityId.value;
+    const clientname = clientNameId.value;
+    const clientaddress = clientAddressId.value;
+    const d = new Date();
+    const month = d.getMonth()+1;
+    const orderplaceddate = d.getFullYear()+"-"+month+"-"+d.getDate();
+    const t = new Date();
+    const orderplacedtime = t.getHours()+":"+t.getMinutes()+":"+t.getSeconds();
+    
+        const xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+              var res = this.responseText;
+              alert(res);
+              location.reload();
+            }
+         
+          const url = "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime;
+          xhttp.open("GET", url);
+          xhttp.send();
 }
 </script>
 <%
