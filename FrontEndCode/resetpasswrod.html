@@ -12,7 +12,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Grooved Fittings</title>
+    <title>Reset Password</title>
 </head>
 
 <!-- Navbar -->
@@ -64,7 +64,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="#">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="resetpasswrod.html">Reset Password</a>
+                        <li><a class="dropdown-item" href="#">Reset Password</a>
                         </li>
                         <li><a class="dropdown-item" href="#">Employee Details</a></li>
                         <li><a class="dropdown-item" href="#">Log Out</a>
@@ -74,34 +74,43 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
-</div>
-<div class="scroll container-fluid">
-    <table style="width: 100% !important;" class="order-table table table-dark table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
-            <form action="" method="post">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>alfred</td>
-                    <td>size</td>
-                    <td>10</td>
-                </tr>
-            </form>
-        </tbody>
-    </table>
-</div>
-
+<!-- Add Product Form-->
+<section class="py-5" id="log" data-aos="zoom-in" data-aos-duration="2000">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-dark rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                </div>
+                <h1 class="fw-bolder color">Reset Password</h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form id="contactForm">
+                        <!-- Product Name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="newpassword" name="newpassword" type="password"
+                                placeholder="Enter New Password..." required>
+                            <label for="newpassword">New Password</label>
+                        </div>
+                        <!-- Product Size input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="confirmpassword" name="confirmpassword" type="password"
+                                placeholder="Enter Password Again..." required>
+                            <label for="confirmpassword">Confirm Password</label>
+                        </div>
+                        <!-- Submit Button-->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">
+                               Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
@@ -128,22 +137,10 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+    AOS.init();
 </script>
-<!-- for valdation if employee login then these both fields are none -->
-<!-- <script>
-document.getElementById("addproduct").style.display = "none";
-document.getElementById("employeedetail").style.display = "none";
-</script> -->
 </body>
 
 </html>
