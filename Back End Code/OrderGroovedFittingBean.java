@@ -2,7 +2,31 @@ package BeanClass;
 
 public class OrderGroovedFittingBean {
 	private String userfirstname,userlastname,productname, productsize, productquantity,totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
-	private int productid,userid;
+	private String approvaldate,approvaltime;
+	private int productid,userid,orderid;
+	
+	public void setOrderId(int orderid) {
+		this.orderid = orderid;
+	}
+	public int getOrderId() {
+		return orderid;
+	}
+	
+	public void setApprovalDate(String approvaldate) {
+		this.approvaldate = approvaldate;
+	}
+	
+	public String getApprovalDate() {
+		return approvaldate;
+	}
+	
+	public void setApprovalTime(String approvaltime) {
+		this.approvaltime = approvaltime;
+	}
+	
+	public String getApprovalTime() {
+		return approvaltime;
+	}
 	
 	public void setOrderPlacedDate(String orderplaceddate) {
 		this.orderplaceddate = orderplaceddate;

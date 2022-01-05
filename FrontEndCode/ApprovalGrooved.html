@@ -86,9 +86,9 @@
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Order Id</th>
                 <th scope="col">Product Id</th>
-                <th scope="col">Order Id </th>
+                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
@@ -106,9 +106,9 @@
 rows will generate dynamically -->
 
  <tr>
-                <th scope="row">1</th>
+                <td>Order Id</td>
                 <td>product id</td>
-                <td>order id</td>
+                <td>User id</td>
                 <td>employee name</td>
                 <td>product size</td>
                 <td>product Available</td>
@@ -118,7 +118,7 @@ rows will generate dynamically -->
                 <td>Order Place Date</td>
                 <td>Order Placed Time</td>
                 <td>Order status</td>
-                <td><button class="btn btn-secondary">Approved Order</button></td>
+                <td><button class="btn btn-secondary" onclick="approvalProduct(orderId, position)">Approved Order</button></td>
             </tr>
         </tbody>
     </table>
@@ -194,5 +194,30 @@ rows will generate dynamically -->
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script> -->
+<script>
+function approvalProduct(orderid, position){
+    if(position == "Employee"){
+        
+        alert("You are not Allowed to approve order!!");
+    }
+    
+    else{
+        const orderstatus = "Approved";
+        const d = new Date();
+        const month = d.getMonth()+1;
+        const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
+        const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+        const xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+              var res = this.responseText;
+              alert(res);
+              location.reload();
+            }
+          const url = "ApproveGroovedOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
+          xhttp.open("GET",url);
+          xhttp.send();
+    }
+}
+</script>
 </body>
 </html>

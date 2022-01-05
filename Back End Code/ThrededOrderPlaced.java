@@ -74,7 +74,7 @@ public class ThrededOrderPlaced extends HttpServlet {
 			if(status > 0) {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8"); 
-				response.getWriter().write("you cannot order "); 
+				response.getWriter().write("you cannot order"); 
 			}
 		}
 		

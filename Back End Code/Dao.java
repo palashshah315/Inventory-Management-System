@@ -269,4 +269,100 @@ public class Dao {
 		catch (Exception e) {e.printStackTrace();}
 		return status;
 	}
+	public List<OrderGroovedFittingBean> getAllApprovalDetailsOfGroovedFitting(){
+		List<OrderGroovedFittingBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select * from `ims`.`ordergrooved`";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				OrderGroovedFittingBean og = new OrderGroovedFittingBean();
+				og.setOrderId(rs.getInt(1));
+				og.setProductId(rs.getInt(2));
+				og.setUserId(rs.getInt(3));
+				og.setUserFirstName(rs.getString(4));
+				og.setUserLastName(rs.getString(5));
+				og.setClientName(rs.getString(6));
+				og.setClientAddress(rs.getString(7));
+				og.setProductname(rs.getString(8));
+				og.setProductsize(rs.getString(9));
+				og.setProductrequired(rs.getString(10));
+				og.setTotalProduct(rs.getString(11));
+				og.setOrderPlacedDate(rs.getString(12));
+				og.setOrderPlacedTime(rs.getString(13));
+				og.setApprovalDate(rs.getString(14));
+				og.setApprovalTime(rs.getString(15));
+				og.setOrderStatus(rs.getString(16));
+				list.add(og);
+			}
+			
+		}catch(Exception e) {e.printStackTrace();}
+		return list;
+	}
+	public List<OrderThrededFittingBean> getAllApprovalDetailsOfThrededFitting(){
+		List<OrderThrededFittingBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select * from `ims`.`orderthreded`";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				OrderThrededFittingBean ot = new OrderThrededFittingBean();
+				ot.setOrderId(rs.getInt(1));
+				ot.setProductId(rs.getInt(2));
+				ot.setUserId(rs.getInt(3));
+				ot.setUserFirstName(rs.getString(4));
+				ot.setUserLastName(rs.getString(5));
+				ot.setClientName(rs.getString(6));
+				ot.setClientAddress(rs.getString(7));
+				ot.setProductname(rs.getString(8));
+				ot.setProductsize(rs.getString(9));
+				ot.setProductrequired(rs.getString(10));
+				ot.setTotalProduct(rs.getString(11));
+				ot.setOrderPlacedDate(rs.getString(12));
+				ot.setOrderPlacedTime(rs.getString(13));
+				ot.setApprovalDate(rs.getString(14));
+				ot.setApprovalTime(rs.getString(15));
+				ot.setOrderStatus(rs.getString(16));
+				list.add(ot);
+			}
+			
+		}catch(Exception e) {e.printStackTrace();}
+		return list;
+	}
+	public int updateGroovedOrderStatus(OrderGroovedFittingBean og) {
+		int status =0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "update `ims`.`ordergrooved` set `approveddate`=? , `approvedtime`=?, `orderstatus`=?  where `ordergrooveid`=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, og.getApprovalDate());
+			pstmt.setString(2, og.getApprovalTime());
+			pstmt.setString(3, og.getOrderStatus());
+			pstmt.setInt(4, og.getOrderId());
+			status = pstmt.executeUpdate();
+			
+		}catch(Exception e) {e.printStackTrace();}
+		return status;
+	}
+	public int updateThrededOrderStatus(OrderThrededFittingBean ot) {
+		int status =0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "update `ims`.`orderthreded` set `approveddate`=? , `approvedtime`=?, `orderstatus`=?  where `orderthrededid`=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ot.getApprovalDate());
+			pstmt.setString(2, ot.getApprovalTime());
+			pstmt.setString(3, ot.getOrderStatus());
+			pstmt.setInt(4, ot.getOrderId());
+			status = pstmt.executeUpdate();
+			
+		}catch(Exception e) {e.printStackTrace();}
+		return status;
+	}
 }

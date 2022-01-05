@@ -178,8 +178,7 @@ and (max-width : 380px)
         margin: 50px 25%;
     }
 }
-@media only screen 
-and (max-width : 430px)
+@media only screen and (max-width : 430px)
 {
     .order{
         width: 50%;
@@ -187,7 +186,7 @@ and (max-width : 430px)
     }
 .just{
     visibility: hidden;
-}
+	}
 }
 #example1 {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -195,12 +194,5 @@ and (max-width : 430px)
 .haver:hover {
     border-color: lightgray;
     height: 35px; 
+   
   }
-.dot {
-    margin-top: 10px;
-    height: 25px;
-    width: 25px;
-    background-color: white;
-    border-radius: 50%;
-    display: inline-block;
-}

@@ -91,7 +91,7 @@
                         </div>
                         <!-- Address input-->
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="address" name="address" type="text" 
+                            <textarea class="form-control" id="address" name="address" 
                             style="height: 10rem" required></textarea>
                             <label for="address">Address</label>
 
