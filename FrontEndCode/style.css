@@ -195,3 +195,6 @@ and (max-width : 380px)
     border-color: lightgray;
     height: 35px; 
 }
+.space1{
+    margin: 20px 0;
+}
