@@ -9,9 +9,10 @@
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <title>ApprovalGrooved</title>
+    <title>Employee Details</title>
 </head>
 
 <!-- Navbar -->
@@ -91,64 +92,52 @@
     </div>
 </div>
 
-<!-- Approval Table-->
-<div class="order search">
-    <span class="fa fa-search form-control-feedback just"></span>
-    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
-</div>
+<!--Page Content-->
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b><u>Employee Details</u></b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id</th>
-                <th scope="col">Product Id</th>
-                <th scope="col">User Id </th>
-                <th scope="col">Employee Name</th>
-                <th scope="col">Product Size</th>
-                <th scope="col">Product Available</th>
-                <th scope="col">Product Required</th>
-                <th scope="col">Client Name</th>
-                <th scope="col">Client Address</th>
-                <th scope="col">Order Placed Date</th>
-                <th scope="col">Order Placed Time</th>
-                <th scope="col">Order Status</th>
-                <th scope="col">Approved Order</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email-Id</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Address</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
             </tr>
         </thead>
         <tbody>
-            <!-- form tag is added for placing order
-rows will generate dynamically -->
-
- <tr>
-                <td>Order Id</td>
-                <td>product id</td>
-                <td>User id</td>
-                <td>employee name</td>
-                <td>product size</td>
-                <td>product Available</td>
-                <td>Product required</td>
-                <td>Client name</td>
-                <td>Client Address</td>
-                <td>Order Place Date</td>
-                <td>Order Placed Time</td>
-                <td>Order status</td>
-                <td><button class="btn btn-secondary" onclick="approvalProduct(orderId, position)">Approved Order</button></td>
-            </tr>
+            <!-- rows will generate dynamically -->
+            <!-- form Tag is added for placing order -->
+            <form action="" method="post">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>alfred</td>
+                    <td>user@gmail.com</td>
+                    <td>35625154</td>
+                    <td>Ahmedabad</td>
+                    <td>djfndj</td>
+                    <td>dncbdskjcb</td>
+                </tr>
+            </form>
         </tbody>
     </table>
 </div>
+
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries SF 535/7, Kollupalayam, </div>
+                <div class="big m-0 text-white">Fitwel Industries
+                    SF 535/7, Kollupalayam, </div>
                 <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate, Coimbatore-641659, Tamil Nadu, India</div>
+                    Near Kaniyur Toll Gate,
+                    Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
@@ -164,6 +153,7 @@ rows will generate dynamically -->
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -175,76 +165,20 @@ rows will generate dynamically -->
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 <script>
-    (function (document) {
-        'use strict';
-
-        var LightTableFilter = (function (Arr) {
-
-            var _input;
-
-            function _onInputEvent(e) {
-                _input = e.target;
-                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                Arr.forEach.call(tables, function (table) {
-                    Arr.forEach.call(table.tBodies, function (tbody) {
-                        Arr.forEach.call(tbody.rows, _filter);
-                    });
-                });
-            }
-
-            function _filter(row) {
-                var text = row.textContent.toLowerCase(),
-                    val = _input.value.toLowerCase();
-                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-            }
-
-            return {
-                init: function () {
-                    var inputs = document.getElementsByClassName('light-table-filter');
-                    Arr.forEach.call(inputs, function (input) {
-                        input.oninput = _onInputEvent;
-                    });
-                }
-            };
-        })(Array.prototype);
-
-        document.addEventListener('readystatechange', function () {
-            if (document.readyState === 'complete') {
-                LightTableFilter.init();
-            }
-        });
-
-    })(document);
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 <!-- for valdation if employee login then these both fields are none -->
 <!-- <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script> -->
-<script>
-function approvalProduct(orderid, position){
-    if(position == "Employee"){
-        
-        alert("You are not Allowed to approve order!!");
-    }
-    
-    else{
-        const orderstatus = "Approved";
-        const d = new Date();
-        const month = d.getMonth()+1;
-        const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
-        const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-        const xhttp = new XMLHttpRequest();
-          xhttp.onload = function() {
-              var res = this.responseText;
-              alert(res);
-              location.reload();
-            }
-          const url = "ApproveGroovedOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
-          xhttp.open("GET",url);
-          xhttp.send();
-    }
-}
-</script>
 </body>
+
 </html>
