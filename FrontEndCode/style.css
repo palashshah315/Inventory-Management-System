@@ -48,6 +48,9 @@ nav {
 .color {
     color: white !important;
 }
+.color1{
+    color: black !important;
+}
 
 #__register {
     display: none;
