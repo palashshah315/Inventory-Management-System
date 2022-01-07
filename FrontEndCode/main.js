@@ -2,6 +2,13 @@ $(document).ready(function () {
 			
 });
 removeItem = () => {
-    localStorage.removeItem('id');
-    location.href ='index.html'
+    const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                var res = this.responseText;
+                alert(res);
+               
+            }
+            const url = "";
+            xhttp.open("GET", url);
+            xhttp.send();
 }
