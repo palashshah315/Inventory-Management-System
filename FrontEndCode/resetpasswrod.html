@@ -46,13 +46,13 @@
                             </button>
                         </div>
                     </form>
-                        <div class="d-grid space1">
-                            <a href="dashboard.html">
+                    <div class="d-grid space1 mt-5">
+                        <a href="dashboard.html">
                             <button class="btn btn-secondary btn-lg" id="cancle" type="cancle">
-                                cancle
+                                cancel
                             </button>
-                            </a>
-                        </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,6 +82,20 @@
         </div>
     </div>
 </footer>
+<script>
+    const newPassword = document.querySelector("#newpassword");
+    const confirmPassword = document.querySelector("#confirmpassword");
+    const resetForm = document.querySelector("#contactForm");
+
+    resetForm.addEventListener("submit", () => {
+        const npv = newPassword.value;
+        const cpv = confirmPassword.value;
+        if (npv !== cpv) {
+            alert(`New password and Confirm password doesn't match!`);
+        }
+    });
+
+</script>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
