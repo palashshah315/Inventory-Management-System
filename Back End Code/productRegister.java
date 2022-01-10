@@ -20,9 +20,6 @@ public class ProductRegister extends HttpServlet {
 		
 		PrintWriter out = res.getWriter();
 		
-		
-		System.out.println(fitting);
-		
 		if(fitting.equals("Threded Fitting")) {
 			Dao d = new Dao();
 			ThrededFittingBean tb = new ThrededFittingBean();
@@ -50,9 +47,10 @@ public class ProductRegister extends HttpServlet {
 			status = d.insertGroovedFitting(gb);
 			if(status > 0) {
 				out.println("<script type = \"text/javascript\">");
-	    		out.println("alert('Product Added Successfully');");
-	    		out.println("location.reload()");
-	    		out.println("</script>");	
+	    		out.println("alert('Product Grooved Fitting Added Successfully');");
+	    		
+	    		out.println("</script>");
+	    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=AddProduct.jsp\">");
 	    		
 			}
 		}

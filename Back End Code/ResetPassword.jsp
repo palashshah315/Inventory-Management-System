@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@page import="DAO.*,BeanClass.*,java.util.*" %>
-<!doctype html>
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,20 +9,16 @@
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Grooved Fittings</title>
+    <title>Reset Password</title>
     <%
-    	String firstname = (String) session.getAttribute("firstname");
-		String lastname =  (String) session.getAttribute("lastname");
-		String position = (String) session.getAttribute("position");
-		Dao d = new Dao();
-		List<GroovedFittingBean> list = d.getAllDetailsOfGroovedFittings();
-	
+    String firstname = (String) session.getAttribute("firstname");
+    String lastname =  (String) session.getAttribute("lastname");
+    String position = (String) session.getAttribute("position");
+    int userid = (int) session.getAttribute("userid");
     %>
 </head>
-
+<body>
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
@@ -98,39 +92,65 @@
         </div>
     </div>
 </div>
-<div class="order col-md-4 search mt-2 mx-2">
-    <span class="fa fa-search form-control-feedback"></span>
-    <input type="text" id="myInput" placeholder="Filter">
+<section class="py-5" id="log" data-aos="zoom-in" data-aos-duration="2000">
+    <div class="container px-5">
+        <div class="bg-dark rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                </div>
+                <h1 class="fw-bolder color">Reset Password</h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+	                   <!-- Password input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="newpassword" name="newpassword" type="password"
+                                required>
+                             
+                            <label for="newpassword">New Password</label>
+                        </div>
+                        <!-- confirm password input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="confirmpassword" name="confirmpassword" type="password"required>
+                            <label for="confirmpassword">Confirm Password</label>
+                        </div>
+                        
+                        <!-- Submit Button-->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" id="submitButton" onclick="resetPassword(`<%= userid %>`)">
+                               Reset Password
+                            </button>
+                        </div>
+                        <span id="errormsg" style="color: red;"></span>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  logout model -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="removeItem()">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container-fluid">
-    <h2 class="pro mt-5"><b>Grooved Fittings</b></h2>
-</div>
-<table class="table table-dark table-striped mt-3 container" id="Gfittings">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">SIZE</th>
-            <th scope="col">NO. OF PRODUCTS</th>
-        </tr>
-    </thead>
-    <tbody id="myTable">
-    		<%
-    		for(GroovedFittingBean gb : list)
-    		{
-    		%>
-    		<tr>
-    			<td><%= gb.getId() %></td>
-    			<td><%= gb.getProductName() %></td>
-    			<td><%= gb.getProductSize() %></td>
-    			<td><%= gb.getNoOfProduct() %></td>
-        	</tr>
-          <% } %>
-    </tbody>
-</table>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-auto">
-    <div class="container px-4 mt-auto">
+ 	<div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
@@ -156,16 +176,39 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+function resetPassword(userid){
+	var newpassword = document.getElementById("newpassword");
+	var confirmpassword = document.getElementById("confirmpassword");
+	var newpasswordvalue = newpassword.value;
+	var confirmpasswordvalue = confirmpassword.value;
+	
+	
+	
+	if(newpasswordvalue != confirmpasswordvalue){
+		
+		document.getElementById("errormsg").innerHTML="Password doesn't match";
+	}
+	else if(newpasswordvalue == ""  && confirmpasswordvalue==""){
+		
+		document.getElementById("errormsg").innerHTML="Please Enter Password";
+	}
+	else{
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			  var res = this.responseText;
+			  alert(res);
+			  location.reload();
+		}
+		  
+		const url = "ResetPassword";
+		xhttp.open("POST", url, true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("newpassword="+newpasswordvalue+"&confirmpassword="+confirmpasswordvalue+"&userid="+userid);
+		  
+	}
+}
 </script>
-<% 
+<%
  if(position.equals("Employee"))
 {
 %>
@@ -173,7 +216,6 @@ $(document).ready(function(){
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script>
-
 <% 
 }
 %>

@@ -17,7 +17,7 @@
 <body>
     <!-- Reset Password -->
     <hr class="dropdown-divider">
-    <section class="py-5" id="log" data-aos="zoom-in-left">
+    <section class="py-5" id="log">
         <div class="container px-5">
             <!-- Contact form-->
             <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
