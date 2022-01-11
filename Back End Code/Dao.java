@@ -365,4 +365,17 @@ public class Dao {
 		}catch(Exception e) {e.printStackTrace();}
 		return status;
 	}
+	public int updatePasswordByUserId(UserBean ub) {
+		int status = 0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "update `ims`.`user` set `password`=? where `user_id`=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,ub.getPassword());
+			pstmt.setInt(2, ub.getId());
+			status = pstmt.executeUpdate();
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
+	}
 }

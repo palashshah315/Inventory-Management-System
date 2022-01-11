@@ -1,46 +1,48 @@
-<!doctype html>
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="java.util.*,BeanClass.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
 <head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Threded Fittings</title>
+<title>Employee Details</title>
+<%
+String firstname = (String) session.getAttribute("firstname");
+String lastname =  (String) session.getAttribute("lastname");
+String position = (String) session.getAttribute("position");
+%>
 </head>
 <body>
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
                 <li class="nav-item dropdown" id="dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.html">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
+                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
+                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
                     </ul>
                 </li>
                  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                
@@ -48,8 +50,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.html">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
@@ -57,9 +59,9 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="dashboard.html#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.html">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
+                        <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
+                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
+                        <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
@@ -82,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form action="Logout.html" method="post">
+                <form action="Logout.jsp" method="post">
                     <input type="submit" value="Yes"> 
                 </form>
             </div>
@@ -91,7 +93,7 @@
 </div>
 <!--Page Content-->
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b>Employee Details</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
@@ -99,27 +101,61 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
+                <th scope="col">Email-Id</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Address</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Position</th>
             </tr>
         </thead>
         <tbody>
             <!-- rows will generate dynamically -->
             <!-- form Tag is added for placing order -->
-            <form action="" method="post">
+            
+<%
+String dbUrl = "jdbc:mysql://localhost:3306/ims";
+String dbUname = "root";
+String dbPassword = "root";
+String dbDriver = "com.mysql.cj.jdbc.Driver"; 
+String query = "select * from `ims`.`user`";
+
+try
+{
+Class.forName(dbDriver);
+Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
+Statement st = con.createStatement();
+ResultSet rs = st.executeQuery(query);
+    
+while(rs.next())
+{
+
+%>          
                 <tr>
-                    <th scope="row">1</th>
-                    <td>alfred</td>
-                    <td>size</td>
-                    <td>10</td>
+                    <td><%=rs.getInt("user_id")%></td>
+                    <td><%=rs.getString("user_firstname")+" "+rs.getString("user_lastname")%></td>
+                    <td><%=rs.getString("user_email")%></td>
+                    <td><%=rs.getString("user_phoneno")%></td>
+                    <td><%=rs.getString("user_address")%></td>
+                    <td><%=rs.getString("username")%></td>
+                    <td><%=rs.getString("password")%></td>
+                    <td><%=rs.getString("user_position")%></td>
                 </tr>
-            </form>
+            
+<%
+    }
+}
+
+catch(Exception e)
+{
+    e.printStackTrace();
+}
+%>
         </tbody>
     </table>
 </div>
-
-<!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
+
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
@@ -142,34 +178,17 @@
         </div>
     </div>
 </footer>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%
+if(position.equals("Employee"))
+{
+%>
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-<!-- for valdation if employee login then these both fields are none -->
-<!-- <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
-</script> -->
-</body>
+</script>
 
+<% 
+}
+%>
+</body>
 </html>

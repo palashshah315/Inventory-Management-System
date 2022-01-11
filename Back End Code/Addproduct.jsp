@@ -20,7 +20,8 @@
     %>
 </head>
 <body>
-    <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+ <!-- Navbar -->
+<nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -29,13 +30,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
+                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
                     </ul>
                 </li>
                  <li class="nav-item dropdown">
@@ -46,14 +47,7 @@
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
-                    </ul>
-                </li>
+               
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
@@ -62,21 +56,43 @@
                         <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="#">Reset Password</a></li>
-                        <li><a class="dropdown-item" href="#">Employee Details</a></li>
-                        <li><a class="dropdown-item" href="#">Log Out</a>
+                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
+                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
+                       <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<!--  logout model -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="Logout.jsp" method="post">
+                    <input type="submit" value="Yes"> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="py-5" id="log" data-aos="zoom-in" data-aos-duration="2000">
     <div class="container px-5">
         <!-- Contact form-->
@@ -125,6 +141,27 @@
         </div>
     </div>
 </section>
+<!--  logout model -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="removeItem()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
 	<div class="container px-4 mt-auto">

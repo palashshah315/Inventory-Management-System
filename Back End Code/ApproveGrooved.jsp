@@ -21,6 +21,7 @@
     %>
 </head>
 <body>
+ <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
@@ -47,38 +48,52 @@
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-               <li class="nav-item dropdown">
+               
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="#">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="#">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown" id="dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog"  role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
-                        
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="#">Reset Password</a></li>
+                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
                         <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
-                        <li><a class="dropdown-item" href="#">Log Out</a> 
+                       <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<!--  logout model -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="Logout.jsp" method="post">
+                    <input type="submit" value="Yes"> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Approval Table-->
 <div class="order search">
     <span class="fa fa-search form-control-feedback just"></span>
