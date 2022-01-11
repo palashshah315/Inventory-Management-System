@@ -28,17 +28,11 @@
 }
 
 body {
-    background-color: #C1C8E4 !important;
+    background-color: white !important;
+    color: black !important;
 }
-.edit{
-    background-color: rgba(193, 200, 228, 0.1);
-}
-.edit1{
-    background-color: whitesmoke;
-}
-.edit2{
-    background-color: wheat;
-}
+
+
 .pro {
     text-align: center;
 }

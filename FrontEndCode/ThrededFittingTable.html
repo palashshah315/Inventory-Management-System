@@ -15,158 +15,163 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Threded Fittings</title>
 </head>
+
 <body>
-<!-- Navbar -->
-<nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Product</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.html">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-               
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="dashboard.html#youraccount">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.html">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
-                       <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--  logout model -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to logout?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form action="Logout.html" method="post">
-                    <input type="submit" value="Yes"> 
-                </form>
+    <!-- Navbar -->
+    <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                    <li class="nav-item dropdown" id="dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Product</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="GroovedFittingTable.html">Grooved Fittings</a></li>
+                            <li><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="ApprovalGrooved.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="your_profile.html">Your Account</a></li>
+                            <li><a class="dropdown-item" href="ResetPassword.html">Reset Password</a></li>
+                            <li> <a class="dropdown-item" href="Myorder.html">My Orders</a></li>
+                            <li><a id="employeedetail" class="dropdown-item" href="employeedetail.html">Employee
+                                    Details</a></li>
+                            <li><button class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Logout</button></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <!--  logout model -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="Logout.html" method="post">
+                        <input type="submit" value="Yes">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!--Page Content-->
-<div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
-</div>
-<div class="scroll container-fluid">
-    <table style="width: 100% !important;" class="order-table table table-dark table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">No. Of Product</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
-            <form action="" method="post">
+    <!--Page Content-->
+    <div class="container-fluid">
+        <h2 class="pro mt-5"><b><u>Threded Fittings</u></b></h2>
+    </div>
+    <div class="scroll container-fluid">
+        <table style="width: 100% !important;" class="order-table table table-dark table-striped">
+            <thead>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>alfred</td>
-                    <td>size</td>
-                    <td>10</td>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">No. Of Product</th>
                 </tr>
-            </form>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <!-- rows will generate dynamically -->
+                <!-- form Tag is added for placing order -->
+                <form action="" method="post">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>alfred</td>
+                        <td>size</td>
+                        <td>10</td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
 
-<!-- Footer -->
-<footer class="bg-dark py-4 mt-5">
-    <div class="container px-4 mt-auto">
-        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="col-auto">
-                <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
-                <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-dark py-4 mt-5">
+        <div class="container px-4 mt-auto">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="big m-0 text-white ">Address :</div>
+                    <div class="big m-0 text-white">Fitwel Industries
+                        SF 535/7, Kollupalayam, </div>
+                    <div class="big m-0 text-white">
+                        Near Kaniyur Toll Gate,
+                        Coimbatore-641659, Tamil Nadu, India</div>
+                </div>
 
-            <div class="col-auto">
-                <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
-                <div class="big m-0 text-white">Phone : +91 90000 00000</div>
-            </div>
+                <div class="col-auto">
+                    <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
+                    <div class="big m-0 text-white">Phone : +91 90000 00000</div>
+                </div>
 
-            <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="col-auto">
+                    <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-<!-- for valdation if employee login then these both fields are none -->
-<!-- <script>
+    </footer>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <!-- for valdation if employee login then these both fields are none -->
+    <!-- <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script> -->
