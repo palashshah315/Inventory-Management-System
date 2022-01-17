@@ -17,7 +17,7 @@
     <title>Your Profile</title>
     <%
     String firstname = (String) session.getAttribute("firstname");
-    String lastname =  (String) session.getAttribute("lastname");
+	String lastname =  (String) session.getAttribute("lastname");
     String position = (String) session.getAttribute("position");
     int user_id = (Integer) session.getAttribute("userid");
     %>
@@ -58,6 +58,14 @@
                         <li><a class="dropdown-item" href="ApprovalGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
                 
                 <li class="nav-item dropdown">
@@ -91,7 +99,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form action="Logout.jsp" method="post">
-                    <input type="submit" value="Yes"> 
+                	<input type="submit" value="Yes"> 
                 </form>
             </div>
         </div>
@@ -172,7 +180,7 @@ if(rs.next()){
 }
 catch(Exception e)
 {
-    e.printStackTrace();
+	e.printStackTrace();
 }
 %>
 <!-- Footer -->

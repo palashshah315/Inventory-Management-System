@@ -1,27 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
-<%@page import="java.util.*,BeanClass.*,DAO.*,java.io.*" %>
+<%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
+<title>Grooved Order</title>
+<link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-<title>Approved Grooved</title>
-	<%
-        String firstname = (String) session.getAttribute("firstname");
-        String lastname =  (String) session.getAttribute("lastname");
-        String position = (String) session.getAttribute("position");
-        Dao d = new Dao();
-        List<OrderGroovedFittingBean> list = d.getAllApprovalDetailsOfGroovedFitting();
-    %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ <%
+    	String firstname = (String) session.getAttribute("firstname");
+    	String lastname =  (String) session.getAttribute("lastname");
+    	String position = (String) session.getAttribute("position");
+    	int user_id = (Integer) session.getAttribute("userid");
+ %>
 </head>
 <body>
-<!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="container px-5">
         <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
@@ -72,8 +66,8 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
                         <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
-                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
+                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
@@ -102,23 +96,17 @@
         </div>
     </div>
 </div>
-<!-- Approval Table-->
-<div class="order search">
-    <span class="fa fa-search form-control-feedback just"></span>
-    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
-</div>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b>Grooved Fittings</b></h2>
+    <h2 class="pro mt-5"><b>My Orders</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id </th>
-                <th scope="col">User Id</th>
+                <th scope="col">Order Id</th>
                 <th scope="col">Product Id</th>
+                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
-                <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
@@ -126,43 +114,67 @@
                 <th scope="col">Client Address</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
+                <th scope="col">Approval Date </th>
+                <th scope="col">Approval Time</th>
                 <th scope="col">Order Status</th>
-                <th scope="col">Approved Order</th>
             </tr>
         </thead>
         <tbody>
-         	<%for (OrderGroovedFittingBean og : list){ %>
-            	<tr id="<%= og.getOrderId() %>">
-            	<td><%= og.getOrderId() %></td>
-                <td><%= og.getUserId() %></td>
-                <td><%= og.getProductId()  %></td>
-                <td><%= og.getUserFirstName()+" "+og.getUserLastName() %></td>
-                <td><%= og.getProductname() %></td>
-                <td><%= og.getProductsize() %></td>
-                <td><%= og.getTotalProduct() %></td>
-                <td><%= og.getProductrequired() %></td>
-                <td><%= og.getclientName() %></td>
-                <td><%= og.getClientAddress() %></td>
-                <td><%= og.getOrderPlacedDate() %></td>
-                <td><%= og.getOrderPlacedTime() %></td>
-                <td><%= og.getOrderStatus() %></td>
-                <td><button class="btn btn-secondary" id="<%= "btn_"+og.getOrderId()%>" onclick="approvalProduct( `<%=og.getOrderId()%>`,`<%=position%>`)">Approved Order</button></td>	
-                </tr>
-            <% } %>
+            <!-- form tag is added for placing order
+rows will generate dynamically -->
+<%
+String dbUrl = "jdbc:mysql://localhost:3306/ims";
+String dbUname = "root";
+String dbPassword = "root";
+String dbDriver = "com.mysql.cj.jdbc.Driver"; 
+String query = "select * from ordergrooved where userid="+user_id;
+
+try
+{
+Class.forName(dbDriver);
+Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
+Statement st = con.createStatement();
+ResultSet rs = st.executeQuery(query);
+
+while(rs.next())
+{
+%>
+
+            <tr>
+                <td><%=rs.getInt("ordergrooveid")%></td>
+                <td><%=rs.getInt("productid")%></td>
+                <td><%=rs.getInt("userid")%></td>
+                <td><%=rs.getString("userfirstname")+" "+rs.getString("userlastname")%></td>
+                <td><%=rs.getString("productsize")%></td>
+                <td><%=rs.getString("totalproduct")%></td>
+                <td><%=rs.getString("productrequired")%></td>
+                <td><%=rs.getString("clientname")%></td>
+                <td><%=rs.getString("clientaddress")%></td>
+                <td><%=rs.getString("orderplaceddate")%></td>
+                <td><%=rs.getString("orderplacedtime")%></td>
+                <td><%=rs.getString("approveddate")%></td>
+                <td><%=rs.getString("approvedtime")%></td>
+                <td><%=rs.getString("orderstatus")%></td>
+            </tr>
+<%
+}
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+%>
         </tbody>
     </table>
 </div>
 <footer class="bg-dark py-4 mt-5">
-
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
+                <div class="big m-0 text-white">Fitwel Industries SF 535/7, Kollupalayam, </div>
                 <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
+                    Near Kaniyur Toll Gate, Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
@@ -176,51 +188,8 @@
         </div>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    (function (document) {
-        'use strict';
-
-        var LightTableFilter = (function (Arr) {
-
-            var _input;
-
-            function _onInputEvent(e) {
-                _input = e.target;
-                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                Arr.forEach.call(tables, function (table) {
-                    Arr.forEach.call(table.tBodies, function (tbody) {
-                        Arr.forEach.call(tbody.rows, _filter);
-                    });
-                });
-            }
-
-            function _filter(row) {
-                var text = row.textContent.toLowerCase(),
-                    val = _input.value.toLowerCase();
-                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-            }
-
-            return {
-                init: function () {
-                    var inputs = document.getElementsByClassName('light-table-filter');
-                    Arr.forEach.call(inputs, function (input) {
-                        input.oninput = _onInputEvent;
-                    });
-                }
-            };
-        })(Array.prototype);
-
-        document.addEventListener('readystatechange', function () {
-            if (document.readyState === 'complete') {
-                LightTableFilter.init();
-            }
-        });
-
-    })(document);
-</script>
 <%
-if(position.equals("Employee"))
+ if(position.equals("Employee"))
 {
 %>
 <script>
@@ -231,30 +200,5 @@ document.getElementById("employeedetail").style.display = "none";
 <% 
 }
 %>
-<script>
-function approvalProduct(orderid, position){
-	if(position == "Employee"){
-		
-		alert("You are not Allowed to approve order!!");
-	}
-	
-	else{
-		const orderstatus = "Approved";
-		const d = new Date();
-		const month = d.getMonth()+1;
-		const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
-		const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-		const xhttp = new XMLHttpRequest();
-		  xhttp.onload = function() {
-			  var res = this.responseText;
-			  alert(res);
-			  location.reload();
-			}
-		  const url = "ApproveGroovedOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
-		  xhttp.open("GET",url);
-		  xhttp.send();
-	}
-}
-</script>
 </body>
 </html>

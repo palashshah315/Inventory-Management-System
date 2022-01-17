@@ -13,6 +13,13 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <%
+    	if(session == null){
+    		out.println("<script type = \"text/javascript\">");
+    		out.println("alert('Please Login!!');");
+    		out.println("</script>");	
+    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=index.jsp\">");
+    	}
+    
 		String uname = (String) session.getAttribute("username"); 
 		String pswd = (String) session.getAttribute("password");
 		Dao d = new Dao();
@@ -34,7 +41,17 @@
 		session.setAttribute("userid",id);
 		
  %>
+<style type="text/css">
+	.dropdown-submenu {
+  position: relative;
+}
 
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+</style>
 </head>
 <body>
 <!-- Navbar -->
@@ -73,15 +90,23 @@
                         <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="dashboard.jsp#youraccount">Your Account</a></li>
+                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
                         <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="#">Employee Details</a></li>
-                       <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
+                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
@@ -181,6 +206,5 @@ document.getElementById("employeedetail").style.display = "none";
 <% 
 }
 %>
-
 </body>
 </html>

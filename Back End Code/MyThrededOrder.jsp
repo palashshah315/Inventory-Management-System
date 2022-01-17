@@ -1,43 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@page import="java.util.*,BeanClass.*,java.sql.*" %>
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="DAO.*,BeanClass.*,java.sql.*" %>
+<!doctype html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<title>Employee Details</title>
-<%
-String firstname = (String) session.getAttribute("firstname");
-String lastname =  (String) session.getAttribute("lastname");
-String position = (String) session.getAttribute("position");
-%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <title>My Order</title>
+    <%
+    String firstname  = (String) session.getAttribute("firstname");
+    String lastname = (String) session.getAttribute("lastname");
+    int Id = (int) session.getAttribute("userid");
+    String position = (String) session.getAttribute("position");
+    %>
 </head>
-<body>
+
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container px-5">
+    <div class="container pr-5">
         <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
+                        <li><a class="dropdown-item" href="ThrededFittingTable.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittingTable.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
-                 <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
@@ -45,13 +50,12 @@ String position = (String) session.getAttribute("position");
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-               
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApprovalThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApprovalGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -63,21 +67,30 @@ String position = (String) session.getAttribute("position");
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item dropdown">
+               	<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
+                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %><%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                        <li> <a class="dropdown-item" href="MyOrder.jsp">My Orders</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
-                       <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                        <li><a class="dropdown-item" href="your_profile.jsp">Your Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                       	<li class="nav-item dropdown">
+                    		<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        	data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                    	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
+                    	</ul>
+                		</li>
+                        <li> <a class="dropdown-item" href="employeedetail.jsp">Employee Details</a></li>
+                        <li><a type="button" class="dropdown-item" data-toggle="modal"
+                                data-target="#exampleModal">Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <!--  logout model -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -94,40 +107,47 @@ String position = (String) session.getAttribute("position");
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form action="Logout.jsp" method="post">
-                	<input type="submit" value="Yes"> 
+                    <input type="submit" value="Yes"> 
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!--Page Content-->
+
+<!-- My Order Page content-->
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b>Employee Details</b></h2>
+    <h2 class="pro mt-5"><b>My Orders</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email-Id</th>
-                <th scope="col">Phone No.</th>
-                <th scope="col">Address</th>
-                <th scope="col">Username</th>
-                <th scope="col">Password</th>
-                <th scope="col">Position</th>
+                <th scope="col">Order Id</th>
+               	<th scope="col">Product Id</th>
+                <th scope="col">User Id </th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Product Size</th>
+                <th scope="col">Product Available</th>
+                <th scope="col">Product Required</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Client Address</th>
+                <th scope="col">Order Placed Date</th>
+                <th scope="col">Order Placed Time</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Approved Time</th>
+                <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
-            <!-- rows will generate dynamically -->
-            <!-- form Tag is added for placing order -->
-            
+            <!-- form tag is added for placing order
+rows will generate dynamically -->
 <%
 String dbUrl = "jdbc:mysql://localhost:3306/ims";
 String dbUname = "root";
 String dbPassword = "root";
 String dbDriver = "com.mysql.cj.jdbc.Driver"; 
-String query = "select * from `ims`.`user`";
+String query = "select * from `orderthreded` where userid=" + Id;
+//String query = "select * from orderthreded full outer join ordergrooved on orderthreded.userid = ordergrooved.userid ";
 
 try
 {
@@ -135,26 +155,30 @@ Class.forName(dbDriver);
 Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
 Statement st = con.createStatement();
 ResultSet rs = st.executeQuery(query);
-	
+
 while(rs.next())
 {
+%>
 
-%>          
-                <tr>
-                    <td><%=rs.getInt("user_id")%></td>
-                    <td><%=rs.getString("user_firstname")+" "+rs.getString("user_lastname")%></td>
-                    <td><%=rs.getString("user_email")%></td>
-                    <td><%=rs.getString("user_phoneno")%></td>
-                    <td><%=rs.getString("user_address")%></td>
-                    <td><%=rs.getString("username")%></td>
-                    <td><%=rs.getString("password")%></td>
-                    <td><%=rs.getString("user_position")%></td>
-                </tr>
-            
+            <tr>
+                <td><%=rs.getInt("orderthrededid")%></td>
+               	<td><%=rs.getInt("productid")%></td>
+                <td><%=rs.getInt("userid")%></td>
+                <td><%=rs.getString("userfirstname")+" "+rs.getString("userlastname")%></td>
+                <td><%=rs.getString("productsize")%></td>
+                <td><%=rs.getString("totalproduct")%></td>
+                <td><%=rs.getString("productrequired")%></td>
+                <td><%=rs.getString("clientname")%></td>
+                <td><%=rs.getString("clientaddress")%></td>
+                <td><%=rs.getString("orderplaceddate")%></td>
+                <td><%=rs.getString("orderplacedtime")%></td>
+                <td><%=rs.getString("approveddate")%></td>
+                <td><%=rs.getString("approvedtime") %></td>
+                <td><%=rs.getString("orderstatus") %></td>
+            </tr>
 <%
-	}
 }
-
+}
 catch(Exception e)
 {
 	e.printStackTrace();
@@ -163,17 +187,15 @@ catch(Exception e)
         </tbody>
     </table>
 </div>
+<!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
-
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
                 <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
+                <div class="big m-0 text-white">Fitwel Industries SF 535/7, Kollupalayam, </div>
                 <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
+                    Near Kaniyur Toll Gate, Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
@@ -182,22 +204,24 @@ catch(Exception e)
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="big m-0 text-white">âCopyright Â© Fitwel Industries."</div>
             </div>
         </div>
     </div>
 </footer>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- for valdation if employee login then these both fields are none -->
 <%
-if(position.equals("Employee"))
-{
+    if(position.equals("Employee")){
+
 %>
 <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
-</script>
-
-<% 
-}
-%>
+</script> 
+<%}%>
 </body>
+
 </html>

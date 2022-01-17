@@ -1,3 +1,6 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="DAO.*,BeanClass.*,java.sql.*" %> -->
+<!-- please don't delete comments this is for backend purpose only-->
 <!doctype html>
 <html lang="en">
 
@@ -10,30 +13,37 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <title>ApprovalGrooved</title>
+    <link rel='stylesheet prefetch'
+        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <title>My Order</title>
+ <!--    <%
+    String firstname  = (String) session.getAttribute("firstname");
+    String lastname = (String) session.getAttribute("lastname");
+    int Id = (int) session.getAttribute("userid");
+    String position = (String) session.getAttribute("position");
+    %> -->
 </head>
-<body>
+
 <!-- Navbar -->
 <nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container px-5">
+    <div class="container pr-5">
         <a class="navbar-brand" href="index.html">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.html">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
+                        <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittingTable.html">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="AddProduct.html">Add Product</a>
                     </ul>
                 </li>
-                 <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
@@ -41,16 +51,15 @@
                         <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
                     </ul>
                 </li>
-               
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.html">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApprovalGrooved.html">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                 <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
@@ -59,20 +68,30 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item dropdown">
+               	<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
+                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %><%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.html">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.html">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.html">Employee Details</a></li>
-                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                        <li><a class="dropdown-item" href="your_profile.html">Your Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                       	<li class="nav-item dropdown">
+                    		<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        	data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                    	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="MyThrededOrder.html">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="MyGroovedOrder.html">Grooved Fittings</a></li>
+                    	</ul>
+                		</li>
+                        <li> <a class="dropdown-item" href="employeedetail.html">Employee Details</a></li>
+                        <li><a type="button" class="dropdown-item" data-toggle="modal"
+                                data-target="#exampleModal">Logout</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <!--  logout model -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -96,20 +115,16 @@
     </div>
 </div>
 
-<!-- Approval Table-->
-<div class="order search">
-    <span class="fa fa-search form-control-feedback just"></span>
-    <input type="search" id="example1" class="light-table-filter haver" data-table="order-table" placeholder="Filter">
-</div>
+<!-- My Order Page content-->
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Grooved Fittings</u></b></h2>
+    <h2 class="pro mt-5"><b>My Orders</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">Order Id</th>
-                <th scope="col">Product Id</th>
+               	<th scope="col">Product Id</th>
                 <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Product Size</th>
@@ -119,29 +134,57 @@
                 <th scope="col">Client Address</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Approved Time</th>
                 <th scope="col">Order Status</th>
-                <th scope="col">Approved Order</th>
             </tr>
         </thead>
         <tbody>
             <!-- form tag is added for placing order
 rows will generate dynamically -->
+<!-- <%
+String dbUrl = "jdbc:mysql://localhost:3306/ims";
+String dbUname = "root";
+String dbPassword = "root";
+String dbDriver = "com.mysql.cj.jdbc.Driver"; 
+String query = "select * from `orderthreded` where userid=" + Id;
+//String query = "select * from orderthreded full outer join ordergrooved on orderthreded.userid = ordergrooved.userid ";
 
- <tr>
-                <td>Order Id</td>
-                <td>product id</td>
-                <td>User id</td>
-                <td>employee name</td>
-                <td>product size</td>
-                <td>product Available</td>
-                <td>Product required</td>
-                <td>Client name</td>
-                <td>Client Address</td>
-                <td>Order Place Date</td>
-                <td>Order Placed Time</td>
-                <td>Order status</td>
-                <td><button class="btn btn-secondary" onclick="approvalProduct(orderId, position)">Approved Order</button></td>
+try
+{
+Class.forName(dbDriver);
+Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
+Statement st = con.createStatement();
+ResultSet rs = st.executeQuery(query);
+
+while(rs.next())
+{
+%> -->
+
+            <tr>
+                <td><!-- <%=rs.getInt("orderthrededid")%> --></td>
+                <td><!-- <%=rs.getInt("productid")%> --></td>
+                <td><!-- <%=rs.getInt("userid")%> --></td>
+                <td><!-- <%=rs.getString("userfirstname")+" "+rs.getString("userlastname")%> --></td>
+                <td><!-- <%=rs.getString("productsize")%> --></td>
+                <td><!-- <%=rs.getString("totalproduct")%> --></td>
+                <td><!-- <%=rs.getString("productrequired")%> --></td>
+                <td><!-- <%=rs.getString("clientname")%> --></td>
+                <td><!-- <%=rs.getString("clientaddress")%> --></td>
+                <td><!-- <%=rs.getString("orderplaceddate")%> --></td>
+                <td><!-- <%=rs.getString("orderplacedtime")%> --></td>
+                <td><!-- <%=rs.getString("approveddate")%> --></td>
+                <td><!-- <%=rs.getString("approvedtime")%> --></td>
+                <td><!-- <%=rs.getString("orderstatus")%> --></td>
             </tr>
+<!-- <%
+}
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+%> -->
         </tbody>
     </table>
 </div>
@@ -162,94 +205,24 @@ rows will generate dynamically -->
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="big m-0 text-white">âCopyright Â© Fitwel Industries."</div>
             </div>
         </div>
     </div>
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-<script>
-    (function (document) {
-        'use strict';
-
-        var LightTableFilter = (function (Arr) {
-
-            var _input;
-
-            function _onInputEvent(e) {
-                _input = e.target;
-                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                Arr.forEach.call(tables, function (table) {
-                    Arr.forEach.call(table.tBodies, function (tbody) {
-                        Arr.forEach.call(tbody.rows, _filter);
-                    });
-                });
-            }
-
-            function _filter(row) {
-                var text = row.textContent.toLowerCase(),
-                    val = _input.value.toLowerCase();
-                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-            }
-
-            return {
-                init: function () {
-                    var inputs = document.getElementsByClassName('light-table-filter');
-                    Arr.forEach.call(inputs, function (input) {
-                        input.oninput = _onInputEvent;
-                    });
-                }
-            };
-        })(Array.prototype);
-
-        document.addEventListener('readystatechange', function () {
-            if (document.readyState === 'complete') {
-                LightTableFilter.init();
-            }
-        });
-
-    })(document);
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- for valdation if employee login then these both fields are none -->
-<!-- <script>
+<!-- <%
+    if(position.equals("Employee")){
+
+%>
+<script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
-</script> -->
-<script>
-function approvalProduct(orderid, position){
-    if(position == "Employee"){
-        
-        alert("You are not Allowed to approve order!!");
-    }
-    
-    else{
-        const orderstatus = "Approved";
-        const d = new Date();
-        const month = d.getMonth()+1;
-        const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
-        const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-        const xhttp = new XMLHttpRequest();
-          xhttp.onload = function() {
-              var res = this.responseText;
-              alert(res);
-              location.reload();
-            }
-          const url = "ApproveGroovedOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
-          xhttp.open("GET",url);
-          xhttp.send();
-    }
-}
-</script>
+</script> 
+<%}%> -->
 </body>
+
 </html>
