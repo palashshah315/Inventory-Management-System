@@ -1,9 +1,11 @@
 package Servlets;
-//This is Sign Up servlet
 import BeanClass.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 import DAO.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
@@ -13,7 +15,8 @@ public class SignUp extends HttpServlet {
 	public SignUp() {
 		super();
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		
 		HttpSession session = request.getSession();
 		String firstname = request.getParameter("first-name");
@@ -25,7 +28,8 @@ public class SignUp extends HttpServlet {
 		UserBean user = new UserBean();
 		Dao d = new Dao();
 		PrintWriter out = response.getWriter();
-		if(!firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !address.isEmpty() && !position.isEmpty()) {
+		if(!firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !address.isEmpty() && !position.isEmpty()) 
+		{
 			user.setFirstname(firstname);
 			user.setLastname(lastname);
 			user.setEmail(email);
@@ -40,8 +44,19 @@ public class SignUp extends HttpServlet {
 			session.setAttribute("address",address);
 			session.setAttribute("position", position);
 			
+			
+			int random = ((int)(Math.random() * 100000)) % 1000;
+			String login_username = email.substring(0,email.indexOf("@"));
+			String login_password = firstname+random;
+			
+			user.setUsername(login_username);
+			user.setPassword(login_password);
+			session.setAttribute("username", login_username);
+			session.setAttribute("password", login_password);
+			
 			int status = d.insertUser(user);
 			if(status > 0) {
+				sendEmail("palashshah345@gmail.com","yxnpdckqvuhgqior",email,login_username,login_password,out);
 				out.println("<script type = \"text/javascript\">");
         		out.println("alert('You Registered Successfully');");
         		out.println("</script>");	
@@ -58,5 +73,45 @@ public class SignUp extends HttpServlet {
     	}
 		
 	}
+	private void sendEmail(String from, String pass,String to, String login_username, String login_password,PrintWriter out) 
+  {
+  	Properties props = System.getProperties();
+  	props.put("mail.smtp.starttls.enable","true"); 
+  	props.put("mail.smtp.user",from); 
+  	props.put("mail.smtp.host", "smtp.gmail.com");  
+  	props.put("mail.smtp.auth", "true"); 
+  	
+  	props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
+  	props.setProperty("mail.smtp.socketFactory.fallback", "false"); 
+  	props.setProperty("mail.smtp.port", "465"); 
+  	props.setProperty("mail.smtp.socketFactory.port", "465"); 
+  	
 
+  	
+  	Session ss = Session.getInstance(props,new Authenticator() {
+  		@Override
+  		protected PasswordAuthentication getPasswordAuthentication() {
+  			return new PasswordAuthentication(from,pass);
+  			
+  			
+  		}
+  	});
+  	
+  	ss.setDebug(true);
+  	MimeMessage m = new MimeMessage(ss);
+  	try {
+  		m.setFrom(new InternetAddress(from));
+  		m.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+  		m.setSubject("Registration Completed Successfully");
+  		String msg = "Your registration completed successfully and username is "+login_username+" and password is "+login_password;
+  		m.setText(msg);
+  		
+  		Transport.send(m);
+  		
+  		System.out.println("Mail sent Successfully....");
+
+  		
+  	}catch(Exception ex) {ex.printStackTrace();}
+  	
+  }
 }

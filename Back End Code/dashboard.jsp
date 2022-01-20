@@ -13,14 +13,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <%
-    	if(session == null){
-    		out.println("<script type = \"text/javascript\">");
-    		out.println("alert('Please Login!!');");
-    		out.println("</script>");	
-    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=index.jsp\">");
-    	}
-    
-		String uname = (String) session.getAttribute("username"); 
+    	String uname = (String) session.getAttribute("username"); 
 		String pswd = (String) session.getAttribute("password");
 		Dao d = new Dao();
 		UserBean user = new UserBean();

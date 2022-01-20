@@ -39,7 +39,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFittingTable.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="GroovedFittingTable.jsp">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" href="AddProduct.jsp">Add Product</a>
+                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,8 +54,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApprovalThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApprovalGrooved.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -69,19 +69,11 @@
                 <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
                	<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %><%= lastname %></a>
+                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="your_profile.jsp">Your Profile</a></li>
                         <li><a class="dropdown-item" href="#">Reset Password</a></li>
-                       	<li class="nav-item dropdown">
-                    		<a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        	data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
-                    	</ul>
-                		</li>
-                        <li> <a class="dropdown-item" href="employeedetail.jsp">Employee Details</a></li>
+                       	<li> <a class="dropdown-item" id="employeedetail" href="employeedetail.jsp">Employee Details</a></li>
                         <li><a type="button" class="dropdown-item" data-toggle="modal"
                                 data-target="#exampleModal">Logout</a></li>
                     </ul>

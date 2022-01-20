@@ -10,7 +10,7 @@ public class Dao {
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`user` (`user_firstname`,`user_lastname`,`user_email`,`user_phoneno`,`user_address`,`user_position`) values (?,?,?,?,?,?)";
+			String sql = "insert into `ims`.`user` (`user_firstname`,`user_lastname`,`user_email`,`user_phoneno`,`user_address`,`user_position`,`username`,`password`) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user.getFirstname());
 			pstmt.setString(2, user.getLastname());
@@ -18,6 +18,8 @@ public class Dao {
 			pstmt.setString(4, user.getPhone());
 			pstmt.setString(5, user.getAddress());
 			pstmt.setString(6, user.getPosition());
+			pstmt.setString(7, user.getUsername());
+			pstmt.setString(8, user.getPassword());
 			status = pstmt.executeUpdate();
 			pstmt.close();
 			con.close();
