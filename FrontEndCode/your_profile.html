@@ -15,183 +15,194 @@
     <script href="main.js"></script>
     <title>Your Profile</title>
 </head>
+
 <body>
-<!-- Navbar -->
-<nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Fitwel Industries</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Product</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.html">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-               
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="MyThrededOrder.html">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="MyGroovedOrder.html">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.html">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.html">Reset Password</a></li>
-                        <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.html">Employee Details</a></li>
-                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--  logout model -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to logout?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form action="Logout.html" method="post">
-                    <input type="submit" value="Yes"> 
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- Navbar -->
+    <nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="index.html">Fitwel Industries</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                    <li class="nav-item dropdown" id="dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Product</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="GroovedFittingTable.html">Grooved Fittings</a></li>
+                            <li><a class="dropdown-item" id="addproduct" href="AddProduct.html">Add Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Order</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="OrderGrooved.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
 
-
-<!--your profile-->
-<div class="container-fluid">
-    <h2 class="pro mt-5"><b><u>Your Profile</u></b></h2>
-</div>
-<div class="container shadow-lg rounded mt-5 mb-5">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Full Name</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                Jhon Doe
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                jhondoe@gmail.com
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Phone</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                (239) 816-9029
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Mobile</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                (320) 380-4539
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="ApprovalGrooved.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="MyThrededOrder.html">Threded Fittings</a></li>
+                            <li><a class="dropdown-item" href="MyGroovedOrder.html">Grooved Fittings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" href="EditableInvoice.html">Editable Invoice</a></li>
+                            <li><a class="dropdown-item" href="#">Simple Invoice</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="your_profile.html">Your Account</a></li>
+                            <li><a class="dropdown-item" href="resetpasswrod.html">Reset Password</a></li>
+                            <li><a id="employeedetail" class="dropdown-item" href="employeedetail.html">Employee
+                                    Details</a></li>
+                            <li><button class="dropdown-item" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Logout</button></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-3">
-                <h6 class="mb-0">Address</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                Bay Area, San Francisco, CA
-            </div>
-        </div>
-        <hr>
-    </div>
-</div>
-
-<!-- Footer -->
-<footer class="bg-dark py-4 mt-5">
-    <div class="container px-4 mt-auto">
-        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-            <div class="col-auto">
-                <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
-                    SF 535/7, Kollupalayam, </div>
-                <div class="big m-0 text-white">
-                    Near Kaniyur Toll Gate,
-                    Coimbatore-641659, Tamil Nadu, India</div>
-            </div>
-
-            <div class="col-auto">
-                <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
-                <div class="big m-0 text-white">Phone : +91 90000 00000</div>
-            </div>
-
-            <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+    </nav>
+    <!--  logout model -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="Logout.html" method="post">
+                        <input type="submit" value="Yes">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</footer>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-<!-- for valdation if employee login then these both fields are none -->
-<!-- <script>
+
+    <!--your profile-->
+    <div class="container-fluid">
+        <h2 class="pro mt-5"><b><u>Your Profile</u></b></h2>
+    </div>
+    <div class="container shadow-lg rounded mt-5 mb-5 bg-dark">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    Jhon Doe
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    jhondoe@gmail.com
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    (239) 816-9029
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Mobile</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    (320) 380-4539
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    Bay Area, San Francisco, CA
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-4 mt-5">
+        <div class="container px-4 mt-auto">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="big m-0 text-white ">Address :</div>
+                    <div class="big m-0 text-white">Fitwel Industries
+                        SF 535/7, Kollupalayam, </div>
+                    <div class="big m-0 text-white">
+                        Near Kaniyur Toll Gate,
+                        Coimbatore-641659, Tamil Nadu, India</div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
+                    <div class="big m-0 text-white">Phone : +91 90000 00000</div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- for valdation if employee login then these both fields are none -->
+    <!-- <script>
 document.getElementById("addproduct").style.display = "none";
 document.getElementById("employeedetail").style.display = "none";
 </script> -->

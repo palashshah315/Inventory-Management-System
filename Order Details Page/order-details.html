@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" media="all" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/4561262c83.js" crossorigin="anonymous"></script>
+    <!-- <script src="order.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <!--modal box-->
+
+    <!-- Invoice Page content-->
+    <div class="container d-flex justify-content-center mt-50 mb-50">
+        <div class="row">
+            <!-- <div class="col-md-12 text-right mb-3">
+                <button class="btn btn-primary" id="download">Download Invoice</button>
+            </div> -->
+            <div class="col-md-12">
+                <div class="card" id="invoice">
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <img src="logo.png" alt="logo">
+                        <h6 class="card-title text-primary">Fitwell Industries</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-4 mb-md-2 text-left">
+                                    <form id="invoiceForm">
+                                        <ul class="list list-unstyled mb-0">
+                                            <li>
+                                                <h5 class="my-2"><b>NAME OF THE BUYER (Billed TO)</b></h5>
+                                            </li>
+                                            <li><input class="form-control col-sm-4 my-2" id="customername"
+                                                    name="customername" type="text " placeholder="Customer Name"
+                                                    required></li>
+                                            <li>
+                                                <input class="form-control col-sm-4 my-2" id="orderdate"
+                                                    name="orderdate" type="text" placeholder="Order Date" required>
+                                            </li>
+                                            <button type="button" ondblclick="loadXMLDoc()" id="ok"
+                                                class="ml-2">Ok</button>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="mb-4 ">
+                                    <div class="text-sm-right">
+                                        <ul class="list list-unstyled mb-0">
+                                            <li>
+                                                <h5 class="my-2"><b>PLACE OF DELIVERY (Shipped to)</b></h5>
+                                            </li>
+                                            <li>Customer Name</li>
+                                            <li>House Name Steet No.</li>
+                                            <li>City, Zip Code</li>
+                                            <li>State</li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-md-wrap">
+                            <div class="mb-2 ml-auto">
+                                <div class="flex-wrap wmin-md-400">
+
+                                    <ul class="list list-unstyled text-center mb-0 ml-auto">
+                                        <li>
+                                            <h4 class="invoice-color">Invoice #BBB1243</h4>
+                                        </li>
+                                        <li>Order Id: #HHH1243</li>
+                                        <li>Order No: #34dgsrhf</li>
+                                        <li>Contact No. +91-9894574935</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-lg table-striped" id="demo">
+                            <thead>
+                                <tr>
+                                    <th>Product Description</th>
+                                    <th>Rate</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-0">Light</h6> <span class="text-muted">in
+                                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                            pariatur.Duis aute irure dolor in reprehenderit</span>
+                                    </td>
+                                    <td>₹120</td>
+                                    <td>18</td>
+                                    <td><span class="font-weight-semibold">₹300</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-0">Light 1</h6> <span class="text-muted">Lorem
+                                            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor</span>
+                                    </td>
+                                    <td>₹140</td>
+                                    <td>10</td>
+                                    <td><span class="font-weight-semibold">₹240</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-0">Light-2</h6> <span class="text-muted">Lorem
+                                            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor</span>
+                                    </td>
+                                    <td>₹250</td>
+                                    <td> 25</td>
+                                    <td><span class="font-weight-semibold">₹500</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-body line">
+                        <div class="d-md-flex flex-md-wrap">
+                            <div class="pt-2 mb-3 wmin-md-400 ml-auto">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-left">Subtotal:</th>
+                                                <td class="text-right"> ₹ 1,090</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-left">Packing & Forwarding:</th>
+                                                <td class="text-right"> ₹ 758</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-left">Central GST Payable <span
+                                                        class="font-weight-normal">(9%)</span>:</th>
+                                                <td class="text-right"> ₹ 758</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-left">State GST Payable <span
+                                                        class="font-weight-normal">(9%)</span>:</th>
+                                                <td class="text-right"> ₹ 758</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center">Total Value:</th>
+                                                <td class="text-right text-primary">
+                                                    <h5 class="font-weight-semibold"> ₹ 1,160</h5>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="text-center " id="download"> <button type="button" class="btn btn-primary"><b><i class="fa fa-paper-plane-o mr-1"></i></b>
+                            Print invoice</button>  -->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-4 mb-md-2 mx-5 text-left">
+                                <ul class="list list-unstyled mb-0 mt-3">
+                                    <li>MODE OF TRANSPORT : SEENU TRANSPORT</li>
+                                    <li>DESTINATION : CHENNAI</li>
+                                    <li>FRIEGHT : TO PAY</li>
+                                    <li>PAYMENT : IMMEDIATE DIRECT</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-4">
+                                <div class="just">
+                                    <ul class="list list-unstyled mb-0">
+                                        <li>
+                                            <h5 class="my-2 text-left"><b>Fitwell Industries</b></h5>
+                                        </li>
+                                        <li>SF NO 535/7, KOLLUPALAYAM,</li>
+                                        <li>KANIYUR,COIMBATORE,</li>
+                                        <li>TAMILNADU,INDIA - 641659.</li>
+                                        <li>GST.NO : 33AOMPD8041C1ZD</li>
+                                        <li>STATE CODE : 33</li>
+                                        <li>HSN CODE : 73071120</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line">
+                    </div>
+                    <p class="mx-2">Certified that the particulars given above are true and correct, the amount
+                        indicated
+                        represents the price actually charged and that there is no flow
+                        of additional consideration directly or indirectly from the buyer.
+                    </p>
+                    <div class="line"></div>
+                    <div class="row just1">
+                        <p class="ml-5">Prepared By</p>
+                        <p class="space">Checked By</p>
+                        <p class="mr-5">Authorized Signatory</p>
+                    </div>
+                    <div class="line"></div>
+                    <p>* Subject to Coimbatore Jurisdication Only.
+                    </p>
+                    <div class="line"></div>
+                    <div class="col-md-12 text-center mb-3 mt-3">
+                        <button class="btn btn-primary" onClick="generatePDF()"><b><i class="fa fa-print" aria-hidden="true"></i>
+                            </b> Print Invoice</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+   
+			function generatePDF() {
+				// Choose the element that our invoice is rendered in.
+				const element = document.getElementById('invoice');
+				// Choose the element and save the PDF for our user.
+				html2pdf().from(element).save();
+			}
+		
+</script>
+
+</html>
