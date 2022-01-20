@@ -74,7 +74,6 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Profile</a></li>
                         <li><a class="dropdown-item" href="ResetPassword.jsp">Reset Password</a></li>
-                        <li> <a class="dropdown-item" href="MyOrder.jsp">My Orders</a></li>
                         <li> <a class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
                         <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
                     </ul>

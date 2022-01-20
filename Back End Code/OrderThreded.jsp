@@ -79,7 +79,6 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
                         <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                        <li> <a class="dropdown-item" href="MyOrder.jsp">My Orders</a></li>
                         <li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
@@ -230,8 +229,24 @@
 <script type="text/javascript">
 function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable){
 	const productQuantity = productQuantityId.value;
+	
+	
 	const clientname = clientNameId.value;
 	const clientaddress = clientAddressId.value;
+	
+	if(productQuantity == ""){
+		alert("product quantity cannot be empty");
+	}
+		else if(clientname==""){
+		alert("client name cannot be empty");
+	}
+	
+	else if(clientaddress==""){
+		alert("client address cannot be empty");
+	}
+	
+	else
+	{
 	const d = new Date();
 	const month = d.getMonth()+1;
 	const orderplaceddate = d.getFullYear()+"-"+month+"-"+d.getDate();
@@ -246,6 +261,7 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
 		  const url = "ThrededOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime;
 		  xhttp.open("GET", url);
 		  xhttp.send();
+	}
 }
 </script>
 <%
