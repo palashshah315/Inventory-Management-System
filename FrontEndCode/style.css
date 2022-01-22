@@ -228,3 +228,31 @@ and (max-width : 380px)
     position: fixed;
     z-index:100;
 }
+.wrapper {
+    height: 10vh;
+    /*This part is important for centering*/
+    display: flex;
+    justify-content: center;
+}
+
+.typing-demo {
+    width: 7ch;
+    animation: typing 2s steps(8), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 3em;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
