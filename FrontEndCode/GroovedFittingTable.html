@@ -17,7 +17,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
+    <nav class="__nav navbar navbar-expand-md navbar-dark sticky-top navbar-default" id="navbar">
         <div class="container px-5">
             <a class="navbar-brand" href="index.html">Fitwel Industries</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -25,9 +25,9 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bolder text-white" href="dashboard.html">Home</a></li>
                     <li class="nav-item dropdown" id="dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownBlog" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" href="ThrededFittingTable.html">Threded Fittings</a></li>
@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownBlog" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" href="OrderThreded.html">Threded Fittings</a></li>
@@ -45,7 +45,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownBlog" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" href="ApprovalThreded.html">Threded Fittings</a></li>
@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownBlog" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" href="MyThrededOrder.html">Threded Fittings</a></li>
@@ -61,7 +61,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownBlog" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" href="EditableInvoice.html">Editable Invoice</a></li>
@@ -69,7 +69,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                        <a class="nav-link dropdown-toggle fw-bolder text-white" id="navbarDropdownPortfolio" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Your Name</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                             <li><a class="dropdown-item" href="your_profile.html">Your Account</a></li>
@@ -186,6 +186,17 @@
         });
     });
 </script>
+<script>
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").style.backgroundColor = "black";
+      } else {
+        document.getElementById("navbar").style.backgroundColor = "transparent";
+      }
+    }
+    </script>
 <!-- for valdation if employee login then these both fields are none -->
 <!-- <script>
 document.getElementById("addproduct").style.display = "none";
