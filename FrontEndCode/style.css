@@ -220,20 +220,30 @@ and (max-width : 380px)
     margin: 20px 0;
 }
 
+#background-div{
+    height:  100%;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+}
+
 #preloader{
-    background: #000 url(loading-55.gif) no-repeat center center;
+    background: #ffff url(https://c.tenor.com/5o2p0tH5LFQAAAAi/hug.gif) no-repeat center center;
     background-size: 20%;
     height: 100vh;
     width:100%;
     position: fixed;
     z-index:100;
 }
+
 .wrapper {
     height: 10vh;
     /*This part is important for centering*/
     display: flex;
     justify-content: center;
 }
+
+
 
 .typing-demo {
     width: 7ch;
