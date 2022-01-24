@@ -250,7 +250,6 @@ and (max-width : 380px)
     animation: typing 2s steps(18), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid;
     font-family: monospace;
     font-size: 3em;
 }
