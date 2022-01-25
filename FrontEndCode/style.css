@@ -28,15 +28,19 @@
 }
 
 body {
-    background: linear-gradient(141deg, #8A7356 0%, #FFECCB 5%, #E39D22 10%,#0079B5 15%,#3AC08F 20%,#00896B 22%);
+    background: rgb(128,128,128,0.1) !important;
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-    color: white !important;
-    font-family: Playfair Display !important;
+    color: black !important;
+    font-family: Poppins !important;
+}
+.effect2{
+    background-color: black;
+    opacity: 0.6;
 }
 .navbar-default{
   transition:500ms ease;
-  background:transparent;
+  background: transparent;
 }
 .navbar-default.scrolled{
   background:#000;
