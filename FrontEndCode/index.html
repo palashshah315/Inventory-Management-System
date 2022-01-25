@@ -10,12 +10,14 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="anime.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Fitwel Industries </title>
 </head>
 
 <body>
-    <div id="preloader"></div>
+    <div id="preloader" ></div>
+    
 
 
     <!-- Navbar -->
@@ -590,16 +592,22 @@
                 </div>
             </div>
         </div>
+        <div class="line-drawing-demo linespath">Fitwell Industries</div>
     </footer>
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<<<<<<< HEAD
     <script src="main.js"></script>
+=======
+    
+>>>>>>> e6f0420 (some changes)
     <script>
         AOS.init();
     </script>
 
     <script>
+<<<<<<< HEAD
 
         window.onload = function () {
 
@@ -620,6 +628,28 @@
           }
         }
         </script>
+=======
+     
+        window.onload = function(){
+            
+            var loader = document.getElementById("preloader").style.display="none";
+            
+        }
+
+    </script>
+    <script type="text/javascript">
+        import anime from 'animejs/lib/anime.es.js';
+        anime({
+  targets: '.line-drawing-demo .lines path',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 1500,
+  delay: function(el, i) { return i * 250 },
+  direction: 'alternate',
+  loop: true
+});
+    </script>
+>>>>>>> e6f0420 (some changes)
 </body>
 
 </html>
