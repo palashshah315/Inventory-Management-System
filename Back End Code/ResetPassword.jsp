@@ -69,7 +69,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
                         <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                        <li><a class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
+                        <li><a class="dropdown-item" id="employeedetail" href="EmployeeDetails.jsp">Employee Details</a></li>
                         <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>

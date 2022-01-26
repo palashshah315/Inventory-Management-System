@@ -114,39 +114,49 @@
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id </th>
-                <th scope="col">User Id</th>
-                <th scope="col">Product Id</th>
+               <th scope="col">Order Id</th>
+               	<th scope="col">Product Id</th>
+                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
-                <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <th scope="col">Client Email</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Approved Time</th>
                 <th scope="col">Order Status</th>
-                <th scope="col">Approved Order</th>
+                <th scope="col">Invoice Status</th>
+                <th scope="col">Approve Order</th>
+                <th scope="col">Delete Order</th>
             </tr>
         </thead>
         <tbody>
          	<%for (OrderGroovedFittingBean og : list){ %>
-            	<tr id="<%= og.getOrderId() %>">
-            	<td><%= og.getOrderId() %></td>
-                <td><%= og.getUserId() %></td>
-                <td><%= og.getProductId()  %></td>
-                <td><%= og.getUserFirstName()+" "+og.getUserLastName() %></td>
-                <td><%= og.getProductname() %></td>
-                <td><%= og.getProductsize() %></td>
-                <td><%= og.getTotalProduct() %></td>
-                <td><%= og.getProductrequired() %></td>
-                <td><%= og.getclientName() %></td>
-                <td><%= og.getClientAddress() %></td>
-                <td><%= og.getOrderPlacedDate() %></td>
-                <td><%= og.getOrderPlacedTime() %></td>
-                <td><%= og.getOrderStatus() %></td>
-                <td><button class="btn btn-secondary" id="<%= "btn_"+og.getOrderId()%>" onclick="approvalProduct( `<%=og.getOrderId()%>`,`<%=position%>`)">Approved Order</button></td>	
+            	<tr>
+                <td><%= og.getOrderId()%></td>
+                <td><%= og.getProductId()%></td>
+                <td><%= og.getUserId()%></td>
+                <td><%= og.getUserFirstName()+" "+og.getUserLastName()%></td>
+                <td><%= og.getProductsize()%></td>
+                <td><%= og.getTotalProduct()%></td>
+                <td><%= og.getProductrequired()%></td>
+                <td><%= og.getTotalProductPrice()%></td>
+                <td><%= og.getclientName()%></td>
+                <td><%= og.getClientAddress()%></td>
+                <td><%= og.getClientEmail()%></td>
+                <td><%= og.getOrderPlacedDate()%></td>
+                <td><%= og.getOrderPlacedTime()%></td>
+                <td><%= og.getApprovalDate()%></td>
+                <td><%= og.getApprovalTime()%></td>
+                <td><%=og.getOrderStatus()%></td>
+                <td><%= og.getInvoiceStatus() %></td>
+                <td><button class="btn btn-secondary" id="<%= "btn_"+og.getOrderId()%>" onclick="approvalProduct( `<%=og.getOrderId()%>`,`<%=position%>`)">Approved</button></td>	
+                <td><button class="btn btn-secondary" onclick="deleteMyOrder(`<%= og.getOrderId() %>`,`<%= og.getProductrequired()%>`,`<%= og.getTotalProduct()%>`,`<%= og.getProductId()%>`)">Delete</button></td>
                 </tr>
             <% } %>
         </tbody>
@@ -177,6 +187,23 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	function deleteMyOrder(orderid,productreq,totalproduct,productid){
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function() {
+			  var res = this.responseText;
+			  alert(res);
+			  location.reload();
+			}
+		const url = "DeleteMyGroovedOrder";
+		xhttp.open("POST", url, true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+	}
+</script>
+
 <script>
     (function (document) {
         'use strict';

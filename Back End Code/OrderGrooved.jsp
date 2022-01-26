@@ -121,9 +121,11 @@
                 <th scope="col">Name</th>
                 <th scope="col">Size</th>
                 <th scope="col">Product Available</th>
+                <th scope="col">Unit price</th>
                 <th scope="col">Product Required</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <td scope="col">Client Email Id</td>
                 <th scope="col">Order</th>
                 
             </tr>
@@ -136,10 +138,12 @@
                     <td><%= gf.getProductName() %></td>
                     <td><%= gf.getProductSize() %></td>
                     <td><%= gf.getNoOfProduct()  %></td>
+                    <td><%= gf.getUnitPrice() %></td>
                     <td><input type="number" id="<%= "Qty_"+gf.getId() %>" name="productrequired" placeholder="Product Required" ></td>
                     <td><input type="text" id="<%= "client_"+gf.getId() %>" name="clientname" placeholder="Client Name"></td>
                     <td><textarea id="<%= "add_"+gf.getId() %>"></textarea></td>
-                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+gf.getId() %>,<%="add_"+gf.getId()%>,`<%= gf.getNoOfProduct()%>`)" >place Order</button></td>
+                    <td><input type="email" placeholder="example@gmail.com" id="<%= "email_"+gf.getId() %>"></td>
+                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= gf.getId() %>,<%= "Qty_"+gf.getId() %>,`<%= gf.getProductName() %>`,`<%= gf.getProductSize() %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+gf.getId() %>,<%="add_"+gf.getId()%>,`<%= gf.getNoOfProduct()%>`,<%= "email_"+gf.getId()%>,`<%= gf.getUnitPrice() %>`)" >place Order</button></td>
                 	
                 </tr>
             <%} %>
@@ -214,10 +218,11 @@
     })(document);
 </script>
 <script type="text/javascript">
-function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable){
+function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable,clientEmailId,unitprice){
 	const productQuantity = productQuantityId.value;
 	const clientname = clientNameId.value;
 	const clientaddress = clientAddressId.value;
+	const clientemail = clientEmailId.value;
 	
 	if(productQuantity == ""){
 		alert("product quantity cannot be empty");
@@ -229,6 +234,11 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
 	else if(clientaddress==""){
 		alert("client address cannot be empty");
 	}
+	
+	else if(clientemail==""){
+		alert("Client email id cannot be empty");
+	}
+	
 	else
 	{
 	const d = new Date();
@@ -244,7 +254,7 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
 			  location.reload();
 			}
 		 
-		  const url = "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime;
+		  const url = "GroovedOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime+"&clientemail="+clientemail+"&unitprice="+unitprice;
 		  xhttp.open("GET", url);
 		  xhttp.send();
 	}

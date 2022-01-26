@@ -124,9 +124,11 @@
                 <th scope="col">Name</th>
                 <th scope="col">Size</th>
                 <th scope="col">Product Available</th>
+               	<th scope="col">Unit price</th>
                 <th scope="col">Product Required</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <th scope="col">Client Email Id</th>
                 <th scope="col">Order</th>
                 
             </tr>
@@ -135,21 +137,19 @@
            
            <%for(ThrededFittingBean tf : list)
            { 
-        	   String productsize = tf.getProductSize();
-           		if(tf.getProductSize().contains("\""))
-           			productsize =  tf.getProductSize().replaceAll("\"","");
-           		
-           %>
+        	   
+           	%>
                 <tr id="<%= tf.getId() %>">
                     <th scope="row"><%= tf.getId() %></th>
                     <td><%= tf.getProductName() %></td>
                     <td><%= tf.getProductSize() %></td>
                     <td><%= tf.getNoOfProduct()  %></td>
+                    <td><%= tf.getUnitPrice() %></td>
                     <td><input type="number" id="<%= "Qty_"+tf.getId() %>" name="productrequired" placeholder="Product Required" ></td>
                     <td><input type="text" id="<%= "client_"+tf.getId() %>" name="clientname" placeholder="Client Name"></td>
                     <td><textarea id="<%= "add_"+tf.getId() %>"></textarea></td>
-                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= tf.getId() %>,<%= "Qty_"+tf.getId() %>,`<%= tf.getProductName() %>`,`<%= productsize %>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+tf.getId() %>,<%="add_"+tf.getId()%>,`<%= tf.getNoOfProduct()%>`)" >place Order</button></td>
-                	
+                    <td><input type="email" id="<%= "email_"+tf.getId() %>" name="email" placeholder="example@gmail.com"></td>
+                   	<td><button class="btn btn-secondary" onclick="placeOrder(<%= tf.getId() %>,<%= "Qty_"+tf.getId() %>,`<%= tf.getProductName() %>`,`<%= tf.getProductSize()%>`,`<%=userid %>`,`<%=firstname%>`,`<%=lastname %>`,<%="client_"+tf.getId() %>,<%="add_"+tf.getId()%>,`<%= tf.getNoOfProduct()%>`,<%="email_"+tf.getId()%>,`<%= tf.getUnitPrice() %>`)" >place Order</button></td>
                 </tr>
             <%} %>
         </tbody>
@@ -227,13 +227,12 @@
     })(document);
 </script>
 <script type="text/javascript">
-function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable){
+function placeOrder(productId,productQuantityId,productName,productSize,userid,userfirstname,userlastname,clientNameId,clientAddressId,productAvailable,clientEmailId,unitprice){
 	const productQuantity = productQuantityId.value;
-	
-	
+	const clientemail = clientEmailId.value;
 	const clientname = clientNameId.value;
 	const clientaddress = clientAddressId.value;
-	
+	console.log("hii");	
 	if(productQuantity == ""){
 		alert("product quantity cannot be empty");
 	}
@@ -243,6 +242,10 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
 	
 	else if(clientaddress==""){
 		alert("client address cannot be empty");
+	}
+	
+	else if(clientemail==""){
+		alert("Client email id cannot be empty");
 	}
 	
 	else
@@ -258,7 +261,7 @@ function placeOrder(productId,productQuantityId,productName,productSize,userid,u
 			  alert(res);
 			  location.reload();
 			}
-		  const url = "ThrededOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime;
+		  const url = "ThrededOrderPlaced?productid="+productId+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&productname="+productName+"&productsize="+productSize+"&productquantity="+productQuantity+"&productavailable="+productAvailable+"&clientname="+clientname+"&clientaddress="+clientaddress+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime+"&clientemail="+clientemail+"&unitprice="+unitprice;
 		  xhttp.open("GET", url);
 		  xhttp.send();
 	}

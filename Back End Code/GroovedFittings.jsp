@@ -121,6 +121,7 @@
             <th scope="col">Name</th>
             <th scope="col">SIZE</th>
             <th scope="col">NO. OF PRODUCTS</th>
+            <th scope="col">Product unit price (in rupees)</th>
         </tr>
     </thead>
     <tbody id="myTable">
@@ -133,6 +134,7 @@
     			<td><%= gb.getProductName() %></td>
     			<td><%= gb.getProductSize() %></td>
     			<td><%= gb.getNoOfProduct() %></td>
+    			<td><%= gb.getUnitPrice()  %></td>
         	</tr>
           <% } %>
     </tbody>

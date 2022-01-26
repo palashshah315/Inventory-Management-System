@@ -115,20 +115,21 @@
                     <form id="contactForm" action="ProductRegister" method="post">>
                         <!-- Product Name input-->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="productname" name="productname" type="text"
-                                placeholder="Enter product name..." required>
+                            <input class="form-control" id="productname" name="productname" type="text" required>
                             <label for="productname">Product Name</label>
                         </div>
                         <!-- Product Size input-->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="productsize" name="productsize" type="text"
-                                placeholder="Enter product size..." required>
+                            <input class="form-control" id="productsize" name="productsize" type="text"  required>
                             <label for="productsize">Product Size</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="productquantity" name="productquantity" type="number"
-                                placeholder="Enter product quantity..." required>
+                            <input class="form-control" id="productquantity" name="productquantity" type="number"  required>
                             <label for="productquantity">NO. Of Product</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="productunitprice" name="productunitprice" type="number" required>
+                            <label for="productquantity">Product Unit Price</label>
                         </div>
                         <div class="mb-3">
                             <select name="fitting" id="fitting" class="form-control">

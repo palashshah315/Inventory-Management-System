@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="DAO.*,BeanClass.*,java.sql.*" %>
+<%@ page import="DAO.*,BeanClass.*,java.util.*" %>
 <!doctype html>
 <html lang="en">
 
@@ -18,8 +18,11 @@
     <%
     String firstname  = (String) session.getAttribute("firstname");
     String lastname = (String) session.getAttribute("lastname");
-    int Id = (int) session.getAttribute("userid");
+    int user_id = (int) session.getAttribute("userid");
     String position = (String) session.getAttribute("position");
+    
+    Dao d = new Dao();
+    List<OrderThrededFittingBean> list = d.getAllDetailsOfOrderThrededFittingByUserId(user_id);
     %>
 </head>
 
@@ -37,8 +40,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFittingTable.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittingTable.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
                         <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
@@ -71,8 +74,8 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="your_profile.jsp">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                        <li><a class="dropdown-item" href="yourProfile.jsp">Your Profile</a></li>
+                        <li><a class="dropdown-item" href="ResetPassword.jsp">Reset Password</a></li>
                        	<li> <a class="dropdown-item" id="employeedetail" href="employeedetail.jsp">Employee Details</a></li>
                         <li><a type="button" class="dropdown-item" data-toggle="modal"
                                 data-target="#exampleModal">Logout</a></li>
@@ -108,7 +111,7 @@
 
 <!-- My Order Page content-->
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b>My Orders</b></h2>
+    <h2 class="pro mt-5"><b>My  Orders</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
@@ -121,59 +124,47 @@
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <th scope="col">Client Email</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
                 <th scope="col">Approved Date</th>
                 <th scope="col">Approved Time</th>
                 <th scope="col">Order Status</th>
+                <th scope="col">Invoice Status</th>
+                <th scope="col">Delete Order</th>
             </tr>
         </thead>
         <tbody>
             <!-- form tag is added for placing order
 rows will generate dynamically -->
-<%
-String dbUrl = "jdbc:mysql://localhost:3306/ims";
-String dbUname = "root";
-String dbPassword = "root";
-String dbDriver = "com.mysql.cj.jdbc.Driver"; 
-String query = "select * from `orderthreded` where userid=" + Id;
-//String query = "select * from orderthreded full outer join ordergrooved on orderthreded.userid = ordergrooved.userid ";
-
-try
-{
-Class.forName(dbDriver);
-Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
-Statement st = con.createStatement();
-ResultSet rs = st.executeQuery(query);
-
-while(rs.next())
-{
+<% 
+	for(OrderThrededFittingBean ot : list){ 
 %>
 
             <tr>
-                <td><%=rs.getInt("orderthrededid")%></td>
-               	<td><%=rs.getInt("productid")%></td>
-                <td><%=rs.getInt("userid")%></td>
-                <td><%=rs.getString("userfirstname")+" "+rs.getString("userlastname")%></td>
-                <td><%=rs.getString("productsize")%></td>
-                <td><%=rs.getString("totalproduct")%></td>
-                <td><%=rs.getString("productrequired")%></td>
-                <td><%=rs.getString("clientname")%></td>
-                <td><%=rs.getString("clientaddress")%></td>
-                <td><%=rs.getString("orderplaceddate")%></td>
-                <td><%=rs.getString("orderplacedtime")%></td>
-                <td><%=rs.getString("approveddate")%></td>
-                <td><%=rs.getString("approvedtime") %></td>
-                <td><%=rs.getString("orderstatus") %></td>
+                <td><%=ot.getOrderId()%></td>
+               	<td><%=ot.getProductId()%></td>
+                <td><%=ot.getUserId()%></td>
+                <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
+                <td><%=ot.getProductsize()%></td>
+                <td><%=ot.getTotalProduct()%></td>
+                <td><%=ot.getProductrequired()%></td>
+                <td><%=ot.getTotalProductPrice()%></td>
+                <td><%=ot.getclientName()%></td>
+                <td><%=ot.getClientAddress()%></td>
+                <td><%=ot.getClientEmail()%></td>
+                <td><%=ot.getOrderPlacedDate()%></td>
+                <td><%=ot.getOrderPlacedTime()%></td>
+                <td><%=ot.getApprovalDate()%></td>
+                <td><%=ot.getApprovalTime() %></td>
+                <td><%=ot.getOrderStatus() %></td>
+                <td><%=ot.getInvoiceStatus() %></td>
+                <td><button class="btn btn-primary" id="<%= "del_"+ot.getOrderId()%>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Delete</button></td>
             </tr>
 <%
-}
-}
-catch(Exception e)
-{
-	e.printStackTrace();
 }
 %>
         </tbody>
@@ -204,6 +195,20 @@ catch(Exception e)
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+function deleteMyOrder(orderid,productreq,totalproduct,productid){
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+		  var res = this.responseText;
+		  alert(res);
+		  location.reload();
+		}
+	const url = "DeleteMyThrededOrder";
+	xhttp.open("POST", url, true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+}
+</script>
 <!-- for valdation if employee login then these both fields are none -->
 <%
     if(position.equals("Employee")){

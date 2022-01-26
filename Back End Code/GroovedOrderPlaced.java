@@ -22,7 +22,10 @@ public class GroovedOrderPlaced extends HttpServlet {
 		String clientaddress = request.getParameter("clientaddress");
 		String orderplaceddate = request.getParameter("orderplaceddate");
 		String orderplacedtime = request.getParameter("orderplacedtime"); 
+		String clientemail = request.getParameter("clientemail");
 		String orderstatus = "pending";
+		String invoicestatus = "pending";
+		String unitprice = request.getParameter("unitprice");
 		
 		int product_id = Integer.parseInt(productId);
 		int user_id = Integer.parseInt(userid);
@@ -48,10 +51,14 @@ public class GroovedOrderPlaced extends HttpServlet {
 		ordergrooved.setOrderStatus(orderstatus);
 		ordergrooved.setOrderPlacedDate(orderplaceddate);
 		ordergrooved.setOrderPlacedTime(orderplacedtime);
+		ordergrooved.setClientEmail(clientemail);
+		ordergrooved.setInvoiceStatus(invoicestatus);
 		
 		Dao d = new Dao();
 		if(remainingproduct >= 0 ) {
-			
+		long productunitprice = Long.parseLong(unitprice);
+		long totalprice = productunitprice * productrequired;
+		ordergrooved.setTotalProductPrice(totalprice);
 		
 		int status = d.placedGroovedOrder(ordergrooved);
 		int flag = d.updateGroovedTotalProduct(remaining_product,product_id);
@@ -59,7 +66,7 @@ public class GroovedOrderPlaced extends HttpServlet {
 			if(status > 0 && flag>0) {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8"); 
-				String msg = "Your Order of "+productreq+" product quantity and "+productname+" product name has been placed you can see your order detail in approval section";
+				String msg = "Your Order of "+productname+" product and "+productreq+" product required has been placed you can see your order detail in My Order section";
 				response.getWriter().write(msg); 
 				}
 			}

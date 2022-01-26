@@ -39,7 +39,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" href="AddProduct.jsp">Add Product</a>
+                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -74,7 +74,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Profile</a></li>
                         <li><a class="dropdown-item" href="ResetPassword.jsp">Reset Password</a></li>
-                        <li> <a class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
+                        <li> <a class="dropdown-item" id="employeedetail" href="EmployeeDetails.jsp">Employee Details</a></li>
                         <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
                     </ul>
                 </li>

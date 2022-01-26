@@ -115,39 +115,49 @@
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id </th>
-                <th scope="col">Product Id</th>
-                <th scope="col">User Id</th>
+                <th scope="col">Order Id</th>
+               	<th scope="col">Product Id</th>
+                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
-                <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <th scope="col">Client Email</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
+                <th scope="col">Approved Date</th>
+                <th scope="col">Approved Time</th>
                 <th scope="col">Order Status</th>
-                <th scope="col">Approved Order</th>
+                <th scope="col">Invoice Status</th>
+                <th scope="col">Approve Order</th>
+                <th scope="col">Delete Order</th>
             </tr>
         </thead>
         <tbody>
          	<%for (OrderThrededFittingBean ot : list){ %>
-            	<tr>	
-            	<td><%= ot.getOrderId() %></td>
-                <td><%= ot.getProductId()%></td>
-                <td><%= ot.getUserId() %></td>
-                <td><%= ot.getUserFirstName()+" "+ot.getUserLastName() %></td>
-                <td><%= ot.getProductname() %></td>
-                <td><%= ot.getProductsize() %></td>
-                <td><%= ot.getTotalProduct() %></td>
-                <td><%= ot.getProductrequired() %></td>
-                <td><%= ot.getclientName() %></td>
-                <td><%= ot.getClientAddress() %></td>
-                <td><%= ot.getOrderPlacedDate() %></td>
-                <td><%= ot.getOrderPlacedTime() %></td>
-                <td><%= ot.getOrderStatus() %></td>
-                <td><button class="btn btn-secondary" onclick="approvalProduct( `<%=ot.getOrderId()%>`,`<%=position%>`)">Approved Order</button></td>	
+            	<tr>
+                <td><%=ot.getOrderId()%></td>
+               	<td><%=ot.getProductId()%></td>
+                <td><%=ot.getUserId()%></td>
+                <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
+                <td><%=ot.getProductsize()%></td>
+                <td><%=ot.getTotalProduct()%></td>
+                <td><%=ot.getProductrequired()%></td>
+                <td><%=ot.getTotalProductPrice()%></td>
+                <td><%=ot.getclientName()%></td>
+                <td><%=ot.getClientAddress()%></td>
+                <td><%=ot.getClientEmail()%></td>
+                <td><%=ot.getOrderPlacedDate()%></td>
+                <td><%=ot.getOrderPlacedTime()%></td>
+                <td><%=ot.getApprovalDate()%></td>
+                <td><%=ot.getApprovalTime() %></td>
+                <td><%=ot.getOrderStatus() %></td>
+                <td><%=ot.getInvoiceStatus() %></td>
+                <td><button class="btn btn-secondary" onclick="approvalProduct( `<%=ot.getOrderId()%>`,`<%=position%>`)">Approved</button></td>	
+            	<td><button class="btn btn-secondary" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Delete</button></td>
             	</tr>
             <% } %>
         </tbody>
@@ -178,6 +188,21 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+function deleteMyOrder(orderid,productreq,totalproduct,productid){
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+		  var res = this.responseText;
+		  alert(res);
+		  location.reload();
+		}
+	const url = "DeleteMyThrededOrder";
+	xhttp.open("POST", url, true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+}
+</script>
 <script>
     (function (document) {
         'use strict';

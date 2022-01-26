@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
-<%@page import="java.sql.*" %>
+<%@page import="DAO.*,BeanClass.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +13,8 @@
     	String lastname =  (String) session.getAttribute("lastname");
     	String position = (String) session.getAttribute("position");
     	int user_id = (Integer) session.getAttribute("userid");
+    	Dao d = new Dao();
+    	List<OrderGroovedFittingBean> list = d.getAllDetailsOfOrderGroovedFittingByUserId(user_id);
  %>
 </head>
 <body>
@@ -97,7 +99,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <h2 class="pro mt-5"><b>My Orders</b></h2>
+    <h2 class="pro mt-5"><b>My Grooved Orders</b></h2>
 </div>
 <div class="scroll container-fluid">
     <table style="width: 100% !important;" class="order-table table table-dark table-striped">
@@ -110,63 +112,52 @@
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Client Address</th>
+                <th scope="col">Client Email</th>
                 <th scope="col">Order Placed Date</th>
                 <th scope="col">Order Placed Time</th>
                 <th scope="col">Approval Date </th>
                 <th scope="col">Approval Time</th>
                 <th scope="col">Order Status</th>
+                <th scope="col">Invoice Status</th>
+                <th scope="col">Delete Order</th>
             </tr>
         </thead>
         <tbody>
             <!-- form tag is added for placing order
 rows will generate dynamically -->
-<%
-String dbUrl = "jdbc:mysql://localhost:3306/ims";
-String dbUname = "root";
-String dbPassword = "root";
-String dbDriver = "com.mysql.cj.jdbc.Driver"; 
-String query = "select * from ordergrooved where userid="+user_id;
 
-try
-{
-Class.forName(dbDriver);
-Connection con = DriverManager.getConnection(dbUrl,dbUname,dbPassword);
-Statement st = con.createStatement();
-ResultSet rs = st.executeQuery(query);
-
-while(rs.next())
-{
-%>
-
+		<% for(OrderGroovedFittingBean og : list)
+		{
+		%>
             <tr>
-                <td><%=rs.getInt("ordergrooveid")%></td>
-                <td><%=rs.getInt("productid")%></td>
-                <td><%=rs.getInt("userid")%></td>
-                <td><%=rs.getString("userfirstname")+" "+rs.getString("userlastname")%></td>
-                <td><%=rs.getString("productsize")%></td>
-                <td><%=rs.getString("totalproduct")%></td>
-                <td><%=rs.getString("productrequired")%></td>
-                <td><%=rs.getString("clientname")%></td>
-                <td><%=rs.getString("clientaddress")%></td>
-                <td><%=rs.getString("orderplaceddate")%></td>
-                <td><%=rs.getString("orderplacedtime")%></td>
-                <td><%=rs.getString("approveddate")%></td>
-                <td><%=rs.getString("approvedtime")%></td>
-                <td><%=rs.getString("orderstatus")%></td>
+                <td><%= og.getOrderId()%></td>
+                <td><%= og.getProductId()%></td>
+                <td><%= og.getUserId()%></td>
+                <td><%= og.getUserFirstName()+" "+og.getUserLastName()%></td>
+                <td><%= og.getProductsize()%></td>
+                <td><%= og.getTotalProduct()%></td>
+                <td><%= og.getProductrequired()%></td>
+                <td><%= og.getTotalProductPrice()%></td>
+                <td><%= og.getclientName()%></td>
+                <td><%= og.getClientAddress()%></td>
+                <td><%= og.getClientEmail()%></td>
+                <td><%= og.getOrderPlacedDate()%></td>
+                <td><%= og.getOrderPlacedTime()%></td>
+                <td><%= og.getApprovalDate()%></td>
+                <td><%= og.getApprovalTime()%></td>
+                <td><%=og.getOrderStatus()%></td>
+                <td><%= og.getInvoiceStatus() %></td>
+                <td><button class="btn btn-primary" id="<%= "del_"+og.getOrderId() %>" onclick="deleteMyOrder(`<%= og.getOrderId() %>`,`<%= og.getProductrequired()%>`,`<%= og.getTotalProduct()%>`,`<%= og.getProductId()%>`)">Delete</button></td>
             </tr>
-<%
-}
-}
-catch(Exception e)
-{
-	e.printStackTrace();
-}
-%>
+         <%} %>
         </tbody>
     </table>
 </div>
+<!-- Footer -->
+<!-- Footer -->
 <footer class="bg-dark py-4 mt-5">
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
@@ -183,11 +174,29 @@ catch(Exception e)
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="big m-0 text-white">âCopyright Â© Fitwel Industries."</div>
             </div>
         </div>
     </div>
 </footer>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+function deleteMyOrder(orderid,productreq,totalproduct,productid){
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {
+		  var res = this.responseText;
+		  alert(res);
+		  location.reload();
+		}
+	const url = "DeleteMyGroovedOrder";
+	xhttp.open("POST", url, true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+}
+</script>
 <%
  if(position.equals("Employee"))
 {
