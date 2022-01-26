@@ -28,7 +28,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" style="margin-left: 35%;" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link fw-bolder" href="dashboard.html">Home</a></li>
                     <li class="nav-item dropdown" id="dropdown">
@@ -91,7 +91,7 @@
     </nav>
 
     <!-- Invoice Page content-->
-    <div class="container d-flex justify-content-center mt-50 mb-50">
+    <div class="container d-flex justify-content-center mt-50 mb-50 py-5">
         <div class="row">
             <!-- <div class="col-md-12 text-right mb-3">
                 <button class="btn btn-primary" id="download">Download Invoice</button>
@@ -99,7 +99,7 @@
             <div class="col-md-12">
                 <div class="card" id="invoice">
                     <div class="card-header bg-transparent header-elements-inline">
-                        <img src="logo.png" alt="logo">
+                        <img class="logoimage" src="logo.png" alt="logo">
                         <h6 class="card-title text-primary fw-bolder">Fitwell Industries</h6>
                     </div>
                     <div class="card-body">
@@ -289,9 +289,8 @@
                     </p>
                     <div class="line"></div>
                     <div class="col-md-12 text-center mb-3 mt-3">
-                        <button class="btn btn-primary" onClick="generatePDF()"><b><i class="fa fa-print"
-                                    aria-hidden="true"></i>
-                            </b> Print Invoice</button>
+                        <button class="btn btn-outline-info" onClick="generatePDF()"><b>
+                            </b>Generate PDF</button>
                     </div>
                 </div>
             </div>
