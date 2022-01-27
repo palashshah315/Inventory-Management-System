@@ -25,8 +25,11 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
 			session.setAttribute("password",password);
+			
 			response.sendRedirect("dashboard.jsp");
-		}else {
+			
+		}
+		else {
 			out.println("<script type = \"text/javascript\">");
     		out.println("alert('Username or Password is Incorrect');");
     		out.println("</script>");	

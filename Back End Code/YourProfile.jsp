@@ -23,59 +23,66 @@
     %>
 </head>
 
-<!-- Navbar -->
-<nav class="__nav navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container pr-5">
-        <a class="navbar-brand" href="index.jsp">Fitwel Industries</a>
+<body class="copybody">
+<nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
+    <div class="container px-5">
+        <a class="navbar-brand fw-bolder nav-link" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link fw-bolder" href="dashboard.jsp">Home</a></li>
+                <li class="nav-item dropdown" id="dropdown">
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Product</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a>
+                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
+               
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApprovalThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApprovalGrooved.jsp">Grooved Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
+                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
                         <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="InvoiceGenerate.jsp">Invoice</a></li>
-                
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="EditableInvoice.jsp">Editable Invoice</a></li>
+                        <li><a class="dropdown-item" href="InvoiceGenerate.jsp">Simple Invoice</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Profile</a></li>
-                        <li><a class="dropdown-item" href="ResetPassword.jsp">Reset Password</a></li>
-                        <li> <a class="dropdown-item" id="employeedetail" href="EmployeeDetails.jsp">Employee Details</a></li>
-                        <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
+                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
+                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
+                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
+                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
@@ -123,10 +130,10 @@ if(rs.next()){
 %>
 
 <!--your profile-->
-<div class="container-fluid mt-5">
-    <h2 class="pro text-center"><b>Your Profile</b></h2>
+<div class="container-fluid pt-3">
+    <h1 class="pro fw-bolder">Your Profile</h1>
 </div>
-<div class="container shadow-lg rounded mt-5 mb-5">
+<div class="container shadow-lg rounded mt-5 mb-5 color">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-3">
@@ -183,25 +190,25 @@ catch(Exception e)
 }
 %>
 <!-- Footer -->
-<footer class="bg-dark py-4 mt-5">
+<footer class="pt-4 mb-3 mt-5">
+
     <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
-                <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
+                <div class="big m-0">Fitwel Industries
                     SF 535/7, Kollupalayam, </div>
-                <div class="big m-0 text-white">
+                <div class="big m-0">
                     Near Kaniyur Toll Gate,
                     Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
-                <div class="big m-0 text-white">Phone : +91 90000 00000</div>
+                <div class="big m-0">Gmail : fitwelindustries@gmail.com</div>
+                <div class="big m-0">Phone : +91 90000 00000</div>
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="big m-0">“Copyright © Fitwel Industries."</div>
             </div>
         </div>
     </div>
