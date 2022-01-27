@@ -34,17 +34,6 @@
 		session.setAttribute("userid",id);
 		
  %>
-<style type="text/css">
-	.dropdown-submenu {
-  position: relative;
-}
-
-.dropdown-submenu .dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -1px;
-}
-</style>
 </head>
 <body>
 <!-- Navbar -->
@@ -91,7 +80,7 @@
                         <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Invoice</a></li>
+                <li class="nav-item"><a class="nav-link" href="InvoiceGenerate.jsp">Invoice</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
