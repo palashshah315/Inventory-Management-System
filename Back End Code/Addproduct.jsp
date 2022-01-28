@@ -179,25 +179,26 @@
     </div>
 </div>
 <!-- Footer -->
-<footer class="bg-dark py-4 mt-5">
-	<div class="container px-4 mt-auto">
+<hr class="dropdown-divider">
+<footer class="pt-4 mb-3 mt-5">
+
+    <div class="container px-4 mt-auto">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto">
-                <div class="big m-0 text-white ">Address :</div>
-                <div class="big m-0 text-white">Fitwel Industries
+                <div class="big m-0">Fitwel Industries
                     SF 535/7, Kollupalayam, </div>
-                <div class="big m-0 text-white">
+                <div class="big m-0">
                     Near Kaniyur Toll Gate,
                     Coimbatore-641659, Tamil Nadu, India</div>
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">Gmail : fitwelindustries@gmail.com</div>
-                <div class="big m-0 text-white">Phone : +91 90000 00000</div>
+                <div class="big m-0">Gmail : fitwelindustries@gmail.com</div>
+                <div class="big m-0">Phone : +91 90000 00000</div>
             </div>
 
             <div class="col-auto">
-                <div class="big m-0 text-white">“Copyright © Fitwel Industries."</div>
+                <div class="big m-0">“Copyright © Fitwel Industries."</div>
             </div>
         </div>
     </div>

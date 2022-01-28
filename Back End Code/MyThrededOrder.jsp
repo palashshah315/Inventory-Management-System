@@ -129,9 +129,6 @@
     <table style="width: 100% !important;" class="order-table table  table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id</th>
-               	<th scope="col">Product Id</th>
-                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
@@ -157,9 +154,6 @@ rows will generate dynamically -->
 %>
 
             <tr>
-                <td><%=ot.getOrderId()%></td>
-               	<td><%=ot.getProductId()%></td>
-                <td><%=ot.getUserId()%></td>
                 <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
                 <td><%=ot.getProductsize()%></td>
                 <td><%=ot.getTotalProduct()%></td>
@@ -178,11 +172,11 @@ rows will generate dynamically -->
                 	String orderstat = ot.getOrderStatus();
                 	if(orderstat.equals("Approved")){
                  %>
-                <td><button class="btn btn-secondary" id="<%= "del_"+ot.getOrderId() %>"  disabled>Delete</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>"  disabled>Delete</button></td>
                 <% } 
                 	else{
                 %>
-                <td><button class="btn btn-secondary" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Delete</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Delete</button></td>
                 <%}%>
             </tr>
 <%
@@ -192,6 +186,7 @@ rows will generate dynamically -->
     </table>
 </div>
 <!-- Footer -->
+<hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
     <div class="container px-4 mt-auto">

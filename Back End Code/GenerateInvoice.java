@@ -18,7 +18,7 @@ public class GenerateInvoice extends HttpServlet {
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String clientemail = request.getParameter("clientemail");
-		// String invoicestatus = "Generated";
+		
 		if(clientemail.isEmpty()) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/plain");
@@ -31,11 +31,9 @@ public class GenerateInvoice extends HttpServlet {
 			List<OrderThrededFittingBean> list_threded = d.getAllThrededProductByClientEmail(clientemail);
 			List<OrderGroovedFittingBean> list_grooved = d.getAllGroovedProductByClientEmail(clientemail);
 			
-//			int thrededstatus = d.updateThrededInvoiceStatus(invoicestatus,clientemail);
-//			int groovedstatus = d.updateGroovedInvoiceStatus(invoicestatus,clientemail);
-			
-//			if(thrededstatus > 0 && groovedstatus>0) {
-				JSONArray jsonarray = new JSONArray();
+
+				JSONArray jsonarray = new JSONArray(); 
+				
 				for(OrderThrededFittingBean ot : list_threded) {
 					JSONObject jsonobj = new JSONObject();
 					jsonobj.put("orderthrededid",ot.getOrderId());
@@ -82,23 +80,12 @@ public class GenerateInvoice extends HttpServlet {
 					jsonobj.put("invoicestatus",og.getInvoiceStatus());
 					jsonarray.put(jsonobj);
 				}
-				
-//				JSONObject jsonobj1 = new JSONObject();
-//				JSONObject jsonobj2 = new JSONObject();
-//				jsonobj1.put("threded",list_threded);
-//				jsonobj2.put("grooved",list_grooved);
-//				String thrededlistjson = .toJson(list_threded);
-//				String groovedlistjson = g.toJson(list_grooved);
-				
-//				String jsonresult =  thrededlistjson.concat(groovedlistjson);
-//				System.out.println(jsonobj1);
-//				System.out.println(jsonobj1.toString());
-//			    JSONObject merged = mergeJSONObjects(jsonobj1, jsonobj2);
+
 				
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");
 				response.getWriter().write(jsonarray.toString());
-			//}
+			
 		}
 	}
 

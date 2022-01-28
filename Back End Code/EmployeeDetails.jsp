@@ -73,13 +73,13 @@ List<UserBean> list = d.getAllUser();
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false"><%=firstname%> <%=lastname %></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
-                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                        <li><a class="dropdown-item" href="ResetPassword.jsp">Reset Password</a></li>
+                        <li><a class="dropdown-item" id="employeedetail"  href="EmployeeDetails.jsp">Employee Details</a></li>
+                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
                     </ul>
                 </li>
             </ul>
@@ -152,6 +152,7 @@ List<UserBean> list = d.getAllUser();
         </tbody>
     </table>
 </div>
+<hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
     <div class="container px-4 mt-auto">
@@ -175,6 +176,7 @@ List<UserBean> list = d.getAllUser();
         </div>
     </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <%
 if(position.equals("Employee"))
 {

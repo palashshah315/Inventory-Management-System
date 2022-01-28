@@ -33,6 +33,7 @@
 		
  		user = d.getUserByLoginAndPassword(uname,pswd);
  		int id = user.getId();
+ 		
 		String firstname = user.getFirstname();
 		String lastname = user.getLastname();
 		String email = user.getEmail();
@@ -41,10 +42,12 @@
 		String position = user.getPosition();
 		String username = user.getUsername();
 		String password = user.getPassword();
+		session.setAttribute("email",email);
 		session.setAttribute("firstname", firstname);
 		session.setAttribute("lastname",lastname);
 		session.setAttribute("position",position);
 		session.setAttribute("userid",id);
+		
 		
 		
  %>

@@ -86,7 +86,8 @@
                         <li><a class="dropdown-item" href="YourProfile.html">Your Account</a></li>
                         <li><a class="dropdown-item"  href="ResetPassword.html">Reset Password</a></li>
                        	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.html">Employee Details</a></li>
-                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
+                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -117,7 +118,7 @@
 </div>
 <div class="pt-5">
 <div class="order search pt-2">
-        <input type="search" id="example1" class="light-table-filter haver" data-table="order-table"
+        <input type="search" id="myInput" class="light-table-filter haver" data-table="order-table"
             placeholder="Filter">
     </div>
     <div class="container-fluid">
@@ -136,7 +137,7 @@
         </tr>
     </thead>
     <tbody id="myTable">
-    	<%
+<!--     	<%
     	for(ThrededFittingBean tb : list)
     	{
     	%>
@@ -147,7 +148,7 @@
     			<td><%= tb.getNoOfProduct() %></td>
     			<td><%= tb.getUnitPrice() %></td>
         	</tr>
-        <%} %>
+        <%} %> -->
     </tbody>
 </table>
 </div>
@@ -191,7 +192,7 @@ $(document).ready(function(){
 });
 </script>
 
-<%
+<!-- <%
  if(position.equals("Employee"))
 {
 %>
@@ -202,7 +203,7 @@ document.getElementById("employeedetail").style.display = "none";
 
 <% 
 }
-%>
+%> -->
 </body>
 
 </html>

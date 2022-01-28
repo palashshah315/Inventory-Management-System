@@ -571,21 +571,25 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return list;
 	}
-	public int updateThrededInvoiceStatus(String invoicestatus, String clientemail) {
+	public int updateThrededInvoiceStatusByClientEmail(String invoicestatus, String clientemail) {
 		int status=0;
+		
 		try {
 			
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			
 			String sql = "update `ims`.`orderthreded` set `invoicestatus`= ? where `clientemail`= ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,invoicestatus);
 			pstmt.setString(2, clientemail);
+			
+			
 			status = pstmt.executeUpdate();
 		}catch(Exception e) {e.printStackTrace();}
 		return status;
 	}
-	public int updateGroovedInvoiceStatus(String invoicestatus, String clientemail) {
+	public int updateGroovedInvoiceStatusByClientEmail(String invoicestatus, String clientemail) {
 		int status=0;
 		try {
 			
@@ -623,4 +627,5 @@ public class Dao {
 		}catch(Exception e) {e.printStackTrace();}
 		return list;
 	}
+	
 }

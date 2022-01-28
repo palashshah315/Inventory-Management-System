@@ -15,13 +15,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
     <title>Invoice</title>
     <%
+    String uname = (String) session.getAttribute("username");
+	String pswd=(String) session.getAttribute("password");
+	
+
+	if(uname == null || pswd==null){
+		out.println("<script type = \"text/javascript\">");
+		out.println("alert('Please Login First');");
+		out.println("</script>");	
+		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=index.jsp\">");
+	}
+	
     String firstname = (String) session.getAttribute("firstname");
 	String lastname =  (String) session.getAttribute("lastname");
 	String position = (String) session.getAttribute("position");
+	String useremail = (String) session.getAttribute("email");
+	
 	List<String> client_list_grooved_email = new ArrayList<>();
 	List<String> client_list_threded_email = new ArrayList<>();
-	String sql1 = "select `ims`.`ordergrooved`.`clientemail` from `ims`.`ordergrooved`";
-	String sql2 = "select `ims`.`orderthreded`.`clientemail` from `ims`.`orderthreded`";
+	
+	String sql1 = "select `ims`.`ordergrooved`.`clientemail` from `ims`.`ordergrooved` where `orderstatus`= 'Approved' and `invoicestatus`= 'pending'";
+	String sql2 = "select `ims`.`orderthreded`.`clientemail` from `ims`.`orderthreded` where `orderstatus`= 'Approved' and `invoicestatus`= 'pending'";
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ims","root","root");
@@ -145,9 +159,10 @@
         </div>
     </div>
 </div>
+<div >
  <!-- Invoice Page content-->
     <div class="container d-flex justify-content-center mt-50 mb-50 py-5">
-        <div class="row">
+        <div class="row" >
             <!-- <div class="col-md-12 text-right mb-3">
                 <button class="btn btn-primary" id="download">Download Invoice</button>
             </div> -->
@@ -197,8 +212,8 @@
                                 <div class="flex-wrap wmin-md-400">
 
                                     <ul class="list list-unstyled text-center mb-0 ml-auto">
-                                        <li id="orderid"> </li>
-                                       	<li id="clientemail"></li>
+                                        <li>Order Id :- <p id="orderid"></p></li>
+                                       	<li>Client Email :- <p id="clientemail"></p></li>
 
                                     </ul>
                                 </div>
@@ -210,6 +225,7 @@
                             <thead>
                                 <tr>
                                     <th>Product Name</th>
+                                    <th>Product Size</th>
                                     <th>Rate</th>
                                     <th>Quantity</th>
                                     <th>Total Price</th>
@@ -305,18 +321,68 @@
                     </p>
                     <div class="line"></div>
                     <div class="col-md-12 text-center mb-3 mt-3">
-                        <button class="btn btn-outline-info" onClick="generatePDF()"><b>
-                            </b>Generate PDF</button>
+                        <button class="btn btn-outline-info"  id="download" onclick="generatePDF(`<%= useremail %>`)">
+                           Generate PDF
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+	</div>
+</div>
+
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function getPDF(){
+		
+		  const invoice = document.getElementById("invoice");
+          console.log(invoice);
+          console.log(window);
+          var opt = {
+              margin: 1,
+              filename: 'invoice.pdf',
+              image: { type: 'jpg', quality:  0.97},
+              html2canvas: { scale: 2.5 },
+              jsPDF: { unit: 'in', format: 'A3', orientation: 'portrait' }
+          };
+          html2pdf().from(invoice).set(opt).save();
+          
+	}
+	function generatePDF(useremail){
+		document.getElementById("select").style.display="none";
+		document.getElementById("download").style.display="none";
+		const invoicestatus = "generated";
+		
+		const clientemailid = document.getElementById("clientemail").innerHTML;
+		console.log(invoicestatus,clientemailid);
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			  var res = this.responseText;
+			  alert(res);
+			  document.getElementById("select").style.display = "visible";
+		      document.getElementById("download").style.display = "visible";
+			  getPDF();
+	            
+		}
+		  
+		const url = "InvoiceStatus";
+		xhttp.open("POST", url, true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("invoiceStatus="+invoicestatus+"&clientemail="+clientemailid+"&useremail="+useremail);
+	}
+</script>
 <script>
 	function getInvoiceDetails(){
 		var value = document.getElementById("select").value;
+		document.getElementById("tablebody").innerHTML="";
+		document.getElementById("address").innerHTML="";
+		document.getElementById("clientname").innerHTML="";
+		document.getElementById("clientemail").innerHTML="";
+		document.getElementById("orderid").innerHTML="";
 		var text = "",sum=0;
 		if(value == ""){
 			alert("please select client Email id");
@@ -338,13 +404,14 @@
 				  
 				  document.getElementById("address").innerHTML=res[0].clientaddress;
 				  document.getElementById("clientname").innerHTML = "Client Name :- "+res[0].clientname;
-				  document.getElementById("clientemail").innerHTML = "Client Email :- "+res[0].clientemail;
-				  document.getElementById("orderid").innerHTML = "Order Id :- "+Math.floor((Math.random() * 1000) + 1);
+				  document.getElementById("clientemail").innerHTML = res[0].clientemail;
+				  document.getElementById("orderid").innerHTML = Math.floor((Math.random() * 1000) + 1);
 				  
 				  for(var i=0;i<res.length;i++){
 					  var obj = res[i];
 					  text = "<tr>";
 					  text+= "<td>"+obj.productname+"</td>";
+					  text+= "<td>"+obj.productsize+"</td>"
 					  var unitrate = obj.totalproductprice/obj.productrequired;
 					  text+= "<td>"+unitrate+"</td>";
 					  text+= "<td>"+obj.productrequired+"</td>";
@@ -371,16 +438,14 @@
 		
 	}
 </script>
- <%
-if(position.equals("Employee"))
-{
+<%
+if(position.equals("Employee")){
 %>
 <script>
-document.getElementById("addproduct").style.display = "none";
-document.getElementById("employeedetail").style.display = "none";
+document.getElementById("employeedetail").style.display="none";
+document.getElementById("addproduct").style.display="none";
 </script>
-
-<% 
+<%
 }
 %>
 </body>

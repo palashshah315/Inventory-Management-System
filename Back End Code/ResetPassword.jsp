@@ -164,6 +164,7 @@
         </div>
     </div>
 </div>
+<hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
     <div class="container px-4 mt-auto">

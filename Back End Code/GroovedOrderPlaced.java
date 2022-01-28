@@ -30,11 +30,10 @@ public class GroovedOrderPlaced extends HttpServlet {
 		int product_id = Integer.parseInt(productId);
 		int user_id = Integer.parseInt(userid);
 		
-		int totalproduct = Integer.parseInt(totalProduct);
+	
 		int productrequired = Integer.parseInt(productreq);
-		int remainingproduct = totalproduct - productrequired;
 		
-		String remaining_product = Integer.toString(remainingproduct);
+		
 		
 //		PrintWriter out = response.getWriter();
 		OrderGroovedFittingBean ordergrooved = new OrderGroovedFittingBean();
@@ -47,7 +46,7 @@ public class GroovedOrderPlaced extends HttpServlet {
 		ordergrooved.setProductrequired(productreq);
 		ordergrooved.setClientName(clientname);
 		ordergrooved.setClientAddress(clientaddress);
-		ordergrooved.setTotalProduct(remaining_product);
+		ordergrooved.setTotalProduct(totalProduct);
 		ordergrooved.setOrderStatus(orderstatus);
 		ordergrooved.setOrderPlacedDate(orderplaceddate);
 		ordergrooved.setOrderPlacedTime(orderplacedtime);
@@ -55,33 +54,25 @@ public class GroovedOrderPlaced extends HttpServlet {
 		ordergrooved.setInvoiceStatus(invoicestatus);
 		
 		Dao d = new Dao();
-		if(remainingproduct >= 0 ) {
+		
 		long productunitprice = Long.parseLong(unitprice);
 		long totalprice = productunitprice * productrequired;
 		ordergrooved.setTotalProductPrice(totalprice);
 		
 		int status = d.placedGroovedOrder(ordergrooved);
-		int flag = d.updateGroovedTotalProduct(remaining_product,product_id);
 		
-			if(status > 0 && flag>0) {
-				response.setContentType("text/plain");
-				response.setCharacterEncoding("UTF-8"); 
-				String msg = "Your Order of "+productname+" product and "+productreq+" product required has been placed you can see your order detail in My Order section";
-				response.getWriter().write(msg); 
-				}
-			}
 		
-		else {
-			remainingproduct = totalproduct;
-			String productrem = Integer.toString(remainingproduct);
-			int status = d.updateGroovedTotalProduct(productrem, user_id);
-			
 			if(status > 0) {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8"); 
-				response.getWriter().write("you cannot order"); 
-				} 
-			
+				String msg = "Your Order of "+productname+" product and "+productreq+" product required and "+productsize+" product size has been placed you can see your order detail in My Order section";
+				response.getWriter().write(msg); 
+				}
+			else {
+				response.setContentType("text/plain");
+				response.setCharacterEncoding("UTF-8"); 
+				String msg ="There is an error while placing order";
+				response.getWriter().write(msg); 
 			}
 		
 		}

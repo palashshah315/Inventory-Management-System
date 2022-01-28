@@ -119,9 +119,7 @@
     <table style="width: 100% !important;" class="order-table table table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id</th>
-                <th scope="col">Product Id</th>
-                <th scope="col">User Id </th>
+                
                 <th scope="col">Employee Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
@@ -147,9 +145,6 @@ rows will generate dynamically -->
 		{
 		%>
             <tr>
-                <td><%= og.getOrderId()%></td>
-                <td><%= og.getProductId()%></td>
-                <td><%= og.getUserId()%></td>
                 <td><%= og.getUserFirstName()+" "+og.getUserLastName()%></td>
                 <td><%= og.getProductsize()%></td>
                 <td><%= og.getTotalProduct()%></td>
@@ -181,6 +176,7 @@ rows will generate dynamically -->
 </div>
 <!-- Footer -->
 <!-- Footer -->
+<hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
     <div class="container px-4 mt-auto">
@@ -205,6 +201,7 @@ rows will generate dynamically -->
     </div>
 </footer>
 <!-- Latest compiled JavaScript -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="main.js"></script>

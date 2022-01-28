@@ -32,11 +32,10 @@ public class ThrededOrderPlaced extends HttpServlet {
 		int product_id = Integer.parseInt(productId);
 		int user_id = Integer.parseInt(userid);
 		
-		int totalproduct = Integer.parseInt(totalProduct);
-		int productrequired = Integer.parseInt(productreq);
-		int remainingproduct = totalproduct - productrequired;
 		
-		String remaining_product = Integer.toString(remainingproduct);
+		int productrequired = Integer.parseInt(productreq);
+		
+		
 		
 //		PrintWriter out = response.getWriter();
 		OrderThrededFittingBean orderthreded = new OrderThrededFittingBean();
@@ -49,7 +48,7 @@ public class ThrededOrderPlaced extends HttpServlet {
 		orderthreded.setProductrequired(productreq);
 		orderthreded.setClientName(clientname);
 		orderthreded.setClientAddress(clientaddress);
-		orderthreded.setTotalProduct(remaining_product);
+		orderthreded.setTotalProduct(totalProduct);
 		orderthreded.setOrderStatus(orderstatus);
 		orderthreded.setOrderPlacedDate(orderplaceddate);
 		orderthreded.setOrderPlacedTime(orderplacedtime);
@@ -57,34 +56,28 @@ public class ThrededOrderPlaced extends HttpServlet {
 		orderthreded.setInvoiceStatus(invoicestatus);
 		
 		Dao d = new Dao();
-		if(remainingproduct >= 0 ) {
+		
 		long productunitprice = Long.parseLong(unitprice);
 		long totalprice = productunitprice * productrequired;
 		
 		orderthreded.setTotalProductPrice(totalprice);
 		
 		int status = d.placedThrededOrder(orderthreded);
-		int flag = d.updateThrededTotalProduct(remaining_product,product_id);
 		
-			if(status > 0 && flag>0) {
-				response.setContentType("text/plain");
-				response.setCharacterEncoding("UTF-8"); 
-				String msg = "Your Order of "+productname+" product and "+productreq+" product required has been placed you can see your order detail in My Order section";
-				response.getWriter().write(msg); 
-				}
-			}
 		
-		else {
-			remainingproduct = totalproduct;
-			String productrem = Integer.toString(remainingproduct);
-			System.out.println(productrem);
-			int status = d.updateThrededTotalProduct(productrem, user_id);
-			
 			if(status > 0) {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8"); 
-				response.getWriter().write("you cannot order"); 
+				String msg = "Your Order of "+productname+" product and "+productreq+" product required and "+productsize+" product size has been placed you can see your order detail in My Order section";
+				response.getWriter().write(msg); 
+				
 			}
+		
+		else {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8"); 
+			String msg = "There is an Error while placing an order";
+			response.getWriter().write(msg);
 		}
 		
 	}

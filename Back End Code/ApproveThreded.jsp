@@ -172,7 +172,7 @@
                 <% } 
                 	else{
                 %>
-                <td><button class="btn btn-outline-secondary" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Reject</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Reject</button></td>
                 <%}%>
                 <td><button class="btn btn-outline-secondary" onclick="approvalProduct( `<%=ot.getOrderId()%>`,`<%=position%>`)">Approved</button></td>	
             	
@@ -181,6 +181,7 @@
         </tbody>
     </table>
 </div>
+<hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
     <div class="container px-4 mt-auto">
