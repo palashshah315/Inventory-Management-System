@@ -27,6 +27,7 @@ CREATE TABLE `groovedfitting` (
   `name` varchar(45) DEFAULT NULL,
   `size` varchar(45) DEFAULT NULL,
   `noofproduct` varchar(45) DEFAULT NULL,
+  `unitprice` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -38,7 +39,7 @@ CREATE TABLE `groovedfitting` (
 
 LOCK TABLES `groovedfitting` WRITE;
 /*!40000 ALTER TABLE `groovedfitting` DISABLE KEYS */;
-INSERT INTO `groovedfitting` VALUES (1,'xyz','xyz','9'),(2,'abc','1','0'),(3,'pqr','1212','9');
+INSERT INTO `groovedfitting` VALUES (1,'xyz','xyz','4','50'),(2,'abc','1','0','67'),(3,'pqr','1212','7','80');
 /*!40000 ALTER TABLE `groovedfitting` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07 12:41:45
+-- Dump completed on 2022-01-28 22:38:47

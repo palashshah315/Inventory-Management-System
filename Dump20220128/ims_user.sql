@@ -32,10 +32,8 @@ CREATE TABLE `user` (
   `user_position` varchar(100) DEFAULT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `password_UNIQUE` (`password`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +42,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin','admin@123','123456789','address','Admin','admin','admin'),(2,'Palash','Shah','palashshah345@gmail.com','+919913595735','9,divine park science city road behind jbr arcade','Employee','123','123'),(3,'Palash','Shah','palashshah.18.it@iite.indusuni.ac.in','+919913595735','9,divine park science city road behind jbr arcade','Employee',NULL,NULL),(4,'abc','xyz','asfn@ohio','0789798709','9,divine park science city road behind jbr arcade','iygi',NULL,NULL);
+INSERT INTO `user` VALUES (1,'admin','admin','admin@123','123456789','address','Admin','admin','admin'),(2,'Palash','Shah','palashshah345@gmail.com','+919913595735','9,divine park science city road behind jbr arcade','Employee','123','123'),(6,'dfg','vbf','palashshah.18.it@iite.indusuni.ac.in','457456','sdgsfs','Employee','palashshah.18.it@iite.indusuni.ac.in','dfg775');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07 12:41:45
+-- Dump completed on 2022-01-28 22:38:47

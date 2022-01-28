@@ -30,17 +30,20 @@ CREATE TABLE `orderthreded` (
   `userlastname` varchar(45) DEFAULT NULL,
   `clientname` varchar(45) DEFAULT NULL,
   `clientaddress` varchar(45) DEFAULT NULL,
+  `clientemail` varchar(45) DEFAULT NULL,
   `productname` varchar(45) DEFAULT NULL,
   `productsize` varchar(45) DEFAULT NULL,
   `productrequired` varchar(45) DEFAULT NULL,
   `totalproduct` varchar(45) DEFAULT NULL,
+  `totalprice` varchar(45) DEFAULT NULL,
   `orderplaceddate` varchar(45) DEFAULT NULL,
   `orderplacedtime` varchar(45) DEFAULT NULL,
   `approveddate` varchar(45) DEFAULT NULL,
   `approvedtime` varchar(45) DEFAULT NULL,
   `orderstatus` varchar(45) DEFAULT NULL,
+  `invoicestatus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`orderthrededid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +52,7 @@ CREATE TABLE `orderthreded` (
 
 LOCK TABLES `orderthreded` WRITE;
 /*!40000 ALTER TABLE `orderthreded` DISABLE KEYS */;
-INSERT INTO `orderthreded` VALUES (1,1,2,'Palash','Shah',NULL,NULL,'b','1','10',NULL,NULL,NULL,NULL,NULL,NULL),(2,1,2,'Palash','Shah',NULL,NULL,'b','1','10',NULL,NULL,NULL,NULL,NULL,NULL),(3,1,2,'Palash','Shah',NULL,NULL,'b','1','50',NULL,NULL,NULL,NULL,NULL,NULL),(4,1,2,'Palash','Shah',NULL,NULL,'b','1','100',NULL,NULL,NULL,NULL,NULL,NULL),(5,1,2,'Palash','Shah',NULL,NULL,'b','1','35',NULL,NULL,NULL,NULL,NULL,NULL),(6,3,1,'admin','admin',NULL,NULL,'90Nf','3/8','90',NULL,NULL,NULL,NULL,NULL,NULL),(7,13,2,'Palash','Shah',NULL,NULL,'90','1/8','100',NULL,NULL,NULL,NULL,NULL,NULL),(8,1,2,'Palash','Shah',NULL,NULL,'90NF','1/8','100',NULL,NULL,NULL,NULL,NULL,NULL),(9,1,2,'Palash','Shah',NULL,NULL,'90NF','1/8','50',NULL,NULL,NULL,NULL,NULL,NULL),(10,2,1,'admin','admin',NULL,NULL,'90NF','1/4','40',NULL,NULL,NULL,NULL,NULL,NULL),(11,15,2,'Palash','Shah',NULL,NULL,'90 ','3/8','100',NULL,NULL,NULL,NULL,NULL,NULL),(12,1,2,'Palash','Shah',NULL,NULL,'90NF','1/8','100',NULL,NULL,NULL,NULL,NULL,NULL),(13,5,2,'Palash','Shah','hkbh','jhbgjyh','90NF','3/4','2','98',NULL,NULL,NULL,NULL,'pending'),(14,1,2,'Palash','Shah','xyz','none','90NF','1/8','12','88',NULL,NULL,NULL,NULL,'pending'),(15,14,2,'Palash','Shah','palash shah','address','90','1/4','50','100','2021-12-30','10:47:21','2022-1-5','17:35:7','Approved'),(16,35,1,'admin','admin','palash shah','address','45','3','100','75','2022-1-5','17:53:49','2022-1-5','18:7:2','Approved'),(17,1,2,'Palash','Shah','Harshika','add','90NF','1/8','2','73','2022-1-5','18:39:42',NULL,NULL,'pending');
+INSERT INTO `orderthreded` VALUES (32,69,1,'admin','admin','palash shah','address','palashshah345@gmail.com','TEE','2','270','250','13500','2022-1-28','18:36:41','2022-1-28','18:37:53','Approved','generated');
 /*!40000 ALTER TABLE `orderthreded` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07 12:41:45
+-- Dump completed on 2022-01-28 22:38:48

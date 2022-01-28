@@ -30,17 +30,20 @@ CREATE TABLE `ordergrooved` (
   `userlastname` varchar(45) DEFAULT NULL,
   `clientname` varchar(45) DEFAULT NULL,
   `clientaddress` varchar(45) DEFAULT NULL,
+  `clientemail` varchar(45) DEFAULT NULL,
   `productname` varchar(45) DEFAULT NULL,
   `productsize` varchar(45) DEFAULT NULL,
   `productrequired` varchar(45) DEFAULT NULL,
   `totalproduct` varchar(45) DEFAULT NULL,
+  `totalprice` varchar(45) DEFAULT NULL,
   `orderplaceddate` varchar(45) DEFAULT NULL,
   `orderplacedtime` varchar(45) DEFAULT NULL,
   `approveddate` varchar(45) DEFAULT NULL,
   `approvedtime` varchar(45) DEFAULT NULL,
   `orderstatus` varchar(45) DEFAULT NULL,
+  `invoicestatus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ordergrooveid`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +52,7 @@ CREATE TABLE `ordergrooved` (
 
 LOCK TABLES `ordergrooved` WRITE;
 /*!40000 ALTER TABLE `ordergrooved` DISABLE KEYS */;
-INSERT INTO `ordergrooved` VALUES (13,1,1,'admin','admin',NULL,NULL,'xyz','xyz','12',NULL,NULL,NULL,NULL,NULL,'pending'),(14,2,2,'Palash','Shah','gagi','vdfvzdfvdc','abc','1','2','10',NULL,NULL,NULL,NULL,'pending'),(15,1,2,'Palash','Shah','33sfr','dfdfvzdfvcvz','xyz','xyz','22','12',NULL,NULL,NULL,NULL,'pending'),(16,1,2,'Palash','Shah','undefined','undefined','xyz','xyz','undefined','12',NULL,NULL,NULL,NULL,'pending'),(17,3,2,'Palash','Shah','sdsgfs','fdzfbvdfvb','pqr','1212','4','12',NULL,NULL,NULL,NULL,'pending'),(18,3,2,'Palash','Shah','dfzdfbzdbf','vbxcv bxcb','pqr','1212','10','12',NULL,NULL,NULL,NULL,'pending'),(19,1,2,'Palash','Shah','dfdfbv','jhjgjhb,jh','xyz','xyz','10','2',NULL,NULL,NULL,NULL,'pending'),(20,1,2,'Palash','Shah','cvnzdfjkzd','mbvj,hjyv','xyz','xyz','10','2',NULL,NULL,NULL,NULL,'pending'),(21,2,2,'Palash','Shah','vdkvbjhdv','fbdzffvbsfdbsfg','abc','1','3','7',NULL,NULL,NULL,NULL,'pending'),(22,2,2,'Palash','Shah','dksdnv','xvxcbk jnxvk','abc','1','10','10',NULL,NULL,NULL,NULL,'pending'),(23,2,2,'Palash','Shah','zmvns','kjfbvdsv','abc','1','6','4',NULL,NULL,'2022-1-5','17:36:13','Approved'),(24,3,2,'Palash','Shah','ffnvnfd','jdfnbkjd','pqr','1212','1','9','2021-12-30','10:55:46','2022-1-5','17:35:25','Approved');
+INSERT INTO `ordergrooved` VALUES (30,2,1,'admin','admin','palash shah','address','palashshah345@gmail.com','abc','1','50','0','3350','2022-1-28','18:37:23','2022-1-28','18:38:19','Approved','generated');
 /*!40000 ALTER TABLE `ordergrooved` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-07 12:41:45
+-- Dump completed on 2022-01-28 22:38:48
