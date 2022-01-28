@@ -200,6 +200,14 @@ tr:nth-child(even) {
     width: 8% !important;
     height: 8% !important;
 }
+@media only screen 
+and (max-width : 430px)
+{
+    .logoimage{
+        width: 30%;
+        height: 8%;
+    }
+}
 img {
     width: 100%;
     height: 38rem;

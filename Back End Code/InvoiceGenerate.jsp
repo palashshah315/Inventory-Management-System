@@ -9,10 +9,17 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
-    <link href="style.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" media="all" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/4561262c83.js" crossorigin="anonymous"></script>
+    <!-- <script src="order.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
     <title>Invoice</title>
     <%
     String uname = (String) session.getAttribute("username");
@@ -312,9 +319,9 @@
                     </p>
                     <div class="line"></div>
                     <div class="row just1">
-                        <p class="ml-5">Prepared By</p>
+                        <p class="ml-4">Prepared By</p>
                         <p class="space">Checked By</p>
-                        <p class="mr-5">Authorized Signatory</p>
+                        <p class="mr-4">Authorized Signature</p>
                     </div>
                     <div class="line"></div>
                     <p>* Subject to Coimbatore Jurisdication Only.
@@ -346,7 +353,7 @@
               margin: 1,
               filename: 'invoice.pdf',
               image: { type: 'jpg', quality:  0.97},
-              html2canvas: { scale: 2.5 },
+              html2canvas: { scale: 2 },
               jsPDF: { unit: 'in', format: 'A3', orientation: 'portrait' }
           };
           html2pdf().from(invoice).set(opt).save();
