@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ims
 -- ------------------------------------------------------
--- Server version	8.0.23
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `groovedfitting`
+-- Table structure for table `addtocart`
 --
 
-DROP TABLE IF EXISTS `groovedfitting`;
+DROP TABLE IF EXISTS `addtocart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `groovedfitting` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `size` varchar(45) DEFAULT NULL,
-  `noofproduct` varchar(45) DEFAULT NULL,
-  `unitprice` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `addtocart` (
+  `cartid` int NOT NULL,
+  `productid` int DEFAULT NULL,
+  `productname` varchar(45) DEFAULT NULL,
+  `productsize` varchar(45) DEFAULT NULL,
+  `productquantity` varchar(45) DEFAULT NULL,
+  `subtotal` int DEFAULT NULL,
+  `totalprice` int NOT NULL,
+  PRIMARY KEY (`cartid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `groovedfitting`
+-- Dumping data for table `addtocart`
 --
 
-LOCK TABLES `groovedfitting` WRITE;
-/*!40000 ALTER TABLE `groovedfitting` DISABLE KEYS */;
-INSERT INTO `groovedfitting` VALUES (1,'xyz','xyz','4','50'),(2,'abc','1','0','67'),(3,'pqr','1212','7','80');
-/*!40000 ALTER TABLE `groovedfitting` ENABLE KEYS */;
+LOCK TABLES `addtocart` WRITE;
+/*!40000 ALTER TABLE `addtocart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `addtocart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-28 22:38:47
+-- Dump completed on 2022-02-02 19:59:03

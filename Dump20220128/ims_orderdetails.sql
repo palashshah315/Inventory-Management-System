@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ims
 -- ------------------------------------------------------
--- Server version	8.0.23
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,14 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ordergrooved`
+-- Table structure for table `orderdetails`
 --
 
-DROP TABLE IF EXISTS `ordergrooved`;
+DROP TABLE IF EXISTS `orderdetails`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ordergrooved` (
-  `ordergrooveid` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `orderdetails` (
+  `orderid` int NOT NULL,
   `productid` int DEFAULT NULL,
   `userid` int DEFAULT NULL,
   `userfirstname` varchar(45) DEFAULT NULL,
@@ -41,19 +41,18 @@ CREATE TABLE `ordergrooved` (
   `approveddate` varchar(45) DEFAULT NULL,
   `approvedtime` varchar(45) DEFAULT NULL,
   `orderstatus` varchar(45) DEFAULT NULL,
-  `invoicestatus` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ordergrooveid`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `invoicestatus` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ordergrooved`
+-- Dumping data for table `orderdetails`
 --
 
-LOCK TABLES `ordergrooved` WRITE;
-/*!40000 ALTER TABLE `ordergrooved` DISABLE KEYS */;
-INSERT INTO `ordergrooved` VALUES (30,2,1,'admin','admin','palash shah','address','palashshah345@gmail.com','abc','1','50','0','3350','2022-1-28','18:37:23','2022-1-28','18:38:19','Approved','generated');
-/*!40000 ALTER TABLE `ordergrooved` ENABLE KEYS */;
+LOCK TABLES `orderdetails` WRITE;
+/*!40000 ALTER TABLE `orderdetails` DISABLE KEYS */;
+INSERT INTO `orderdetails` VALUES (32,69,1,'admin','admin','palash shah','address','palashshah345@gmail.com','TEE','2','270','250','13500','2022-1-28','18:36:41','2022-1-28','18:37:53','Approved','generated');
+/*!40000 ALTER TABLE `orderdetails` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -65,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-28 22:38:48
+-- Dump completed on 2022-02-02 19:59:03
