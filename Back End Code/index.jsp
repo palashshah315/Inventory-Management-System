@@ -22,7 +22,7 @@
 
     <!-- Navbar -->
     <nav class="__nav navbar navbar-expand-md sticky-top" id="navbar" >
-        <div class="container px-5">
+        <div class="container px-4">
             <a class="navbar-brand nav-link fw-bolder" href="index.jsp">Fitwel Industries</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -129,7 +129,7 @@
                         <p class="lead fw-normal mb-4">One of the India's biggest & best quality Suppliers, Exporters and Manufacturers of
                          Screwed Pipe Fittings, Grooved Pipe Fittings, Pipe Nipples, SPM machineries, CNC Machined Components </p>
                         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                            <a class="btn btn-primary rounded-5 px-4 me-sm-3" href="#about">Get Started</a>
+                            <a class="btn btn-outline-primary rounded-5 px-4 me-sm-3" href="#about">Get Started</a>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
     </section>
 
     <!-- Team -->
-    <section class="py-5 bg-light">
+    <section class="py-5">
         <div class="container px-5 my-5">
             <div class="text-center" data-aos="flip-left" data-aos-duration="2000">
                 <h2 class="fw-bolder">Our team</h2>
@@ -230,7 +230,7 @@
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="2-BSP-Euqal-Female-Tee-Thread-font-b-3-b-font-Way-304-Stainless-Steel-font.jpg" alt="...">
+                        <img class="card-img-top h-50"  src="2-BSP-Euqal-Female-Tee-Thread-font-b-3-b-font-Way-304-Stainless-Steel-font.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
@@ -256,15 +256,14 @@
                 </div>
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="81I1-lmM2dL._SL1500_.jpg" alt="...">
+                        <img class="card-img-top h-50" src="81I1-lmM2dL._SL1500_.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
                                 data-bs-toggle="modal" data-bs-target="#modalGrooved">
                                 <div class="h5 card-title mb-3">Another blog post title</div>
                             </a>
-                            <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of
-                                each card. Some quick example text to build on the card title and make up the bulk of
+                            <p class="card-text "> Some quick example text to build on the card title and make up the bulk of
                                 the card's content.</p>
                         </div>
                         <!-- <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
@@ -283,13 +282,12 @@
                 </div>
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="81mt3Yg7xcL._SL1500_.jpg" alt="...">
+                        <img class="card-img-top h-75" src="81mt3Yg7xcL._SL1500_.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
                                 data-bs-toggle="modal" data-bs-target="#modalGrooved">
-                                <div class="h5 card-title mb-3">The last blog post title is a little bit longer than the
-                                    others</div>
+                                <div class="h5 card-title mb-3">Blog Post</div>
                             </a>
                             <p class="card-text mb-0">Some more quick example text to build on the card title and make
                                 up the bulk of the card's content.</p>
@@ -337,7 +335,7 @@
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="81I1-lmM2dL._SL1500_.jpg" alt="...">
+                        <img class="card-img-top h-50" src="81I1-lmM2dL._SL1500_.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
@@ -363,15 +361,14 @@
                 </div>
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="91Fae-3CWdL._SL1500_.jpg" alt="...">
+                        <img class="card-img-top h-50" src="91Fae-3CWdL._SL1500_.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
                                 data-bs-toggle="modal" data-bs-target="#modalThreaded">
                                 <div class="h5 card-title mb-3">Another blog post title</div>
                             </a>
-                            <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of
-                                each card. Some quick example text to build on the card title and make up the bulk of
+                            <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of
                                 the card's content.</p>
                         </div>
                         <!-- <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
@@ -390,13 +387,12 @@
                 </div>
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="victaulic_series_adapter_nipple_4380.jpg" alt="...">
+                        <img class="card-img-top h-50" src="victaulic_series_adapter_nipple_4380.jpg" alt="...">
                         <div class="card-body p-4">
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                             <a class="text-decoration-none link-dark stretched-link btn btn-default"
                                 data-bs-toggle="modal" data-bs-target="#modalThreaded">
-                                <div class="h5 card-title mb-3">The last blog post title is a little bit longer than the
-                                    others</div>
+                                <div class="h5 card-title mb-3">Blog Title</div>
                             </a>
                             <p class="card-text mb-0">Some more quick example text to build on the card title and make
                                 up the bulk of the card's content.</p>
@@ -449,14 +445,14 @@
                 <div class="col-lg-6">
                     <div class="position-relative mb-5">
                         <!-- <a class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalGallery1"> -->
-                        <img class="img-fluid rounded-3 mb-3 effect1 galleryImage" src="STAINLESS-STEEL-FIT-2.jpg" alt="Gallery Image">
+                        <img class="img-fluid rounded-3 mb-3 effect1 galleryImage w-100" src="STAINLESS-STEEL-FIT-2.jpg" alt="Gallery Image">
                         <!-- </a> -->
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative mb-5">
                         <!-- <a class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalGallery2"> -->
-                        <img class="img-fluid rounded-3 mb-3 effect1 galleryImage" src="krytox-ts4-thread-sealant-1.jpg" alt="Gallery Image">
+                        <img class="img-fluid rounded-3 mb-3 effect1 galleryImage h-100" src="krytox-ts4-thread-sealant-1.jpg" alt="Gallery Image">
                         <!-- </a> -->
                     </div>
                 </div>
@@ -527,7 +523,7 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form id="contactForm" action="Login" method="post">
+                        <form id="contactForm" action="Login" method="POST">
                             <!-- Username input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="username" name="username" type="text" required>
@@ -583,16 +579,20 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         AOS.init();
     </script>
     <script>
-    
-    window.onload = function () {
-    	
-        var loader = document.getElementById("preloader").style.display = "none";
-        
-    }
+    	document.onreadystatechange = function(){
+    		 if (document.readyState !== "complete") {
+    		        document.querySelector("body").style.visibility = "hidden";
+    		        document.querySelector("#preloader").style.visibility = "visible";
+    		    } else {
+    		        document.querySelector("#preloader").style.display = "none";
+    		        document.querySelector("body").style.visibility = "visible";
+    		    }
+    	}
     </script>
 </body>
 

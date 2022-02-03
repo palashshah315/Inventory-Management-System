@@ -12,8 +12,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel='stylesheet prefetch'
-        href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
     <title>My Order</title>
     <%
     String firstname  = (String) session.getAttribute("firstname");
@@ -22,75 +21,11 @@
     String position = (String) session.getAttribute("position");
     
     Dao d = new Dao();
-    List<OrderThrededFittingBean> list = d.getAllDetailsOfOrderThrededFittingByUserId(user_id);
+   // List<> list = d.getAllDetailsOfOrderThrededFittingByUserId(user_id);
     %>
 </head>
 <body class="copybody">
-<nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
-    <div class="container px-5">
-        <a class="navbar-brand fw-bolder nav-link" href="index.jsp">Fitwel Industries</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link fw-bolder" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Product</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-               
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="EditableInvoice.jsp">Editable Invoice</a></li>
-                        <li><a class="dropdown-item" href="InvoiceGenerate.jsp">Simple Invoice</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
-                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%@ include file="navbar.jsp" %>
 
 <!--  logout model -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,6 +65,7 @@
         <thead>
             <tr>
                 <th scope="col">Employee Name</th>
+                <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
@@ -155,6 +91,7 @@ rows will generate dynamically -->
 
             <tr>
                 <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
+                <td><%=ot.getProductname() %></td>
                 <td><%=ot.getProductsize()%></td>
                 <td><%=ot.getTotalProduct()%></td>
                 <td><%=ot.getProductrequired()%></td>

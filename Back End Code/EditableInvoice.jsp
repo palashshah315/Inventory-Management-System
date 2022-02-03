@@ -7,12 +7,13 @@
     <title>Editable Invoice</title>
 
     <link rel='stylesheet' type='text/css' href="editableinvoice.css" />
-    <link rel='stylesheet' type='text/css' href="editableinvoiceprint.css" media="print" />
+   
     
    
 </head>
 
 <body>
+<div id="invoice">
     <div id="page-wrap">
 
         <textarea id="header">INVOICE</textarea>
@@ -142,10 +143,36 @@ SHIPPED TO</textarea>
             <h5>Terms</h5>
             <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
         </div>
-
+        <div style="text-align: center;">
+        	<button  id="download" onclick="generatePDF()">
+                   Generate PDF
+             </button>
+        </div>
     </div>
-<script type='text/javascript' src='jquery-1.3.2.min.js'></script>
+ </div>
+ <script type='text/javascript' src='jquery-1.3.2.min.js'></script> 
 <script type='text/javascript' src='example.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script>
+document.getElementById("download").style.display="visible";
+function generatePDF(){
+	const invoice = document.getElementById("invoice");
+	document.getElementById("download").style.display="none";
+	console.log(invoice);
+	console.log(window);
+
+	var opt = {
+	    margin: 1,
+	    filename: 'invoice.pdf',
+	    image: { type: 'jpg', quality:  0.97},
+	    html2canvas: { scale: 2 },
+	    jsPDF: { unit: 'in', format: 'A3', orientation: 'portrait' }
+	};
+
+	html2pdf().from(invoice).set(opt).save();
+}
+</script>
 </body>
 
 </html>

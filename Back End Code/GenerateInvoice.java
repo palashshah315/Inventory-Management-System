@@ -28,13 +28,13 @@ public class GenerateInvoice extends HttpServlet {
 		else {
 			Dao d = new Dao();
 			
-			List<OrderThrededFittingBean> list_threded = d.getAllThrededProductByClientEmail(clientemail);
-			List<OrderGroovedFittingBean> list_grooved = d.getAllGroovedProductByClientEmail(clientemail);
+			List<OrderBean> list_threded = d.getAllProductDetailByClientEmail(clientemail);
+			
 			
 
 				JSONArray jsonarray = new JSONArray(); 
 				
-				for(OrderThrededFittingBean ot : list_threded) {
+				for(OrderBean ot : list_threded) {
 					JSONObject jsonobj = new JSONObject();
 					jsonobj.put("orderthrededid",ot.getOrderId());
 					jsonobj.put("productid", ot.getProductId());
@@ -57,30 +57,6 @@ public class GenerateInvoice extends HttpServlet {
 					jsonobj.put("invoicestatus",ot.getInvoiceStatus());
 					jsonarray.put(jsonobj);
 				}
-				for(OrderGroovedFittingBean og : list_grooved) {
-					JSONObject jsonobj = new JSONObject();
-					jsonobj.put("ordergroovedid",og.getOrderId());
-					jsonobj.put("productid", og.getProductId());
-					jsonobj.put("userid",og.getUserId());
-					jsonobj.put("userfirstname",og.getUserFirstName());
-					jsonobj.put("userlastname",og.getUserLastName());
-					jsonobj.put("clientname",og.getclientName());
-					jsonobj.put("clientaddress",og.getClientAddress());
-					jsonobj.put("clientemail",og.getClientEmail());
-					jsonobj.put("productname",og.getProductname());
-					jsonobj.put("productsize",og.getProductsize());
-					jsonobj.put("totalproduct",og.getTotalProduct());
-					jsonobj.put("productrequired",og.getProductrequired());
-					jsonobj.put("totalproductprice",og.getTotalProductPrice());
-					jsonobj.put("orderplaceddate",og.getOrderPlacedDate());
-					jsonobj.put("orderplacedtime",og.getOrderPlacedTime());
-					jsonobj.put("approvaldate",og.getApprovalDate());
-					jsonobj.put("approvaltime",og.getApprovalTime());
-					jsonobj.put("orderstatus",og.getOrderStatus());
-					jsonobj.put("invoicestatus",og.getInvoiceStatus());
-					jsonarray.put(jsonobj);
-				}
-
 				
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json");

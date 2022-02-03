@@ -16,44 +16,28 @@ public class ProductRegister extends HttpServlet {
 		String productName = req.getParameter("productname");
 		String productSize = req.getParameter("productsize");
 		String productQuantity = req.getParameter("productquantity");
+		String unitprice = req.getParameter("productunitprice");
 		String fitting = req.getParameter("fitting");
 		
 		PrintWriter out = res.getWriter();
 		
-		if(fitting.equals("Threded Fitting")) {
 			Dao d = new Dao();
-			ThrededFittingBean tb = new ThrededFittingBean();
+			ProductDetailBean pd = new ProductDetailBean();
 			int status=0;
-			tb.setProductName(productName);
-			tb.setProductSize(productSize);
-			tb.setNoOfProduct(productQuantity);
-			status = d.insertThrededFitting(tb);
+			pd.setProductname(productName);
+			pd.setProductsize(productSize);
+			pd.setNoofproduct(productQuantity);
+			pd.setUnitprice(unitprice);
+			pd.setProducttype(fitting);
+			status = d.insertProductDetail(pd);
 			if(status > 0) {
 				out.println("<script type = \"text/javascript\">");
-	    		out.println("alert('Product Threded Fitting Added Successfully');");
+	    		out.println("alert('Product Added Successfully');");
 	    		out.println("</script>");	
 	    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=AddProduct.jsp\">");
 			}
 			
-		}
 		
-		else {
-			Dao d = new Dao();
-			GroovedFittingBean gb = new GroovedFittingBean();
-			int status=0;
-			gb.setProductName(productName);
-			gb.setProductSize(productSize);
-			gb.setNoOfProduct(productQuantity);
-			status = d.insertGroovedFitting(gb);
-			if(status > 0) {
-				out.println("<script type = \"text/javascript\">");
-	    		out.println("alert('Product Grooved Fitting Added Successfully');");
-	    		
-	    		out.println("</script>");
-	    		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=AddProduct.jsp\">");
-	    		
-			}
-		}
 		
 		
 	

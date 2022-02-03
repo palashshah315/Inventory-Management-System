@@ -14,80 +14,15 @@
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 <title>Approved Threded</title>
 	<%
-        String firstname = (String) session.getAttribute("firstname");
-        String lastname =  (String) session.getAttribute("lastname");
-        String position = (String) session.getAttribute("position");
-        Dao d = new Dao();
-        List<OrderThrededFittingBean> list = d.getAllApprovalDetailsOfThrededFitting();
-    %>
+	String firstname = (String) session.getAttribute("firstname");
+	        String lastname =  (String) session.getAttribute("lastname");
+	        String position = (String) session.getAttribute("position");
+	        Dao d = new Dao();
+	        List<OrderBean> list = d.getAllApprovalDetailsOfThrededFitting();
+	%>
 </head>
 <body class="copybody">
-<!-- Navbar -->
-<nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
-    <div class="container px-5">
-        <a class="navbar-brand fw-bolder nav-link" href="index.jsp">Fitwel Industries</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link fw-bolder" href="dashboard.jsp">Home</a></li>
-                <li class="nav-item dropdown" id="dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Product</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ThrededFitting.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="GroovedFittings.jsp">Grooved Fittings</a></li>
-                        <li ><a class="dropdown-item" id="addproduct" href="AddProduct.jsp">Add Product</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="OrderThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="OrderGrooved.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-               
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Approval</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="ApproveThreded.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="ApproveGrooved.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">My Order</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="MyThrededOrder.jsp">Threded Fittings</a></li>
-                        <li><a class="dropdown-item" href="MyGroovedOrder.jsp">Grooved Fittings</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Invoice</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="EditableInvoice.jsp">Editable Invoice</a></li>
-                        <li><a class="dropdown-item" href="InvoiceGenerate.jsp">Simple Invoice</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownPortfolio" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false"><%= firstname %> <%= lastname %></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="YourProfile.jsp">Your Account</a></li>
-                        <li><a class="dropdown-item"  href="ResetPassword.jsp">Reset Password</a></li>
-                       	<li><a id="employeedetail" class="dropdown-item" href="EmployeeDetails.jsp">Employee Details</a></li>
-                       	<li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%@ include file="navbar.jsp" %>
 <!--  logout model -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -123,10 +58,8 @@
     <table style="width: 100% !important;" class="order-table table table-striped">
         <thead>
             <tr>
-                <th scope="col">Order Id</th>
-               	<th scope="col">Product Id</th>
-                <th scope="col">User Id </th>
                 <th scope="col">Employee Name</th>
+                <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
                 <th scope="col">Product Available</th>
                 <th scope="col">Product Required</th>
@@ -145,12 +78,12 @@
             </tr>
         </thead>
         <tbody>
-         	<%for (OrderThrededFittingBean ot : list){ %>
+         	<%
+         	for (OrderBean ot : list){
+         	%>
             	<tr>
-                <td><%=ot.getOrderId()%></td>
-               	<td><%=ot.getProductId()%></td>
-                <td><%=ot.getUserId()%></td>
                 <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
+                <td><%=ot.getProductname() %></td>
                 <td><%=ot.getProductsize()%></td>
                 <td><%=ot.getTotalProduct()%></td>
                 <td><%=ot.getProductrequired()%></td>
@@ -172,7 +105,7 @@
                 <% } 
                 	else{
                 %>
-                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Reject</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`,`<%= position%>`)">Reject</button></td>
                 <%}%>
                 <td><button class="btn btn-outline-secondary" onclick="approvalProduct( `<%=ot.getOrderId()%>`,`<%=position%>`)">Approved</button></td>	
             	
@@ -209,7 +142,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="main.js"></script>
 <script type="text/javascript">
-function deleteMyOrder(orderid,productreq,totalproduct,productid){
+function deleteMyOrder(orderid,productreq,totalproduct,productid,position){
+if(position == "Employee"){
+		
+		alert("You are not Allowed to Reject order!!");
+	}
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		  var res = this.responseText;

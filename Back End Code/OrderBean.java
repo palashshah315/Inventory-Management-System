@@ -1,11 +1,10 @@
 package BeanClass;
 
-public class OrderGroovedFittingBean {
+public class OrderBean {
 	private String userfirstname,userlastname,productname, productsize, productquantity,totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
 	private String approvaldate,approvaltime,clientemail,invoicestatus;
-	private int productid,userid,ordergroovedid;
+	private int productid,userid,orderthrededid;
 	private long totalprice;
-	
 	
 	
 	public void setInvoiceStatus(String invoicestatus) {
@@ -32,13 +31,12 @@ public class OrderGroovedFittingBean {
 		return clientemail;
 	}
 	
-	public void setOrderId(int ordergroovedid) {
-		this.ordergroovedid = ordergroovedid;
+	public void setOrderId(int orderthrededid) {
+		this.orderthrededid = orderthrededid;
 	}
 	public int getOrderId() {
-		return ordergroovedid;
+		return orderthrededid;
 	}
-	
 	public void setApprovalDate(String approvaldate) {
 		this.approvaldate = approvaldate;
 	}
@@ -70,6 +68,7 @@ public class OrderGroovedFittingBean {
 	public String getOrderPlacedTime() {
 		return orderplacedtime;
 	}
+	
 	public int getUserId() {
 		return userid;
 	}
