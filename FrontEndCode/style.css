@@ -6,8 +6,17 @@
     padding-bottom: 470px;
     position: relative;
 }
+.box {
+    font-size: 1.2em;
+    width: 11em;
+}
 
-
+.tab {
+    margin-top: 7%;
+}
+.orderidcolor{
+    color:grey;
+}
 .map iframe {
     position: absolute;
 }
