@@ -429,3 +429,9 @@ a {
 .just1{
     margin-top: 12%;
 }
+#fromdate,
+#todate{
+	width: 100%;
+	outline: none;
+	cursor: pointer;
+}
