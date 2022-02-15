@@ -16,7 +16,7 @@ public class AddToCart extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
+		
 		String productid = request.getParameter("productid");
 		String productname = request.getParameter("productname");
 		String productsize = request.getParameter("productsize");
@@ -31,6 +31,8 @@ public class AddToCart extends HttpServlet {
 		boolean exist = d.checkProductInCart(product_id);
 		
 		if(exist) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write("Product already added");
 		}
 		
@@ -43,11 +45,13 @@ public class AddToCart extends HttpServlet {
 		ct.setProducttype(producttype);
 		ct.setNoofproduct(totalproduct);
 		ct.setUnitprice(unitprice);
-		
+		ct.setProductquantity(1);
 		
 		int status = d.insertProductInCart(ct);
 		
 		if(status > 0) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write("Product Added in Cart");
 			}
 		}

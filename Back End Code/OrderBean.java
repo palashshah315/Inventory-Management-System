@@ -1,12 +1,20 @@
 package BeanClass;
 
 public class OrderBean {
-	private String userfirstname,userlastname,productname, productsize, productquantity,totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
+	private String userfirstname,userlastname,productname, productsize, totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
 	private String approvaldate,approvaltime,clientemail,invoicestatus;
-	private int productid,userid,orderthrededid;
+	private int productid,userid,invoiceid,productquantity;
 	private long totalprice;
 	
 	
+	public int getInvoiceid() {
+		return invoiceid;
+	}
+
+	public void setInvoiceid(int invoiceid) {
+		this.invoiceid = invoiceid;
+	}
+
 	public void setInvoiceStatus(String invoicestatus) {
 		this.invoicestatus = invoicestatus;
 	}
@@ -31,12 +39,7 @@ public class OrderBean {
 		return clientemail;
 	}
 	
-	public void setOrderId(int orderthrededid) {
-		this.orderthrededid = orderthrededid;
-	}
-	public int getOrderId() {
-		return orderthrededid;
-	}
+
 	public void setApprovalDate(String approvaldate) {
 		this.approvaldate = approvaldate;
 	}
@@ -131,11 +134,11 @@ public class OrderBean {
 		this.productsize = productsize;
 	}
 
-	public String getProductrequired() {
+	public int getProductrequired() {
 		return productquantity;
 	}
 
-	public void setProductrequired(String productquantity) {
+	public void setProductrequired(int productquantity) {
 		this.productquantity = productquantity;
 	}
 

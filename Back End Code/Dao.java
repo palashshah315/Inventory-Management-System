@@ -116,6 +116,31 @@ public class Dao {
 		
 	}
 	*/
+	
+	public List<CartBean> getAllCartProductByUserId(int userid){
+		List<CartBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select * from `ims`.`addtocart` where userid="+userid;
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				CartBean cb = new CartBean();
+				cb.setCartid(rs.getInt(1));
+				cb.setUserid(rs.getInt(2));
+				cb.setId(rs.getInt(3));
+				cb.setProductname(rs.getString(4));
+				cb.setProductsize(rs.getString(5));
+				cb.setProducttype(rs.getString(6));
+				cb.setNoofproduct(rs.getString(7));
+				cb.setUnitprice(rs.getString(8));
+				cb.setProductquantity(rs.getInt(9));
+				list.add(cb);
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
 	public boolean checkProductInCart(int productid) {
 		boolean status = false;
 		try {
@@ -234,9 +259,10 @@ public class Dao {
 	public int insertProductInCart(CartBean ct) {
 		int status = 0;
 		try {
+			
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`addtocart` (`user_id`,`productid`,`productname`,`productsize`,`producttype`,`totalproduct`,`unitprice`)";
+			String sql = "insert into `ims`.`addtocart` (`userid`,`productid`,`productname`,`productsize`,`producttype`,`totalproduct`,`unitprice`,`productrequired`) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ct.getUserid());
 			pstmt.setInt(2, ct.getId());
@@ -245,7 +271,8 @@ public class Dao {
 			pstmt.setString(5, ct.getProducttype());
 			pstmt.setString(6, ct.getNoofproduct());
 			pstmt.setString(7, ct.getUnitprice());
-//			pstmt.setInt(8, ct.getQuantity());
+			pstmt.setInt(8, ct.getProductquantity());
+			status = pstmt.executeUpdate();
 		}catch(Exception e) {e.printStackTrace();}
 		
 		return status;
@@ -294,7 +321,7 @@ public class Dao {
 //		catch (Exception e) {e.printStackTrace();}
 //		return status;
 //	}
-	public int placedThrededOrder(OrderBean orderthreded) {
+	public int placedOrder(OrderBean orderthreded) {
 		int status = 0;
 		try {
 			Class.forName(driverName);
@@ -670,6 +697,54 @@ public class Dao {
 			}
 		}catch(Exception e) {e.printStackTrace();}
 		return list;
+	}
+	public int deleteProductFromCartByProductId(int product_id) {
+		int status=0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "delete from `ims`.`addtocart` where `productid`="+product_id;
+			Statement st = con.createStatement();
+			status = st.executeUpdate(sql);
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
+	}
+	public List<CartBean> getAllProductDetailsViaCartBean(int user_id) {
+		List<CartBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "SELECT * from `ims`.`productdetail`";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				CartBean cb = new CartBean();
+				cb.setCartid(rs.getInt(1));
+				cb.setUserid(user_id);
+				cb.setId(rs.getInt(2));
+				cb.setProductname(rs.getString(3));
+				cb.setProductsize(rs.getString(4));
+				cb.setNoofproduct(rs.getString(5));
+				cb.setUnitprice(rs.getString(6));
+				cb.setProducttype(rs.getString(7));
+				cb.setProductquantity(rs.getInt(8));
+				list.add(cb);
+			}
+			
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public int updateProductRequiredByProductId(int product_req, int product_id) {
+		int status = 0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "update `ims`.`addtocart` set productrequired="+product_req+" where productid="+product_id;
+			Statement st = con.createStatement();
+			status = st.executeUpdate(sql);
+			
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
 	}
 	
 }

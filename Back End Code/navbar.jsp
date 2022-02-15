@@ -1,4 +1,4 @@
-<nav class="__nav navbar navbar-expand-md navbar-dark sticky-top">
+<nav class="__nav navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container px-4">
         <a class="navbar-brand fw-bolder nav-link" href="index.jsp">Fitwel Industries</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

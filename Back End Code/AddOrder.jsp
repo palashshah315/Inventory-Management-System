@@ -31,8 +31,15 @@
         <input type="search" id="example1" class="light-table-filter haver" data-table="order-table"
             placeholder="Filter">
     </div>
-    <div class="container-fluid">
-        <h1 class="pro fw-bolder">Add Order</h1>
+      <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-md text-center">
+                <h1 class="pro fw-bolder">Add Order</h1>
+            </div>
+            <div class="col-md mt-4">
+                <button class="btn btn-outline-secondary" onclick="addAllItemsToCart(`<%= userid %>`)">Add All Items</button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="scroll container-fluid">
@@ -101,6 +108,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="main.js"></script>
+<script>
+function addAllItemsToCart(userid){
+	const xhttp = new XMLHttpRequest();
+	  xhttp.onload = function() {
+		  var res = this.responseText;
+		  alert(res);
+		 
+		}
+	  const url = "AddAllItemsToCart";
+	  xhttp.open("POST", url, true);
+	  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  xhttp.send("userid="+userid);
+}
+</script>
 <script type="text/javascript">
 function AddOrder(productid, productname, productsize, userid, totalproduct, unitprice, producttype){
 	if(productname == ""){
@@ -127,12 +148,10 @@ function AddOrder(productid, productname, productsize, userid, totalproduct, uni
 			  alert(res);
 			 
 			}
-		  const url = "AddToCart?productid="+productid+"&productname="+productname+"&productsize="+productsize+"&userid="+userid+"&totalproduct="+totalproduction+"&unitprice="+unitprice+"&producttype="+producttype;
+		  const url = "AddToCart?productid="+productid+"&productname="+productname+"&productsize="+productsize+"&userid="+userid+"&totalproduct="+totalproduct+"&unitprice="+unitprice+"&producttype="+producttype;
 		  xhttp.open("GET", url);
 		  xhttp.send();
 	}
-	
-}
 </script>
 <%
 if(position.equals("Employee"))
