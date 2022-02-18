@@ -17,9 +17,9 @@ public class GenerateInvoice extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String clientemail = request.getParameter("clientemail");
+		String clientname = request.getParameter("clientemail");
 		
-		if(clientemail.isEmpty()) {
+		if(clientname.isEmpty()) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/plain");
 			response.getWriter().write("Email is Empty");
@@ -28,7 +28,7 @@ public class GenerateInvoice extends HttpServlet {
 		else {
 			Dao d = new Dao();
 			
-			List<OrderBean> list_threded = d.getAllProductDetailByClientEmail(clientemail);
+			List<OrderBean> list_threded = d.getAllProductDetailByClientName(clientname);
 			
 			
 
@@ -36,7 +36,8 @@ public class GenerateInvoice extends HttpServlet {
 				
 				for(OrderBean ot : list_threded) {
 					JSONObject jsonobj = new JSONObject();
-					jsonobj.put("orderthrededid",ot.getOrderId());
+					jsonobj.put("orderid",ot.getOrderid());
+					jsonobj.put("invoiceid",ot.getInvoiceid());
 					jsonobj.put("productid", ot.getProductId());
 					jsonobj.put("userid",ot.getUserId());
 					jsonobj.put("userfirstname",ot.getUserFirstName());

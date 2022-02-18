@@ -13,7 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    <title>Order Threded</title>
+    <title>Add Order</title>
     <%
     	String firstname = (String) session.getAttribute("firstname");
     	String lastname =  (String) session.getAttribute("lastname");

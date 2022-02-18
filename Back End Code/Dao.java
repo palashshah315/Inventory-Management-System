@@ -321,105 +321,106 @@ public class Dao {
 //		catch (Exception e) {e.printStackTrace();}
 //		return status;
 //	}
-	public int placedOrder(OrderBean orderthreded) {
+	public int placedOrder(OrderBean ob) {
 		int status = 0;
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`orderthreded` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`totalprice`,`clientname`,`clientaddress`,`clientemail`,`orderstatus`,`orderplaceddate`,`orderplacedtime`,`invoicestatus`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into `ims`.`orderdetail` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`totalprice`,`clientname`,`clientaddress`,`clientemail`,`orderstatus`,`orderplaceddate`,`orderplacedtime`,`invoicestatus`,`invoiceid`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, orderthreded.getProductId());
-			pstmt.setInt(2, orderthreded.getUserId());
-			pstmt.setString(3, orderthreded.getUserFirstName());
-			pstmt.setString(4, orderthreded.getUserLastName());
-			pstmt.setString(5, orderthreded.getProductname());
-			pstmt.setString(6, orderthreded.getProductsize());
-			pstmt.setString(7, orderthreded.getProductrequired());
-			pstmt.setString(8, orderthreded.getTotalProduct());
-			pstmt.setLong(9, orderthreded.getTotalProductPrice());
-			pstmt.setString(10, orderthreded.getclientName());
-			pstmt.setString(11,orderthreded.getClientAddress());
-			pstmt.setString(12, orderthreded.getClientEmail());
-			pstmt.setString(13,orderthreded.getOrderStatus());
-			pstmt.setString(14, orderthreded.getOrderPlacedDate());
-			pstmt.setString(15, orderthreded.getOrderPlacedTime());
-			pstmt.setString(16, orderthreded.getInvoiceStatus());
-			
+			pstmt.setInt(1, ob.getProductId());
+			pstmt.setInt(2, ob.getUserId());
+			pstmt.setString(3,ob.getUserFirstName());
+			pstmt.setString(4,ob.getUserLastName());
+			pstmt.setString(5,ob.getProductname());
+			pstmt.setString(6,ob.getProductsize());
+			pstmt.setInt(7,ob.getProductrequired());
+			pstmt.setString(8,ob.getTotalProduct());
+			pstmt.setLong(9, ob.getTotalProductPrice());
+			pstmt.setString(10,ob.getclientName());
+			pstmt.setString(11,ob.getClientAddress());
+			pstmt.setString(12,ob.getClientEmail());
+			pstmt.setString(13,ob.getOrderStatus());
+			pstmt.setString(14,ob.getOrderPlacedDate());
+			pstmt.setString(15,ob.getOrderPlacedTime());
+			pstmt.setString(16,ob.getInvoiceStatus());
+			pstmt.setInt(17, ob.getInvoiceid());
 			status = pstmt.executeUpdate();
 		}
 		catch (Exception e) {e.printStackTrace();}
 		return status;
 	}
-//	public List<OrderGroovedFittingBean> getAllApprovalDetailsOfGroovedFitting(){
-//		List<OrderGroovedFittingBean> list = new ArrayList<>();
-//		try {
-//			Class.forName(driverName);
-//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-//			String sql = "select * from `ims`.`ordergrooved`";
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			ResultSet rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				OrderGroovedFittingBean og = new OrderGroovedFittingBean();
-//				og.setOrderId(rs.getInt(1));
-//				og.setProductId(rs.getInt(2));
-//				og.setUserId(rs.getInt(3));
-//				og.setUserFirstName(rs.getString(4));
-//				og.setUserLastName(rs.getString(5));
-//				og.setClientName(rs.getString(6));
-//				og.setClientAddress(rs.getString(7));
-//				og.setClientEmail(rs.getString(8));
-//				og.setProductname(rs.getString(9));
-//				og.setProductsize(rs.getString(10));
-//				og.setProductrequired(rs.getString(11));
-//				og.setTotalProduct(rs.getString(12));
-//				og.setTotalProductPrice(rs.getLong(13));
-//				og.setOrderPlacedDate(rs.getString(14));
-//				og.setOrderPlacedTime(rs.getString(15));
-//				og.setApprovalDate(rs.getString(16));
-//				og.setApprovalTime(rs.getString(17));
-//				og.setOrderStatus(rs.getString(18));
-//				og.setInvoiceStatus(rs.getString(19));
-//				list.add(og);
-//			}
-//			
-//		}catch(Exception e) {e.printStackTrace();}
-//		return list;
-//	}
-	public List<OrderBean> getAllApprovalDetailsOfThrededFitting(){
+	public List<OrderBean> getAllApprovalDetails(){
 		List<OrderBean> list = new ArrayList<>();
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "select * from `ims`.`orderthreded`";
+			String sql = "select * from `ims`.`orderdetail`";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				OrderBean ot = new OrderBean();
-				ot.setOrderId(rs.getInt(1));
-				ot.setProductId(rs.getInt(2));
-				ot.setUserId(rs.getInt(3));
-				ot.setUserFirstName(rs.getString(4));
-				ot.setUserLastName(rs.getString(5));
-				ot.setClientName(rs.getString(6));
-				ot.setClientAddress(rs.getString(7));
-				ot.setClientEmail(rs.getString(8));
-				ot.setProductname(rs.getString(9));
-				ot.setProductsize(rs.getString(10));
-				ot.setProductrequired(rs.getString(11));
-				ot.setTotalProduct(rs.getString(12));
-				ot.setTotalProductPrice(rs.getLong(13));
-				ot.setOrderPlacedDate(rs.getString(14));
-				ot.setOrderPlacedTime(rs.getString(15));
-				ot.setApprovalDate(rs.getString(16));
-				ot.setApprovalTime(rs.getString(17));
-				ot.setOrderStatus(rs.getString(18));
-				ot.setInvoiceStatus(rs.getString(19));
-				list.add(ot);
+				OrderBean og = new OrderBean();
+				og.setOrderid(rs.getInt(1));
+				og.setInvoiceid(rs.getInt(2));
+				og.setProductId(rs.getInt(3));
+				og.setUserId(rs.getInt(4));
+				og.setUserFirstName(rs.getString(5));
+				og.setUserLastName(rs.getString(6));
+				og.setClientName(rs.getString(7));
+				og.setClientAddress(rs.getString(8));
+				og.setClientEmail(rs.getString(9));
+				og.setProductname(rs.getString(10));
+				og.setProductsize(rs.getString(11));
+				og.setProductrequired(rs.getInt(12));
+				og.setTotalProduct(rs.getString(13));
+				og.setTotalProductPrice(rs.getLong(14));
+				og.setOrderPlacedDate(rs.getString(15));
+				og.setOrderPlacedTime(rs.getString(16));
+				og.setApprovalDate(rs.getString(17));
+				og.setApprovalTime(rs.getString(18));
+				og.setOrderStatus(rs.getString(19));
+				og.setInvoiceStatus(rs.getString(20));
+				list.add(og);
 			}
 			
 		}catch(Exception e) {e.printStackTrace();}
 		return list;
 	}
+//	public List<OrderBean> getAllApprovalDetailsOfThrededFitting(){
+//		List<OrderBean> list = new ArrayList<>();
+//		try {
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "select * from `ims`.`orderthreded`";
+//			PreparedStatement pstmt = con.prepareStatement(sql);
+//			ResultSet rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				OrderBean ot = new OrderBean();
+//				ot.setOrderId(rs.getInt(1));
+//				ot.setProductId(rs.getInt(2));
+//				ot.setUserId(rs.getInt(3));
+//				ot.setUserFirstName(rs.getString(4));
+//				ot.setUserLastName(rs.getString(5));
+//				ot.setClientName(rs.getString(6));
+//				ot.setClientAddress(rs.getString(7));
+//				ot.setClientEmail(rs.getString(8));
+//				ot.setProductname(rs.getString(9));
+//				ot.setProductsize(rs.getString(10));
+//				ot.setProductrequired(rs.getString(11));
+//				ot.setTotalProduct(rs.getString(12));
+//				ot.setTotalProductPrice(rs.getLong(13));
+//				ot.setOrderPlacedDate(rs.getString(14));
+//				ot.setOrderPlacedTime(rs.getString(15));
+//				ot.setApprovalDate(rs.getString(16));
+//				ot.setApprovalTime(rs.getString(17));
+//				ot.setOrderStatus(rs.getString(18));
+//				ot.setInvoiceStatus(rs.getString(19));
+//				list.add(ot);
+//			}
+//			
+//		}catch(Exception e) {e.printStackTrace();}
+//		return list;
+//	}
 //	public int updateGroovedOrderStatus(OrderGroovedFittingBean og) {
 //		int status =0;
 //		try {
@@ -436,17 +437,17 @@ public class Dao {
 //		}catch(Exception e) {e.printStackTrace();}
 //		return status;
 //	}
-	public int updateThrededOrderStatus(OrderBean ot) {
+	public int updateOrderStatus(OrderBean ot) {
 		int status =0;
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "update `ims`.`orderthreded` set `approveddate`=? , `approvedtime`=?, `orderstatus`=?  where `orderthrededid`=?";
+			String sql = "update `ims`.`orderdetail` set `approveddate`=? , `approvedtime`=?, `orderstatus`=?  where `orderid`=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ot.getApprovalDate());
 			pstmt.setString(2, ot.getApprovalTime());
 			pstmt.setString(3, ot.getOrderStatus());
-			pstmt.setInt(4, ot.getOrderId());
+			pstmt.setInt(4, ot.getOrderid());
 			status = pstmt.executeUpdate();
 			
 		}catch(Exception e) {e.printStackTrace();}
@@ -465,37 +466,38 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}
-	public List<OrderBean> getAllProductDetailByClientEmail(String clientemail){
+	public List<OrderBean> getAllProductDetailByClientName(String clientname){
 		List<OrderBean> list = new ArrayList<OrderBean>();
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "select * from `ims`.`orderthreded` where `clientemail`= ? and `invoicestatus`=?";
+			String sql = "select * from `ims`.`orderdetail` where `clientname`= ? and `invoicestatus`=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, clientemail);
+			pstmt.setString(1, clientname);
 			pstmt.setString(2, "pending");
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				OrderBean ot = new  OrderBean();
-				ot.setOrderId(rs.getInt(1));
-				ot.setProductId(rs.getInt(2));
-				ot.setUserId(rs.getInt(3));
-				ot.setUserFirstName(rs.getString(4));
-				ot.setUserLastName(rs.getString(5));
-				ot.setClientName(rs.getString(6));
-				ot.setClientAddress(rs.getString(7));
-				ot.setClientEmail(rs.getString(8));
-				ot.setProductname(rs.getString(9));
-				ot.setProductsize(rs.getString(10));
-				ot.setProductrequired(rs.getString(11));
-				ot.setTotalProduct(rs.getString(12));
-				ot.setTotalProductPrice(rs.getLong(13));
-				ot.setOrderPlacedDate(rs.getString(14));
-				ot.setOrderPlacedTime(rs.getString(15));
-				ot.setApprovalDate(rs.getString(16));
-				ot.setApprovalTime(rs.getString(17));
-				ot.setOrderStatus(rs.getString(18));
-				ot.setInvoiceStatus(rs.getString(19));
+				ot.setOrderid(rs.getInt(1));
+				ot.setInvoiceid(rs.getInt(2));
+				ot.setProductId(rs.getInt(3));
+				ot.setUserId(rs.getInt(4));
+				ot.setUserFirstName(rs.getString(5));
+				ot.setUserLastName(rs.getString(6));
+				ot.setClientName(rs.getString(7));
+				ot.setClientAddress(rs.getString(8));
+				ot.setClientEmail(rs.getString(9));
+				ot.setProductname(rs.getString(10));
+				ot.setProductsize(rs.getString(11));
+				ot.setProductrequired(rs.getInt(12));
+				ot.setTotalProduct(rs.getString(13));
+				ot.setTotalProductPrice(rs.getLong(14));
+				ot.setOrderPlacedDate(rs.getString(15));
+				ot.setOrderPlacedTime(rs.getString(16));
+				ot.setApprovalDate(rs.getString(17));
+				ot.setApprovalTime(rs.getString(18));
+				ot.setOrderStatus(rs.getString(19));
+				ot.setInvoiceStatus(rs.getString(20));
 				
 				list.add(ot);
 			}
@@ -539,37 +541,38 @@ public class Dao {
 //		catch(Exception ex) {ex.printStackTrace();}
 //		return list;
 //	}
-	public List<OrderBean> getAllDetailsOfOrderThrededFittingByUserId(int user_id)
+	public List<OrderBean> getAllDetailsOfOrderDetailByUserId(int user_id)
 	{
 		List<OrderBean> list = new ArrayList<>();
 		
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String query = "select * from `ims`.`orderthreded` where userid="+user_id;
+			String query = "select * from `ims`.`orderdetail` where userid="+user_id;
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while(rs.next()) {
 				OrderBean ot = new  OrderBean();
-				ot.setOrderId(rs.getInt(1));
-				ot.setProductId(rs.getInt(2));
-				ot.setUserId(rs.getInt(3));
-				ot.setUserFirstName(rs.getString(4));
-				ot.setUserLastName(rs.getString(5));
-				ot.setClientName(rs.getString(6));
-				ot.setClientAddress(rs.getString(7));
-				ot.setClientEmail(rs.getString(8));
-				ot.setProductname(rs.getString(9));
-				ot.setProductsize(rs.getString(10));
-				ot.setProductrequired(rs.getString(11));
-				ot.setTotalProduct(rs.getString(12));
-				ot.setTotalProductPrice(rs.getLong(13));
-				ot.setOrderPlacedDate(rs.getString(14));
-				ot.setOrderPlacedTime(rs.getString(15));
-				ot.setApprovalDate(rs.getString(16));
-				ot.setApprovalTime(rs.getString(17));
-				ot.setOrderStatus(rs.getString(18));
-				ot.setInvoiceStatus(rs.getString(19));
+				ot.setOrderid(rs.getInt(1));
+				ot.setInvoiceid(rs.getInt(2));
+				ot.setProductId(rs.getInt(3));
+				ot.setUserId(rs.getInt(4));
+				ot.setUserFirstName(rs.getString(5));
+				ot.setUserLastName(rs.getString(6));
+				ot.setClientName(rs.getString(7));
+				ot.setClientAddress(rs.getString(8));
+				ot.setClientEmail(rs.getString(9));
+				ot.setProductname(rs.getString(10));
+				ot.setProductsize(rs.getString(11));
+				ot.setProductrequired(rs.getInt(12));
+				ot.setTotalProduct(rs.getString(13));
+				ot.setTotalProductPrice(rs.getLong(14));
+				ot.setOrderPlacedDate(rs.getString(15));
+				ot.setOrderPlacedTime(rs.getString(16));
+				ot.setApprovalDate(rs.getString(17));
+				ot.setApprovalTime(rs.getString(18));
+				ot.setOrderStatus(rs.getString(19));
+				ot.setInvoiceStatus(rs.getString(20));
 				list.add(ot);
 			}
 		}
@@ -642,7 +645,7 @@ public class Dao {
 //		}catch(Exception ex) {ex.printStackTrace();}
 //		return list;
 //	}
-	public int updateThrededInvoiceStatusByClientEmail(String invoicestatus, String clientemail) {
+	public int updateInvoiceStatusByClientName(String invoicestatus, String clientname) {
 		int status=0;
 		
 		try {
@@ -650,30 +653,17 @@ public class Dao {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
 			
-			String sql = "update `ims`.`orderthreded` set `invoicestatus`= ? where `clientemail`= ?";
+			String sql = "update `ims`.`orderdetail` set `invoicestatus`= ? where `clientname`= ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,invoicestatus);
-			pstmt.setString(2, clientemail);
+			pstmt.setString(2, clientname);
 			
 			
 			status = pstmt.executeUpdate();
 		}catch(Exception e) {e.printStackTrace();}
 		return status;
 	}
-	public int updateGroovedInvoiceStatusByClientEmail(String invoicestatus, String clientemail) {
-		int status=0;
-		try {
-			
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "update `ims`.`ordergrooved` set `invoicestatus`= ? where `clientemail`= ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,invoicestatus);
-			pstmt.setString(2, clientemail);
-			status = pstmt.executeUpdate();
-		}catch(Exception e) {e.printStackTrace();}
-		return status;
-	}
+	
 	public List<UserBean> getAllUser(){
 		List<UserBean> list = new ArrayList<UserBean>();
 		try {
@@ -719,15 +709,14 @@ public class Dao {
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
 				CartBean cb = new CartBean();
-				cb.setCartid(rs.getInt(1));
+				cb.setId(rs.getInt(1));
+				cb.setProductname(rs.getString(2));
+				cb.setProductsize(rs.getString(3));
+				cb.setNoofproduct(rs.getString(4));
+				cb.setUnitprice(rs.getString(5));
+				cb.setProducttype(rs.getString(6));
+				cb.setProductquantity(1);
 				cb.setUserid(user_id);
-				cb.setId(rs.getInt(2));
-				cb.setProductname(rs.getString(3));
-				cb.setProductsize(rs.getString(4));
-				cb.setNoofproduct(rs.getString(5));
-				cb.setUnitprice(rs.getString(6));
-				cb.setProducttype(rs.getString(7));
-				cb.setProductquantity(rs.getInt(8));
 				list.add(cb);
 			}
 			
@@ -743,6 +732,116 @@ public class Dao {
 			Statement st = con.createStatement();
 			status = st.executeUpdate(sql);
 			
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
+	}
+	public boolean checkInvoiceId(int invoiceid) {
+		boolean check = false;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select `invoiceid` from `ims`.`orderdetail`";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int invoice_id = rs.getInt(1);
+				if(invoice_id == invoiceid) {
+					check = true;
+					break;
+				}
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return check;
+	}
+	public int deleteProductFromCartByUserId(int userid) {
+		int status=0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "delete from `ims`.`addtocart` where `userid`="+userid;
+			Statement st = con.createStatement();
+			status = st.executeUpdate(sql);
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
+	}
+	public List<OrderBean> getAllOrderDetailByFromAndToDate(String fromdate, String todate) {
+		List<OrderBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select * from `ims`.`orderdetail` where orderplaceddate between `"+fromdate+"` AND `"+todate+"`";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				OrderBean ob = new OrderBean();
+				ob.setOrderid(rs.getInt(1));
+				ob.setInvoiceid(rs.getInt(2));
+				ob.setProductId(rs.getInt(3));
+				ob.setUserId(rs.getInt(4));
+				ob.setUserFirstName(rs.getString(5));
+				ob.setUserLastName(rs.getString(6));
+				ob.setClientName(rs.getString(7));
+				ob.setClientAddress(rs.getString(8));
+				ob.setClientEmail(rs.getString(9));
+				ob.setProductname(rs.getString(10));
+				ob.setProductsize(rs.getString(11));
+				ob.setProductrequired(rs.getInt(12));
+				ob.setTotalProduct(rs.getString(13));
+				ob.setTotalProductPrice(rs.getInt(14));
+				ob.setOrderPlacedDate(rs.getString(15));
+				ob.setOrderPlacedTime(rs.getString(16));
+				ob.setApprovalDate(rs.getString(17));
+				ob.setApprovalTime(rs.getString(18));
+				ob.setOrderStatus(rs.getString(19));
+				ob.setInvoiceStatus(rs.getString(20));
+				list.add(ob);
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public List<OrderBean> getAllDetailsOfOrderDetail() {
+		List<OrderBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select * from `ims`.`orderdetail`";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				OrderBean ob = new OrderBean();
+				ob.setOrderid(rs.getInt(1));
+				ob.setInvoiceid(rs.getInt(2));
+				ob.setProductId(rs.getInt(3));
+				ob.setUserId(rs.getInt(4));
+				ob.setUserFirstName(rs.getString(5));
+				ob.setUserLastName(rs.getString(6));
+				ob.setClientName(rs.getString(7));
+				ob.setClientAddress(rs.getString(8));
+				ob.setClientEmail(rs.getString(9));
+				ob.setProductname(rs.getString(10));
+				ob.setProductsize(rs.getString(11));
+				ob.setProductrequired(rs.getInt(12));
+				ob.setTotalProduct(rs.getString(13));
+				ob.setTotalProductPrice(rs.getInt(14));
+				ob.setOrderPlacedDate(rs.getString(15));
+				ob.setOrderPlacedTime(rs.getString(16));
+				ob.setApprovalDate(rs.getString(17));
+				ob.setApprovalTime(rs.getString(18));
+				ob.setOrderStatus(rs.getString(19));
+				ob.setInvoiceStatus(rs.getString(20));
+				list.add(ob);
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public int deleteProductFromOrderDetail(int orderid) {
+		int status=0;
+		try{
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "DELETE from `ims`.`orderdetail` where `orderid`="+orderid;
+			Statement st = con.createStatement();
+			status = st.executeUpdate(sql);
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}

@@ -1,35 +1,30 @@
 package Servlets;
 import java.sql.*;
-import DAO.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-@WebServlet("/DeleteMyThrededOrder")
+@WebServlet("/DeleteMyOrder")
 public class DeleteMyOrder extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-    public DeleteMyOrder() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String orderthrededid = request.getParameter("orderid");
-		String productreq = request.getParameter("productreq");
-		String totalproduct = request.getParameter("totalproduct");
-		String productid = request.getParameter("productid");
-		int product_id = Integer.parseInt(productid);
-		int total_product = Integer.parseInt(totalproduct);
-		int product_req = Integer.parseInt(productreq);
-		total_product = total_product + product_req;
+		String orderid = request.getParameter("orderid");
 		
-		int order_threded_id = Integer.parseInt(orderthrededid);
-		Dao d = new Dao();
-		int status= d.updateThrededFittingProductByProductId(product_id,total_product);
+		if(orderid==null || orderid.equals("")) {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("Order cannot be null"); 
+		}
 		
-		String query = "DELETE FROM `ims`.`orderthreded` where `orderthrededid`="+order_threded_id;
+	
+		int status=0;
+		
+		String query = "DELETE FROM `ims`.`orderdetail` where `orderid`="+orderid;
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");

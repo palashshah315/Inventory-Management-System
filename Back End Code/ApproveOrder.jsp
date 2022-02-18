@@ -18,7 +18,7 @@
 	        String lastname =  (String) session.getAttribute("lastname");
 	        String position = (String) session.getAttribute("position");
 	        Dao d = new Dao();
-	        List<OrderBean> list = d.getAllApprovalDetailsOfThrededFitting();
+	        List<OrderBean> list = d.getAllApprovalDetails();
 	%>
 </head>
 <body class="copybody">
@@ -51,7 +51,7 @@
             placeholder="Filter">
     </div>
     <div class="container-fluid">
-        <h1 class="pro fw-bolder">Threded Fittings</h1>
+        <h1 class="pro fw-bolder">Approval Details</h1>
     </div>
 </div>
 <div class="scroll container-fluid">
@@ -101,19 +101,41 @@
                 	String orderstat = ot.getOrderStatus();
                 	if(orderstat.equals("Approved")){
                  %>
-                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>"  disabled>Reject</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderid() %>"  disabled>Reject</button></td>
+               
                 <% } 
                 	else{
                 %>
-                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`,`<%= position%>`)">Reject</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderid() %>" onclick="deleteOrder(`<%= ot.getOrderid() %>`,`<%= position%>`)">Reject</button></td>
+                 
                 <%}%>
-                <td><button class="btn btn-outline-secondary" onclick="approvalProduct( `<%=ot.getOrderId()%>`,`<%=position%>`)">Approved</button></td>	
-            	
+                <%
+                	if(orderstat.equals("Approved")){
+                %>
+                <td><button class="btn btn-outline-secondary" disabled>Approved</button></td>	
+            	<%
+            	}
+                	else
+            		{
+            	%>
+            	<td><button class="btn btn-outline-secondary" onclick="approvalProduct( `<%=ot.getOrderid()%>`,`<%=position%>`)">Approved</button></td>	
+            	<%} %>
             	</tr>
             <% } %>
         </tbody>
     </table>
+   
 </div>
+ <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-12 text-center mt-4">
+    			<button class="btn btn-outline-danger text-center" id="rejectAll" onclick="rejectAll(`<%= position %>`)">Reject All</button>
+    			<button class="btn btn-outline-secondary text-center" id="approveAll" onclick="approveAll(`<%= position %>`)">Approve All</button>
+    			
+    		</div>
+    		
+    	</div>
+    </div>
 <hr class="dropdown-divider">
 <footer class="pt-4 mb-3 mt-5">
 
@@ -141,22 +163,46 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="main.js"></script>
+<script>
+function rejectAll(position){
+	if(position == "Employee"){
+		
+		alert("You are not Allowed to Reject order!!");
+	}
+	else{
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function() {
+			  var res = this.responseText;
+			  alert(res);
+			  location.reload();
+			}
+		const url = "DeleteAllOrder";
+		xhttp.open("POST", url, true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send();
+		
+	}
+}
+</script>
 <script type="text/javascript">
-function deleteMyOrder(orderid,productreq,totalproduct,productid,position){
+function deleteOrder(orderid,position){
 if(position == "Employee"){
 		
 		alert("You are not Allowed to Reject order!!");
 	}
+	
+else{
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		  var res = this.responseText;
 		  alert(res);
 		  location.reload();
 		}
-	const url = "DeleteMyThrededOrder";
+	const url = "DeleteMyOrder";
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+	xhttp.send("orderid="+orderid);
+	}
 }
 </script>
 <%
@@ -192,7 +238,7 @@ function approvalProduct(orderid, position){
 			  location.reload();
 			  
 			}
-		  const url = "ApproveThrededOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
+		  const url = "ApproveOrder?orderid="+orderid+"&orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
 		  xhttp.open("GET",url);
 		  xhttp.send();
 	}

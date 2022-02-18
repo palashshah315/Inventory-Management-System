@@ -52,7 +52,7 @@ public class AddAllItemsToCart extends HttpServlet {
 			if(!check && status>0) {
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write("All the Product Added in Cart");
+				response.getWriter().write("All the product added successfully");
 			}
 			
 			else {

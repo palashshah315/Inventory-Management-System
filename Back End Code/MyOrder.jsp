@@ -21,7 +21,7 @@
     String position = (String) session.getAttribute("position");
     
     Dao d = new Dao();
-   // List<> list = d.getAllDetailsOfOrderThrededFittingByUserId(user_id);
+   List<OrderBean> list = d.getAllDetailsOfOrderDetailByUserId(user_id);
     %>
 </head>
 <body class="copybody">
@@ -57,7 +57,7 @@
             placeholder="Filter">
     </div>
     <div class="container-fluid">
-        <h1 class="pro fw-bolder">My Threded Fitting Order</h1>
+        <h1 class="pro fw-bolder">My Order</h1>
     </div>
 </div>
 <div class="scroll container-fluid">
@@ -86,7 +86,7 @@
             <!-- form tag is added for placing order
 rows will generate dynamically -->
 <% 
-	for(OrderThrededFittingBean ot : list){ 
+	for(OrderBean ot : list){ 
 %>
 
             <tr>
@@ -109,11 +109,11 @@ rows will generate dynamically -->
                 	String orderstat = ot.getOrderStatus();
                 	if(orderstat.equals("Approved")){
                  %>
-                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>"  disabled>Delete</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderid() %>"  disabled>Delete</button></td>
                 <% } 
                 	else{
                 %>
-                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderId() %>" onclick="deleteMyOrder(`<%= ot.getOrderId() %>`,`<%= ot.getProductrequired()%>`,`<%= ot.getTotalProduct()%>`,`<%= ot.getProductId()%>`)">Delete</button></td>
+                <td><button class="btn btn-outline-danger" id="<%= "del_"+ot.getOrderid() %>" onclick="deleteMyOrder(`<%= ot.getOrderid() %>`)">Delete</button></td>
                 <%}%>
             </tr>
 <%
@@ -152,17 +152,17 @@ rows will generate dynamically -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="main.js"></script>
 <script type="text/javascript">
-function deleteMyOrder(orderid,productreq,totalproduct,productid){
+function deleteMyOrder(orderid){
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		  var res = this.responseText;
 		  alert(res);
 		  location.reload();
 		}
-	const url = "DeleteMyThrededOrder";
+	const url = "DeleteMyOrder";
 	xhttp.open("POST", url, true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("orderid="+orderid+"&productreq="+productreq+"&totalproduct="+totalproduct+"&productid="+productid);
+	xhttp.send("orderid="+orderid);
 }
 </script>
 <!-- for valdation if employee login then these both fields are none -->

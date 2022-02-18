@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import BeanClass.*;
-@WebServlet("/ApproveThrededOrder")
+@WebServlet("/ApproveOrder")
 public class ApproveOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,12 +20,12 @@ public class ApproveOrder extends HttpServlet {
 		ot.setApprovalDate(approvedate);
 		ot.setApprovalTime(approvetime);
 		int order_id = Integer.parseInt(orderid);
-		ot.setOrderId(order_id);
+		ot.setOrderid(order_id);
 		ot.setOrderStatus(orderstatus);
 		
 		Dao d = new Dao();
 		
-		int status = d.updateThrededOrderStatus(ot);
+		int status = d.updateOrderStatus(ot);
 		
 		if(status > 0) {
 			response.setContentType("text/plain");

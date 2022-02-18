@@ -55,24 +55,22 @@ public class InvoiceStatus extends HttpServlet {
 //	  }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String invoicestatus = request.getParameter("invoiceStatus");
-		String clientemailid = request.getParameter("clientemail");
+		String clientname = request.getParameter("clientname");
 		
 		if(invoicestatus.isEmpty() || invoicestatus==null) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/plain");
 			response.getWriter().write("Invoice Status should not be empty");
 		}
-		else if(clientemailid.isEmpty() || clientemailid==null) {
+		else if(clientname.isEmpty() || clientname==null) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/plain");
 			response.getWriter().write("Client Email Id should not be empty");
 		}
 		
 				Dao d = new Dao();
-				int threded_status = d.updateThrededInvoiceStatusByClientEmail(invoicestatus, clientemailid);
-				
-				int grooved_status = d.updateGroovedInvoiceStatusByClientEmail(invoicestatus, clientemailid);
-				if(threded_status > 0 || grooved_status > 0) {
+				int status = d.updateInvoiceStatusByClientName(invoicestatus, clientname);
+				if(status >0) {
 					
 					response.setCharacterEncoding("UTF-8");
 					response.setContentType("text/plain");

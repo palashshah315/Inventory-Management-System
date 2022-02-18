@@ -3,7 +3,15 @@ package BeanClass;
 public class OrderBean {
 	private String userfirstname,userlastname,productname, productsize, totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
 	private String approvaldate,approvaltime,clientemail,invoicestatus;
-	private int productid,userid,invoiceid,productquantity;
+	private int productid,userid,invoiceid,productquantity,orderid;
+	
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
 	private long totalprice;
 	
 	
