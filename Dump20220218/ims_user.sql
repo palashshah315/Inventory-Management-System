@@ -16,32 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `addtocart`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `addtocart`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `addtocart` (
-  `cartid` int NOT NULL AUTO_INCREMENT,
-  `userid` varchar(45) DEFAULT NULL,
-  `productid` varchar(45) DEFAULT NULL,
-  `productname` varchar(45) DEFAULT NULL,
-  `productsize` varchar(45) DEFAULT NULL,
-  `producttype` varchar(45) DEFAULT NULL,
-  `totalproduct` varchar(45) DEFAULT NULL,
-  `unitprice` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`cartid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_firstname` varchar(100) DEFAULT NULL,
+  `user_lastname` varchar(100) DEFAULT NULL,
+  `user_email` varchar(100) DEFAULT NULL,
+  `user_phoneno` varchar(100) DEFAULT NULL,
+  `user_address` varchar(100) DEFAULT NULL,
+  `user_position` varchar(100) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `addtocart`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `addtocart` WRITE;
-/*!40000 ALTER TABLE `addtocart` DISABLE KEYS */;
-/*!40000 ALTER TABLE `addtocart` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin','admin','admin@123','123456789','address','Admin','admin','admin'),(2,'Palash','Shah','palashshah345@gmail.com','+919913595735','9,divine park science city road behind jbr arcade','Employee','123','123'),(6,'dfg','vbf','palashshah.18.it@iite.indusuni.ac.in','457456','sdgsfs','Employee','palashshah.18.it@iite.indusuni.ac.in','dfg775');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-03 21:40:12
+-- Dump completed on 2022-02-18 17:46:16

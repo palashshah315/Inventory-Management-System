@@ -1,5 +1,6 @@
 package DAO;
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 import BeanClass.*;
 public class Dao {
@@ -766,10 +767,12 @@ public class Dao {
 	}
 	public List<OrderBean> getAllOrderDetailByFromAndToDate(String fromdate, String todate) {
 		List<OrderBean> list = new ArrayList<>();
+		
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "select * from `ims`.`orderdetail` where orderplaceddate between `"+fromdate+"` AND `"+todate+"`";
+			String sql = "SELECT * from `ims`.`orderdetail` where orderplaceddate BETWEEN '"+fromdate+"'"+" AND "+"'"+todate+"'";
+			
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {

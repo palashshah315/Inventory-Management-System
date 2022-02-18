@@ -23,7 +23,8 @@ DROP TABLE IF EXISTS `orderdetail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orderdetail` (
-  `orderid` int NOT NULL,
+  `orderid` int NOT NULL AUTO_INCREMENT,
+  `invoiceid` varchar(45) DEFAULT NULL,
   `productid` int DEFAULT NULL,
   `userid` int DEFAULT NULL,
   `userfirstname` varchar(45) DEFAULT NULL,
@@ -41,8 +42,9 @@ CREATE TABLE `orderdetail` (
   `approveddate` varchar(45) DEFAULT NULL,
   `approvedtime` varchar(45) DEFAULT NULL,
   `orderstatus` varchar(45) DEFAULT NULL,
-  `invoicestatus` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `invoicestatus` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`orderid`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +53,7 @@ CREATE TABLE `orderdetail` (
 
 LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
-INSERT INTO `orderdetail` VALUES (32,69,1,'admin','admin','palash shah','address','palashshah345@gmail.com','TEE','2','270','250','13500','2022-1-28','18:36:41','2022-1-28','18:37:53','Approved','generated');
+INSERT INTO `orderdetail` VALUES (62,'4512',2,1,'admin','admin','cv ','xc','cxv','90NF','1/4','10','100','500','2022-02-18','10:47:16','2022-2-18','10:47:47','Approved','pending'),(63,'3527',24,2,'Palash','Shah','palash ','chsoduc','shah','90','4','200','150','10000','2022-02-18','10:54:31',NULL,NULL,'pending','pending'),(64,'3527',25,2,'Palash','Shah','palash ','chsoduc','shah','45','1/8','100','175','5000','2022-02-18','10:54:31',NULL,NULL,'pending','pending'),(65,'3527',26,2,'Palash','Shah','palash ','chsoduc','shah','45','1/4','20','175','1000','2022-02-18','10:54:31',NULL,NULL,'pending','pending');
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-03 21:40:12
+-- Dump completed on 2022-02-18 17:46:16
