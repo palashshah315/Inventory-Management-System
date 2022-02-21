@@ -1,10 +1,22 @@
 package BeanClass;
+import java.util.*;
+
+
 
 public class OrderBean {
 	private String userfirstname,userlastname,productname, productsize, totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
 	private String approvaldate,approvaltime,clientemail,invoicestatus;
 	private int productid,userid,invoiceid,productquantity,orderid;
+	private List<ClientProduct> productreq; 
 	
+	public List<ClientProduct> getProductreq() {
+		return productreq;
+	}
+
+	public void setProductreq(List<ClientProduct> productreq) {
+		this.productreq = productreq;
+	}
+
 	public int getOrderid() {
 		return orderid;
 	}

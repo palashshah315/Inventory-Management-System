@@ -29,7 +29,7 @@
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6">
-                        <form id="contactForm" method="post" action="resetpassword.jsp">
+                        <form id="contactForm" method="post" action="ForgetPassword">
 
                             <!-- Username input
                             <div class="form-floating mb-3">
@@ -41,8 +41,7 @@
                             
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" name='email' type="email" 
-                                placeholder="name@example.com" required>
+                                <input class="form-control" id="email" name='email' type="email" required>
                                 <label for="email">Email address</label>
                                
                             </div>
@@ -55,9 +54,9 @@
                             </div> -->
                             <!-- Submit Button-->
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">
-                                    Submit
-                                </button>
+                                <input class="btn btn-primary btn-lg" id="submitButton" type="submit" value="submit">
+                                
+                                
                             </div>
                             
                             <div class="resetpage">
@@ -83,10 +82,10 @@
                 </div>
                 <div class="modal-body">
                     <!-- sign Up Form  -->
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN" method="SignUp">
                             <!--first Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="first-name" namee="first-name" type="text" placeholder="Enter your first name..." required>
+                                <input class="form-control" id="first-name" name="first-name" type="text" placeholder="Enter your first name..." required>
                                 <label for="first-name">First name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">first name is required.</div>
                             </div>

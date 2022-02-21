@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, java.sql.*" %>
 <!doctype html>
 <html lang="en">
 
@@ -23,16 +24,19 @@ String position = (String) session.getAttribute("position");
 <body>
 	<!-- Navbar -->
     <%@ include file="navbar.jsp" %>
-	<div class="container-fluid mt-5">
-        <h1>Total Sales</h1>
+	<div class="container-fluid mt-5 pt-5">
+        
         <div class="row">
-            <div class="col">
+        <h1>Consolidate Order</h1>
+            <div class="col-lg">
                 <label for="fromdate">From</label>
-                <input type="date" name="date" id="fromdate">
+                <input type="date" name="date" id="fromdate" class="mb-3 " >
             </div>
-            <div class="col">
+            <div class="col-lg">
                 <label for="todate">To</label>
-                <input type="date" name="date" id="todate">
+                <input type="date" name="date" id="todate" class="ms-3" >
+                
+                
             </div>
         </div>
         <div class="row">
@@ -43,15 +47,28 @@ String position = (String) session.getAttribute("position");
     </div>
         <div class="scroll container-fluid mt-5" >
            <table style="width: 100% !important;" class="order-table table table-striped">
-           		<thead>
-           				<tr id="tablehead">
+           		<thead >
+           			<tr id="tablehead">
+           				
+           			</tr>
            					
-                			
-           				</tr>
+                		
            		</thead>
+           		<tbody id="tablebody">
+           			
+           		</tbody>
            </table>
         </div>
-    
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-lg-6  ">
+    			
+    		</div>
+    		<div class="col-lg-4 ms-5">
+    			<p class="text-end " id="totalsum"></p>
+    		</div>
+    	</div>
+    </div>
 
     <hr class="dropdown-divider">
     <footer class="py-4 mt-auto">
@@ -80,17 +97,68 @@ String position = (String) session.getAttribute("position");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
    
     <script>
-    		 function consolidateOrder(){
+    
+
+ function tableHeader(res) {
+      var col = "<th> Item Description </th>";
+     
+      for(var i=0;i<Object.keys(res[0]).length-2;i++)
+    	  col+="<th>"+Object.keys(res[0])[i]+"</th>";
+      	
+      col+="<th> Total </th>"
+     
+      return col;
+  }
+   
+ function tableBody(res){
+	var row = "";
+	var sum=0;
+	var totalsum=0;
+	for(var i=0;i<res.length;i++){
+		row+="<tr>";
+		
+		row+="<td>"+res[i][Object.keys(res[0])[Object.keys(res[0]).length-1]]+" "+res[i][Object.keys(res[0])[Object.keys(res[0]).length-2]]+"</td>";	
+		sum=0;
+		for(var j=0;j<Object.keys(res[i]).length-2;j++){
+			
+			row+="<td>"+res[i][Object.keys(res[0])[j]]+"</td>";	
+			sum+=res[i][Object.keys(res[0])[j]];
+		}
+		row+="<td>"+sum+"</td>"
+		
+		totalsum+=sum;
+		
+		row+="</tr>";
+		
+	}
+	document.getElementById("totalsum").innerHTML = totalsum;
+	
+	return row;
+ }
+ 
+ function consolidateOrder(){
     			 var fromdate = document.getElementById("fromdate").value;
     			 var todate = document.getElementById("todate").value;
+    			 
     			 if(fromdate==null || todate==null || fromdate==""|| todate==""){
     				 alert("Please select dates");
     			 }
+    			 
     			 else{
     				 const xhttp = new XMLHttpRequest();
     				  xhttp.onload = function() {
     					  var res = JSON.parse(this.responseText);
-    					  console.log(res);
+    					  
+    					  if(res == ''){
+    						  alert("Sorry data not found");
+    					  }
+    					  
+    					  else{
+    						  var tablehead = tableHeader(res);
+        					  document.getElementById("tablehead").innerHTML = tablehead;
+        					  var tablebody = tableBody(res);
+        					  document.getElementById("tablebody").innerHTML = tablebody;
+    					  }
     				}
     				  
     				const url = "ConsolidateOrder";
@@ -100,6 +168,7 @@ String position = (String) session.getAttribute("position");
     			 }
     		 }
   	</script>
+
 <%
 if(position.equals("Employee"))
 {

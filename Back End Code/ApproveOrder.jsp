@@ -245,5 +245,32 @@ function approvalProduct(orderid, position){
 }
 
 </script>
+<script>
+function approveAll(position){
+	if(position == 'Employee'){
+		alert("You are not allowed to approve orders");
+	}
+	
+	else{
+		const orderstatus = "Approved";
+		
+		const d = new Date();
+		const month = d.getMonth()+1;
+		const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
+		const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		const xhttp = new XMLHttpRequest();
+		  xhttp.onload = function() {
+			  var res = this.responseText;
+			  alert(res);
+			  location.reload();
+			  
+			}
+		  
+		  const url = "ApproveAllOrder?orderstatus="+orderstatus+"&approvedate="+approvedate+"&approvetime="+approvetime;
+		  xhttp.open("GET",url);
+		  xhttp.send();
+	}
+}
+</script>
 </body>
 </html>

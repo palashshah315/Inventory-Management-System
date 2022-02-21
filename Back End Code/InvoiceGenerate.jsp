@@ -38,41 +38,18 @@
 	String position = (String) session.getAttribute("position");
 	String useremail = (String) session.getAttribute("email");
 	
-	List<String> client_list_grooved_email = new ArrayList<>();
-	List<String> client_list_threded_email = new ArrayList<>();
-	
-	String sql1 = "select `ims`.`ordergrooved`.`clientemail` from `ims`.`ordergrooved` where `orderstatus`= 'Approved' and `invoicestatus`= 'pending'";
-	String sql2 = "select `ims`.`orderthreded`.`clientemail` from `ims`.`orderthreded` where `orderstatus`= 'Approved' and `invoicestatus`= 'pending'";
-	try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ims","root","root");
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(sql1);
-		while(rs.next()) {
-			
-			client_list_grooved_email.add(rs.getString(1));
-		
-		}
-		
-	}catch(Exception e) {e.printStackTrace();}
-	
+	List<String> list = new ArrayList<>();
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ims","root","root");
+		String sql = "select `clientname` from `ims`.`orderdetail` where `invoicestatus`= 'pending' group by clientname";
 		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(sql2);
+		ResultSet rs = st.executeQuery(sql);
 		while(rs.next()){
-			client_list_threded_email.add(rs.getString(1));
+			list.add(rs.getString("clientname"));
 		}
-	}catch(Exception ex){ex.printStackTrace();}
+	}catch(Exception e){e.printStackTrace();}
 	
-	
-	List<String> list = new ArrayList<>();
-	
-	list.addAll(client_list_grooved_email);
-	list.addAll(client_list_threded_email);
-	
-	List<String> finallist = list.stream().distinct().collect(Collectors.toList());
 	
     %>
     
@@ -120,9 +97,9 @@
                             <div class="col-sm-6">
                                 <div class="mb-4 mb-md-2 text-left">
                                    <select id="select" onchange="getInvoiceDetails()">
-                                   <option value="">Select Client Email</option>
+                                   <option value="">Select Customer Name</option>
                                        <%
-                                       		for(String s : finallist){
+                                       		for(String s : list){
                                        %>
                                        	<option value="<%= s %>"><%= s %></option>
                                        	<%} %>
@@ -155,8 +132,8 @@
                                 <div class="flex-wrap wmin-md-400">
 
                                     <ul class="list list-unstyled text-center mb-0 ml-auto">
-                                        <li>Order Id :- <p id="orderid"></p></li>
-                                       	<li>Client Email :- <p id="clientemail"></p></li>
+                                        <li>Order Id <p id="orderid"></p></li>
+                                       	<li>Client Email <p id="clientemail"></p></li>
 
                                     </ul>
                                 </div>
@@ -264,7 +241,7 @@
                     </p>
                     <div class="line"></div>
                     <div class="col-md-12 text-center mb-3 mt-3">
-                        <button class="btn btn-outline-info"  id="download" onclick="generatePDF(`<%= useremail %>`)">
+                        <button class="btn btn-outline-info"  id="download" onclick="generatePDF()">
                            Generate PDF
                         </button>
                     </div>
@@ -298,12 +275,15 @@
           
 	      
 	}
-	function generatePDF(useremail){
+	function generatePDF(){
 		document.getElementById("select").style.display="none";
 		document.getElementById("download").style.display="none";
 		const invoicestatus = "generated";
 		
-		const clientemailid = document.getElementById("clientemail").innerHTML;
+		const clientname = document.getElementById("select").value;
+		if(clientname == ""){
+			alert("please select clientname");
+		}
 		
 		const xhttp = new XMLHttpRequest();
 		  xhttp.onload = function() {
@@ -318,7 +298,7 @@
 		const url = "InvoiceStatus";
 		xhttp.open("POST", url, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send("invoiceStatus="+invoicestatus+"&clientemail="+clientemailid+"&useremail="+useremail);
+		xhttp.send("invoiceStatus="+invoicestatus+"&clientname="+clientname);
 	}
 </script>
 <script>
@@ -331,7 +311,7 @@
 		document.getElementById("orderid").innerHTML="";
 		var text = "",sum=0;
 		if(value == ""){
-			alert("please select client Email id");
+			alert("please select customer name");
 			document.getElementById("tablebody").innerHTML="";
 			document.getElementById("address").innerHTML="";
 			document.getElementById("clientname").innerHTML="";
@@ -351,7 +331,7 @@
 				  document.getElementById("address").innerHTML=res[0].clientaddress;
 				  document.getElementById("clientname").innerHTML = "Client Name :- "+res[0].clientname;
 				  document.getElementById("clientemail").innerHTML = res[0].clientemail;
-				  document.getElementById("orderid").innerHTML = Math.floor((Math.random() * 1000) + 1);
+				  document.getElementById("orderid").innerHTML = res[0].invoiceid;
 				  
 				  for(var i=0;i<res.length;i++){
 					  var obj = res[i];
@@ -379,7 +359,7 @@
 			 const url = "GenerateInvoice";
 			 xhttp.open("POST", url, true);
 			 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			 xhttp.send("clientemail="+value);
+			 xhttp.send("clientname="+value);
 		}
 		
 	}

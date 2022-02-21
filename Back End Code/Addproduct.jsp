@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="productquantity" name="productquantity" type="number"  required>
-                            <label for="productquantity">NO. Of Product</label>
+                            <label for="productquantity">Total Products</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" id="productunitprice" name="productunitprice" type="number" required>

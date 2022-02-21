@@ -223,20 +223,22 @@
     			alert("client input fields cannot be empty");
     		}
     		else{
-    			const d = new Date();
-    			const month = d.getMonth()+1;
-    			const orderplaceddate = d.getDate()+"-"+month+"-"+d.getFullYear();
-    			const orderplacedtime = d.getHours()+":"+d.getMinutes();
+    			const d = new Date().toISOString().slice(0, 10);
+    			console.log(d);
+    			const t = new Date();
+    			const orderplacedtime = t.getHours()+":"+t.getMinutes()+":"+t.getSeconds();
+    			
     			const xhttp = new XMLHttpRequest();
       		  	xhttp.onload = function() {
       			  var res = this.responseText;
       			  alert(res);
       			 location.reload();
       			}
-      		  const url = "PlaceOrder";
+      		 const url = "PlaceOrder";
       		  xhttp.open("POST", url, true);
       		  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      		  xhttp.send("userid="+userid+"&clientname="+clientname+"&clientemail="+clientemail+"&clientaddress="+clientaddress+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime);
+      		  xhttp.send("userid="+userid+"&clientname="+clientname+"&clientemail="+clientemail+"&clientaddress="+clientaddress+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&orderplaceddate="+d+"&orderplacedtime="+orderplacedtime);
+    		
     		}
     	}
     </script>

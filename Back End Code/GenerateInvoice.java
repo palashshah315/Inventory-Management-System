@@ -17,7 +17,7 @@ public class GenerateInvoice extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String clientname = request.getParameter("clientemail");
+		String clientname = request.getParameter("clientname");
 		
 		if(clientname.isEmpty()) {
 			response.setCharacterEncoding("UTF-8");

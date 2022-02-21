@@ -69,7 +69,10 @@ public class InvoiceStatus extends HttpServlet {
 		}
 		
 				Dao d = new Dao();
-				int status = d.updateInvoiceStatusByClientName(invoicestatus, clientname);
+				int status =0;
+				status =  d.updateInvoiceStatusByClientName(invoicestatus, clientname);
+				
+				
 				if(status >0) {
 					
 					response.setCharacterEncoding("UTF-8");

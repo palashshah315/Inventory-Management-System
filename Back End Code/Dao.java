@@ -1,7 +1,7 @@
 package DAO;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
+
 import BeanClass.*;
 public class Dao {
 	String driverName = "com.mysql.cj.jdbc.Driver",dburl = "jdbc:mysql://localhost:3306/ims",dbusername = "root",dbpassword = "root";
@@ -594,20 +594,20 @@ public class Dao {
 //		}catch(Exception e) {e.printStackTrace();}
 //		return status;
 //	}
-	public int updateThrededFittingProductByProductId(int productid,int totalproduct) {
-		int status=0;
-		try {
-			String total_product = Integer.toString(totalproduct);
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "update `ims`.`thrededfitting` set `noofproduct`= ? where `id`= ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,total_product);
-			pstmt.setInt(2, productid);
-			status = pstmt.executeUpdate();
-		}catch(Exception e) {e.printStackTrace();}
-		return status;
-	}
+//	public int updateThrededFittingProductByProductId(int productid,int totalproduct) {
+//		int status=0;
+//		try {
+//			String total_product = Integer.toString(totalproduct);
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "update `ims`.`thrededfitting` set `noofproduct`= ? where `id`= ?";
+//			PreparedStatement pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1,total_product);
+//			pstmt.setInt(2, productid);
+//			status = pstmt.executeUpdate();
+//		}catch(Exception e) {e.printStackTrace();}
+//		return status;
+//	}
 //	public List<OrderGroovedFittingBean> getAllGroovedProductByClientEmail(String clientemail)
 //	{
 //		List<OrderGroovedFittingBean> list = new ArrayList<>();
@@ -765,41 +765,56 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}
+	
 	public List<OrderBean> getAllOrderDetailByFromAndToDate(String fromdate, String todate) {
 		List<OrderBean> list = new ArrayList<>();
 		
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "SELECT * from `ims`.`orderdetail` where orderplaceddate BETWEEN '"+fromdate+"'"+" AND "+"'"+todate+"'";
+String sql = "SELECT \r\n"
+		+ "GROUP_CONCAT(DISTINCT \r\n"
+		+ "CONCAT('sum(case when clientname = ''', clientname, ''' then productrequired end) AS ', \r\n"
+		+ "replace(clientname, ' ', '') \r\n"
+		+ ")  ) \r\n"
+		+ "from ims.orderdetail";
+String outersql = "";
+//System.out.println(sql);
 			
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			while(rs.next()) {
-				OrderBean ob = new OrderBean();
-				ob.setOrderid(rs.getInt(1));
-				ob.setInvoiceid(rs.getInt(2));
-				ob.setProductId(rs.getInt(3));
-				ob.setUserId(rs.getInt(4));
-				ob.setUserFirstName(rs.getString(5));
-				ob.setUserLastName(rs.getString(6));
-				ob.setClientName(rs.getString(7));
-				ob.setClientAddress(rs.getString(8));
-				ob.setClientEmail(rs.getString(9));
-				ob.setProductname(rs.getString(10));
-				ob.setProductsize(rs.getString(11));
-				ob.setProductrequired(rs.getInt(12));
-				ob.setTotalProduct(rs.getString(13));
-				ob.setTotalProductPrice(rs.getInt(14));
-				ob.setOrderPlacedDate(rs.getString(15));
-				ob.setOrderPlacedTime(rs.getString(16));
-				ob.setApprovalDate(rs.getString(17));
-				ob.setApprovalTime(rs.getString(18));
-				ob.setOrderStatus(rs.getString(19));
-				ob.setInvoiceStatus(rs.getString(20));
-				list.add(ob);
-			}
+			
+			 if(rs.next()) {
+				 
+				outersql = "SELECT productname, productsize,"+rs.getString(1)+" from ims.orderdetail "
+						+ "where orderplaceddate between '"+fromdate+"'"+"  AND '"+todate+"' "+"group by productname, productsize";
+				
+				Statement st1 = con.createStatement();
+				ResultSet rs1 = st1.executeQuery(outersql);
+				ResultSetMetaData md = rs1.getMetaData();
+				
+				while(rs1.next()) {
+					OrderBean ob = new OrderBean();
+					List<ClientProduct> list1 = new ArrayList<>();
+					ob.setProductname(rs1.getString(1));
+					ob.setProductsize(rs1.getString(2));
+					
+					
+					for(int i=3;i<=md.getColumnCount();i++) {
+						ClientProduct cp = new ClientProduct();
+						cp.setCustomername(md.getColumnName(i));
+						cp.setProduct_req(rs1.getInt(i));
+						list1.add(cp);
+					}
+					
+					ob.setProductreq(list1);
+					
+					list.add(ob);
+				}
+			 }
+			
 		}catch(Exception ex) {ex.printStackTrace();}
+		
 		return list;
 	}
 	public List<OrderBean> getAllDetailsOfOrderDetail() {
@@ -847,6 +862,133 @@ public class Dao {
 			status = st.executeUpdate(sql);
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
+	}
+	
+	public List<String> getAllClientName(){
+		List<String> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select clientname from `ims`.`orderdetail` group by clientname";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				list.add(rs.getString("clientname"));
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public List<OrderBean> getAllProductDetailByClientNameAndOrderStatus(String customername) {
+		List<OrderBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String query = "select * from `ims`.`orderdetail` where `clientname` = "+"'"+customername+"'"+"  and `orderstatus` = 'pending'";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			while(rs.next())
+			{
+				OrderBean pd = new OrderBean();
+				
+				pd.setProductId(rs.getInt("productid"));
+				pd.setOrderid(rs.getInt("orderid"));
+				pd.setUserId(rs.getInt("userid"));
+				pd.setUserFirstName(rs.getString("userfirstname"));
+				pd.setUserLastName(rs.getString("userlastname"));
+				pd.setClientName(rs.getString("clientname"));
+				pd.setClientAddress(rs.getString("clientaddress"));
+				pd.setClientEmail(rs.getString("clientemail"));
+				pd.setProductname(rs.getString("productname"));
+				pd.setProductsize(rs.getString("productsize"));
+				pd.setProductrequired(rs.getInt("productrequired"));
+				pd.setTotalProduct(rs.getString("totalproduct"));
+				pd.setTotalProductPrice(rs.getInt("totalprice"));
+				pd.setOrderPlacedDate(rs.getString("orderplaceddate"));
+				pd.setOrderPlacedTime(rs.getString("orderplacedtime"));
+				pd.setApprovalDate(rs.getString("approveddate"));
+				pd.setApprovalTime(rs.getString("approvedtime"));
+				pd.setOrderStatus(rs.getString("orderstatus"));
+				pd.setInvoiceStatus(rs.getString("invoicestatus"));
+				pd.setInvoiceid(rs.getInt("invoiceid"));
+				
+				list.add(pd);
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public List<OrderBean> getAllProductDetailByClientNameAndOrderStatusApproved(String customername,String fromdate, String todate) {
+		List<OrderBean> list = new ArrayList<>();
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String query = "select * from `ims`.`orderdetail` where `clientname` = "+"'"+customername+"'"+"  and `orderstatus` = 'Approved' and `orderplaceddate` between '"+fromdate+"' "+"  AND '"+todate+"'";
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			
+			while(rs.next())
+			{
+				OrderBean pd = new OrderBean();
+				
+				pd.setProductId(rs.getInt("productid"));
+				pd.setOrderid(rs.getInt("orderid"));
+				pd.setUserId(rs.getInt("userid"));
+				pd.setUserFirstName(rs.getString("userfirstname"));
+				pd.setUserLastName(rs.getString("userlastname"));
+				pd.setClientName(rs.getString("clientname"));
+				pd.setClientAddress(rs.getString("clientaddress"));
+				pd.setClientEmail(rs.getString("clientemail"));
+				pd.setProductname(rs.getString("productname"));
+				pd.setProductsize(rs.getString("productsize"));
+				pd.setProductrequired(rs.getInt("productrequired"));
+				pd.setTotalProduct(rs.getString("totalproduct"));
+				pd.setTotalProductPrice(rs.getInt("totalprice"));
+				pd.setOrderPlacedDate(rs.getString("orderplaceddate"));
+				pd.setOrderPlacedTime(rs.getString("orderplacedtime"));
+				pd.setApprovalDate(rs.getString("approveddate"));
+				pd.setApprovalTime(rs.getString("approvedtime"));
+				pd.setOrderStatus(rs.getString("orderstatus"));
+				pd.setInvoiceStatus(rs.getString("invoicestatus"));
+				pd.setInvoiceid(rs.getInt("invoiceid"));
+				
+				list.add(pd);
+			}
+		}catch(Exception ex) {ex.printStackTrace();}
+		return list;
+	}
+	public int updateOrderStatusToApproved(String orderstatus, String approvedate, String approvetime, int orderid) {
+		int status = 0;
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "update `ims`.`orderdetail` set `approveddate`=? , `approvedtime`=?, `orderstatus`=?  where `orderid`=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, approvedate);
+			pstmt.setString(2, approvetime);
+			pstmt.setString(3, orderstatus);
+			pstmt.setInt(4, orderid);
+			status = pstmt.executeUpdate();
+		}catch(Exception ex) {ex.printStackTrace();}
+		return status;
+	}
+	public String getForgotPassword(String email) {
+		String password = "";
+		try {
+			
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+			String sql = "select  `password`  from `ims`.`user` where `user_email`= "+"'"+email+"'";
+			Statement st =  con.createStatement();
+			ResultSet rs =  st.executeQuery(sql);
+			while(rs.next())
+			{
+			
+				password = rs.getString(1);
+			}
+		}catch(Exception ex) {
+			
+		}
+		return password;
 	}
 	
 }

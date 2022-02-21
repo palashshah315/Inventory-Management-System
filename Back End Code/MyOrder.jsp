@@ -57,7 +57,7 @@
             placeholder="Filter">
     </div>
     <div class="container-fluid">
-        <h1 class="pro fw-bolder">My Order</h1>
+        <h1 class="pro fw-bolder">Your Orders</h1>
     </div>
 </div>
 <div class="scroll container-fluid">
