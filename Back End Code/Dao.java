@@ -118,30 +118,30 @@ public class Dao {
 	}
 	*/
 	
-	public List<CartBean> getAllCartProductByUserId(int userid){
-		List<CartBean> list = new ArrayList<>();
-		try {
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "select * from `ims`.`addtocart` where userid="+userid;
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while(rs.next()) {
-				CartBean cb = new CartBean();
-				cb.setCartid(rs.getInt(1));
-				cb.setUserid(rs.getInt(2));
-				cb.setId(rs.getInt(3));
-				cb.setProductname(rs.getString(4));
-				cb.setProductsize(rs.getString(5));
-				cb.setProducttype(rs.getString(6));
-				cb.setNoofproduct(rs.getString(7));
-				cb.setUnitprice(rs.getString(8));
-				cb.setProductquantity(rs.getInt(9));
-				list.add(cb);
-			}
-		}catch(Exception ex) {ex.printStackTrace();}
-		return list;
-	}
+//	public List<CartBean> getAllCartProductByUserId(int userid){
+//		List<CartBean> list = new ArrayList<>();
+//		try {
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "select * from `ims`.`addtocart` where userid="+userid;
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+//			while(rs.next()) {
+//				CartBean cb = new CartBean();
+//				cb.setCartid(rs.getInt(1));
+//				cb.setUserid(rs.getInt(2));
+//				cb.setId(rs.getInt(3));
+//				cb.setProductname(rs.getString(4));
+//				cb.setProductsize(rs.getString(5));
+//				cb.setProducttype(rs.getString(6));
+//				
+//				cb.setUnitprice(rs.getString(7));
+//				cb.setProductquantity(rs.getInt(8));
+//				list.add(cb);
+//			}
+//		}catch(Exception ex) {ex.printStackTrace();}
+//		return list;
+//	}
 	public boolean checkProductInCart(int productid) {
 		boolean status = false;
 		try {
@@ -163,6 +163,8 @@ public class Dao {
 		}catch(Exception e) {e.printStackTrace();}
 		return status;
 	}
+
+	
 	public List<ProductDetailBean> getAllProductDetails(){
 		List<ProductDetailBean> list = new ArrayList<>();
 		try {
@@ -176,9 +178,9 @@ public class Dao {
 				pd.setId(rs.getInt(1));
 				pd.setProductname(rs.getString(2));
 				pd.setProductsize(rs.getString(3));
-				pd.setNoofproduct(rs.getString(4));
-				pd.setUnitprice(rs.getString(5));
-				pd.setProducttype(rs.getString(6));
+				pd.setUnitprice(rs.getString(4));
+				pd.setProducttype(rs.getString(5));
+				pd.setNoofproduct(rs.getString(6));
 				list.add(pd);
 			}
 			rs.close();
@@ -187,27 +189,6 @@ public class Dao {
 		}catch (Exception e) {e.printStackTrace();}
 		return list;
 	}
-	
-//	public List<GroovedFittingBean> getAllDetailsOfGroovedFittings(){
-//		List<GroovedFittingBean> list = new ArrayList<>();
-//		try {
-//			Class.forName(driverName);
-//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-//			String sql = "select * from `ims`.`groovedfitting`";
-//			PreparedStatement pstmt = con.prepareStatement(sql);
-//			ResultSet rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				GroovedFittingBean gb = new GroovedFittingBean();
-//				gb.setId(rs.getInt(1));
-//				gb.setProductName(rs.getString(2));
-//				gb.setProductSize(rs.getString(3));
-//				gb.setNoOfProduct(rs.getString(4));
-//				gb.setUnitPrice(rs.getString(5));
-//				list.add(gb);
-//			}
-//		}catch(Exception ex) {ex.printStackTrace();}
-//		return list;
-//	}
 	
 //	public int updateGroovedTotalProduct(String productremaining,int id) {
 //		int status=0;
@@ -244,40 +225,39 @@ public class Dao {
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`productdetail` (`name`,`size`,`noofproduct`,`unitprice`,`producttype`) values (?,?,?,?,?)";
+			String sql = "insert into `ims`.`productdetail` (`name`,`size`,`unitprice`,`producttype`) values (?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pd.getProductname());
 			pstmt.setString(2, pd.getProductsize());
-			pstmt.setString(3, pd.getNoofproduct());
-			pstmt.setString(4, pd.getUnitprice());
-			pstmt.setString(5, pd.getProducttype());
+			pstmt.setString(3, pd.getUnitprice());
+			pstmt.setString(4, pd.getProducttype());
 			status  = pstmt.executeUpdate();
 			pstmt.close();
 			con.close();
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}
-	public int insertProductInCart(CartBean ct) {
-		int status = 0;
-		try {
-			
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`addtocart` (`userid`,`productid`,`productname`,`productsize`,`producttype`,`totalproduct`,`unitprice`,`productrequired`) values (?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ct.getUserid());
-			pstmt.setInt(2, ct.getId());
-			pstmt.setString(3, ct.getProductname());
-			pstmt.setString(4, ct.getProductsize());
-			pstmt.setString(5, ct.getProducttype());
-			pstmt.setString(6, ct.getNoofproduct());
-			pstmt.setString(7, ct.getUnitprice());
-			pstmt.setInt(8, ct.getProductquantity());
-			status = pstmt.executeUpdate();
-		}catch(Exception e) {e.printStackTrace();}
-		
-		return status;
-	}
+//	public int insertProductInCart(CartBean ct) {
+//		int status = 0;
+//		try {
+//			
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "insert into `ims`.`addtocart` (`userid`,`productid`,`productname`,`productsize`,`producttype`,`totalproduct`,`unitprice`,`productrequired`) values (?,?,?,?,?,?,?,?)";
+//			PreparedStatement pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, ct.getUserid());
+//			pstmt.setInt(2, ct.getId());
+//			pstmt.setString(3, ct.getProductname());
+//			pstmt.setString(4, ct.getProductsize());
+//			pstmt.setString(5, ct.getProducttype());
+//			
+//			pstmt.setString(6, ct.getUnitprice());
+//			pstmt.setInt(7, ct.getProductquantity());
+//			status = pstmt.executeUpdate();
+//		}catch(Exception e) {e.printStackTrace();}
+//		
+//		return status;
+//	}
 //	public int insertGroovedFitting(GroovedFittingBean gb) {
 //		int status = 0;
 //		try {
@@ -700,30 +680,30 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return status;
 	}
-	public List<CartBean> getAllProductDetailsViaCartBean(int user_id) {
-		List<CartBean> list = new ArrayList<>();
-		try {
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "SELECT * from `ims`.`productdetail`";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while(rs.next()) {
-				CartBean cb = new CartBean();
-				cb.setId(rs.getInt(1));
-				cb.setProductname(rs.getString(2));
-				cb.setProductsize(rs.getString(3));
-				cb.setNoofproduct(rs.getString(4));
-				cb.setUnitprice(rs.getString(5));
-				cb.setProducttype(rs.getString(6));
-				cb.setProductquantity(1);
-				cb.setUserid(user_id);
-				list.add(cb);
-			}
-			
-		}catch(Exception ex) {ex.printStackTrace();}
-		return list;
-	}
+//	public List<CartBean> getAllProductDetailsViaCartBean(int user_id) {
+//		List<CartBean> list = new ArrayList<>();
+//		try {
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "SELECT * from `ims`.`productdetail`";
+//			Statement st = con.createStatement();
+//			ResultSet rs = st.executeQuery(sql);
+//			while(rs.next()) {
+//				CartBean cb = new CartBean();
+//				cb.setId(rs.getInt(1));
+//				cb.setProductname(rs.getString(2));
+//				cb.setProductsize(rs.getString(3));
+//				
+//				cb.setUnitprice(rs.getString(4));
+//				cb.setProducttype(rs.getString(5));
+//				cb.setProductquantity(1);
+//				cb.setUserid(user_id);
+//				list.add(cb);
+//			}
+//			
+//		}catch(Exception ex) {ex.printStackTrace();}
+//		return list;
+//	}
 	public int updateProductRequiredByProductId(int product_req, int product_id) {
 		int status = 0;
 		try {
@@ -989,6 +969,57 @@ String outersql = "";
 			
 		}
 		return password;
+	}
+	public List<OrderBean> getAllConsolidateOrder() {
+		List<OrderBean> list = new ArrayList<>();
+		
+		try {
+			Class.forName(driverName);
+			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+String sql = "SELECT \r\n"
+		+ "GROUP_CONCAT(DISTINCT \r\n"
+		+ "CONCAT('sum(case when clientname = ''', clientname, ''' then productrequired end) AS ', \r\n"
+		+ "replace(clientname, ' ', '') \r\n"
+		+ ")  ) \r\n"
+		+ "from ims.orderdetail";
+String outersql = "";
+//System.out.println(sql);
+			
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			 if(rs.next()) {
+				 
+				outersql = "SELECT productname, productsize,"+rs.getString(1)+" from ims.orderdetail "
+						+ "group by productname, productsize";
+				
+				Statement st1 = con.createStatement();
+				ResultSet rs1 = st1.executeQuery(outersql);
+				ResultSetMetaData md = rs1.getMetaData();
+				
+				while(rs1.next()) {
+					OrderBean ob = new OrderBean();
+					List<ClientProduct> list1 = new ArrayList<>();
+					ob.setProductname(rs1.getString(1));
+					ob.setProductsize(rs1.getString(2));
+					
+					
+					for(int i=3;i<=md.getColumnCount();i++) {
+						ClientProduct cp = new ClientProduct();
+						cp.setCustomername(md.getColumnName(i));
+						cp.setProduct_req(rs1.getInt(i));
+						list1.add(cp);
+					}
+					
+					ob.setProductreq(list1);
+					
+					list.add(ob);
+				}
+			 }
+			
+		}catch(Exception ex) {ex.printStackTrace();}
+		
+		return list;
 	}
 	
 }

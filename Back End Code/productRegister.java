@@ -15,7 +15,6 @@ public class ProductRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String productName = req.getParameter("productname");
 		String productSize = req.getParameter("productsize");
-		String productQuantity = req.getParameter("productquantity");
 		String unitprice = req.getParameter("productunitprice");
 		String fitting = req.getParameter("fitting");
 		
@@ -26,7 +25,7 @@ public class ProductRegister extends HttpServlet {
 			int status=0;
 			pd.setProductname(productName);
 			pd.setProductsize(productSize);
-			pd.setNoofproduct(productQuantity);
+			
 			pd.setUnitprice(unitprice);
 			pd.setProducttype(fitting);
 			status = d.insertProductDetail(pd);

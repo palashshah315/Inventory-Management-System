@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Add Product</title>
@@ -65,10 +65,7 @@
                             <input class="form-control" id="productsize" name="productsize" type="text"  required>
                             <label for="productsize">Product Size</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="productquantity" name="productquantity" type="number"  required>
-                            <label for="productquantity">Total Products</label>
-                        </div>
+                       
                         <div class="form-floating mb-3">
                             <input class="form-control" id="productunitprice" name="productunitprice" type="number" required>
                             <label for="productquantity">Product Unit Price</label>
@@ -140,9 +137,5 @@
 </footer>
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
 </body>
 </html>

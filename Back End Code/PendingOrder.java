@@ -26,6 +26,7 @@ public class PendingOrder extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String customername = request.getParameter("customername");
 		PrintWriter out = response.getWriter();
+		
 		if(customername.isEmpty() || customername == null) {
 			out.println("<script type = \"text/javascript\">");
 			out.println("alert('Please select customer name');");

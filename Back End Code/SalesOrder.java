@@ -25,7 +25,6 @@ public class SalesOrder extends HttpServlet {
 
     public SalesOrder() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

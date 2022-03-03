@@ -2,7 +2,13 @@ package BeanClass;
 
 public class ProductDetailBean {
 	int id;
-	String productname,productsize,noofproduct,unitprice,producttype;
+	String productname,productsize,unitprice,producttype,noofproduct;
+	public String getNoofproduct() {
+		return noofproduct;
+	}
+	public void setNoofproduct(String noofproduct) {
+		this.noofproduct = noofproduct;
+	}
 	public int getId() {
 		return id;
 	}
@@ -21,12 +27,7 @@ public class ProductDetailBean {
 	public void setProductsize(String productsize) {
 		this.productsize = productsize;
 	}
-	public String getNoofproduct() {
-		return noofproduct;
-	}
-	public void setNoofproduct(String noofproduct) {
-		this.noofproduct = noofproduct;
-	}
+	
 	public String getUnitprice() {
 		return unitprice;
 	}

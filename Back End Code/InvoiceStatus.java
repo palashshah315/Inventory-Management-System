@@ -65,12 +65,13 @@ public class InvoiceStatus extends HttpServlet {
 		else if(clientname.isEmpty() || clientname==null) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/plain");
-			response.getWriter().write("Client Email Id should not be empty");
+			response.getWriter().write("Client Name should not be empty");
 		}
 		
 				Dao d = new Dao();
 				int status =0;
 				status =  d.updateInvoiceStatusByClientName(invoicestatus, clientname);
+				
 				
 				
 				if(status >0) {

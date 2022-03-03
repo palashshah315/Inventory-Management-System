@@ -24,6 +24,7 @@ String position = (String) session.getAttribute("position");
 <body>
 	<!-- Navbar -->
     <%@ include file="navbar.jsp" %>
+    
 	<div class="container-fluid mt-5 pt-5">
         
         <div class="row">
@@ -42,6 +43,9 @@ String position = (String) session.getAttribute("position");
         <div class="row">
             <div class="col mt-3">
                 <button class="btn btn-primary" id="salesBtn" onclick="consolidateOrder()">Get Consolidate Order</button>
+            </div>
+            <div class="col mt-3">
+                <button class="btn btn-primary" onclick="allConsolidateOrder()">Get All Consolidate Order</button>
             </div>
         </div>
     </div>
@@ -64,7 +68,7 @@ String position = (String) session.getAttribute("position");
     		<div class="col-lg-6  ">
     			
     		</div>
-    		<div class="col-lg-4 ms-5">
+    		<div class="col-lg-6 ">
     			<p class="text-end " id="totalsum"></p>
     		</div>
     	</div>
@@ -100,8 +104,9 @@ String position = (String) session.getAttribute("position");
     
 
  function tableHeader(res) {
+	 
       var col = "<th> Item Description </th>";
-     
+ 
       for(var i=0;i<Object.keys(res[0]).length-2;i++)
     	  col+="<th>"+Object.keys(res[0])[i]+"</th>";
       	
@@ -115,6 +120,7 @@ String position = (String) session.getAttribute("position");
 	var sum=0;
 	var totalsum=0;
 	for(var i=0;i<res.length;i++){
+		
 		row+="<tr>";
 		
 		row+="<td>"+res[i][Object.keys(res[0])[Object.keys(res[0]).length-1]]+" "+res[i][Object.keys(res[0])[Object.keys(res[0]).length-2]]+"</td>";	
@@ -131,10 +137,34 @@ String position = (String) session.getAttribute("position");
 		row+="</tr>";
 		
 	}
-	document.getElementById("totalsum").innerHTML = totalsum;
 	
 	return row;
+	
  }
+ function allConsolidateOrder(){
+	 
+	 const xhttp = new XMLHttpRequest();
+	 
+	 xhttp.onload = function() {
+		  var res = JSON.parse(this.responseText);
+		  if(res == ''){
+			  alert("Sorry data not found!");
+		  }
+		  else{
+			  var tablehead = tableHeader(res);
+			  
+			  document.getElementById("tablehead").innerHTML = tablehead;
+			  var tablebody = tableBody(res);
+			  
+			  document.getElementById("tablebody").innerHTML = tablebody;
+		  }
+		  
+	}
+	 	const url = "AllConsolidateOrder";
+	 	xhttp.open("GET", url, true);
+		xhttp.send();
+ }
+ 
  
  function consolidateOrder(){
     			 var fromdate = document.getElementById("fromdate").value;
@@ -150,13 +180,18 @@ String position = (String) session.getAttribute("position");
     					  var res = JSON.parse(this.responseText);
     					  
     					  if(res == ''){
-    						  alert("Sorry data not found");
+    						  alert("Sorry data not found!");
     					  }
     					  
     					  else{
+    						  document.getElementById("tablehead").innerHTML  = "";
+    						  document.getElementById("tablebody").innerHTML = "";
+    						  
     						  var tablehead = tableHeader(res);
+    						  
         					  document.getElementById("tablehead").innerHTML = tablehead;
         					  var tablebody = tableBody(res);
+        					  
         					  document.getElementById("tablebody").innerHTML = tablebody;
     					  }
     				}
@@ -181,6 +216,7 @@ document.getElementById("employeedetail").style.display = "none";
 <% 
 }
 %>
+
 </body>
 
 </html>

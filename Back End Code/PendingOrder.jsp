@@ -27,7 +27,7 @@
        <%@ include file="navbar.jsp" %>        
         <div class="pt-5">
             <div class="order search pt-2 mt-3">
-                <select  id="customername" onchange="getDetailsFromCustomerName()">
+                <select  class="effect1" id="customername" onchange="getDetailsFromCustomerName()">
                     <option value="">Select a customer name </option>
                     <%
                     	for(String s : list){
@@ -39,7 +39,7 @@
                   </select>
                   </div>
                 <div class="container-fluid">
-                   <div class="row mt-2">
+                   <div class="row mt-5">
                    		 <h1 class="pro fw-bolder">Pending Order</h1>
                    </div>
                 </div>

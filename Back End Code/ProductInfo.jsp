@@ -64,7 +64,7 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">SIZE (in inches)</th>
-            <th scope="col">NO. OF PRODUCTS</th>
+          
             <th scope="col">Product unit price (in rupees)</th>
             <th scope="col">Product Type</th>
         </tr>
@@ -77,9 +77,9 @@
     		<tr id="<%= pd.getId() %>">
     			<td><%= pd.getProductname() %></td>
     			<td><%= pd.getProductsize() %></td>
-    			<td><%= pd.getNoofproduct() %></td>
     			<td><%= pd.getUnitprice() %></td>
     			<td><%= pd.getProducttype() %></td>
+    			
         	</tr>
         <%} %>
     </tbody>

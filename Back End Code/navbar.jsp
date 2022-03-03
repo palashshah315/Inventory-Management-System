@@ -21,14 +21,13 @@
                     <a class="nav-link dropdown-toggle fw-bolder" id="navbarDropdownBlog" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Order</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                      	<li><a class="dropdown-item" href="AddOrder.jsp">Add Order</a></li>
-                        <li><a class="dropdown-item" href="PlaceOrder.jsp">Proceed To Buy</a></li>
+                      	<li><a class="dropdown-item" href="OrderAdd.jsp">Add Order</a></li>
                         <li><a class="dropdown-item" href="ConsolidateOrder.jsp">Consolidate Order</a></li>
                      	<li><a class="dropdown-item" href="PendingOrder.jsp">Pending Order</a></li>
                     </ul>
                 </li>
                	
-               	<li class="nav-item"><a class="nav-link fw-bolder" href="Sales.jsp">Sales Report</a></li>
+               	<li class="nav-item"><a class="nav-link fw-bolder" href="Sales.jsp">Total Orders</a></li>
                	
                 <li class="nav-item"><a class="nav-link fw-bolder" href="ApproveOrder.jsp">Approve Order</a></li>
                 
