@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import java.io.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,9 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.*;
 
 import BeanClass.*;
 import java.util.*;
@@ -61,7 +59,7 @@ public class PendingOrder extends HttpServlet {
 				jsonobj.put("approvaltime",ot.getApprovalTime());
 				jsonobj.put("orderstatus",ot.getOrderStatus());
 				jsonobj.put("invoicestatus",ot.getInvoiceStatus());
-				json.put(jsonobj);
+				json.add(jsonobj);
 				
 			}
 			

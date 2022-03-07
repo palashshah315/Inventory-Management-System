@@ -27,28 +27,28 @@
 <body class="copybody">
 <%@ include file="navbar.jsp" %>
 
-<!--  logout model -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to logout?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form action="Logout.jsp" method="post">
-                    <input type="submit" value="Yes"> 
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<%--<!--  logout model -->--%>
+<%--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h5 class="modal-title" id="exampleModalLabel">Logout</h5>--%>
+<%--                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">--%>
+<%--                    <span aria-hidden="true">&times;</span>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                Are you sure you want to logout?--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--                <form action="Logout.jsp" method="post">--%>
+<%--                    <input type="submit" value="Yes"> --%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <!-- My Order Page content-->
 <div class="pt-5">
@@ -67,7 +67,7 @@
                 <th scope="col">Employee Name</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Size</th>
-                <th scope="col">Product Available</th>
+
                 <th scope="col">Product Required</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Client Name</th>
@@ -93,7 +93,7 @@ rows will generate dynamically -->
                 <td><%=ot.getUserFirstName()+" "+ot.getUserLastName()%></td>
                 <td><%=ot.getProductname() %></td>
                 <td><%=ot.getProductsize()%></td>
-                <td><%=ot.getTotalProduct()%></td>
+
                 <td><%=ot.getProductrequired()%></td>
                 <td><%=ot.getTotalProductPrice()%></td>
                 <td><%=ot.getclientName()%></td>

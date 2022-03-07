@@ -1,10 +1,10 @@
 package DAO;
 import java.sql.*;
 import java.util.*;
-
 import BeanClass.*;
+import org.json.simple.*;
 public class Dao {
-	String driverName = "com.mysql.cj.jdbc.Driver",dburl = "jdbc:mysql://localhost:3306/ims",dbusername = "root",dbpassword = "root";
+	String driverName = "com.mysql.cj.jdbc.Driver", dburl = "jdbc:mysql://localhost:3306/ims",dbusername = "root",dbpassword = "root";
 
 	public int insertUser(UserBean user) {
 		int status=0;
@@ -302,35 +302,6 @@ public class Dao {
 //		catch (Exception e) {e.printStackTrace();}
 //		return status;
 //	}
-	public int placedOrder(OrderBean ob) {
-		int status = 0;
-		try {
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "insert into `ims`.`orderdetail` (`productid`,`userid`,`userfirstname`,`userlastname`,`productname`,`productsize`,`productrequired`,`totalproduct`,`totalprice`,`clientname`,`clientaddress`,`clientemail`,`orderstatus`,`orderplaceddate`,`orderplacedtime`,`invoicestatus`,`invoiceid`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ob.getProductId());
-			pstmt.setInt(2, ob.getUserId());
-			pstmt.setString(3,ob.getUserFirstName());
-			pstmt.setString(4,ob.getUserLastName());
-			pstmt.setString(5,ob.getProductname());
-			pstmt.setString(6,ob.getProductsize());
-			pstmt.setInt(7,ob.getProductrequired());
-			pstmt.setString(8,ob.getTotalProduct());
-			pstmt.setLong(9, ob.getTotalProductPrice());
-			pstmt.setString(10,ob.getclientName());
-			pstmt.setString(11,ob.getClientAddress());
-			pstmt.setString(12,ob.getClientEmail());
-			pstmt.setString(13,ob.getOrderStatus());
-			pstmt.setString(14,ob.getOrderPlacedDate());
-			pstmt.setString(15,ob.getOrderPlacedTime());
-			pstmt.setString(16,ob.getInvoiceStatus());
-			pstmt.setInt(17, ob.getInvoiceid());
-			status = pstmt.executeUpdate();
-		}
-		catch (Exception e) {e.printStackTrace();}
-		return status;
-	}
 	public List<OrderBean> getAllApprovalDetails(){
 		List<OrderBean> list = new ArrayList<>();
 		try {
@@ -342,7 +313,7 @@ public class Dao {
 			while(rs.next()) {
 				OrderBean og = new OrderBean();
 				og.setOrderid(rs.getInt(1));
-				og.setInvoiceid(rs.getInt(2));
+				og.setInvoiceid(rs.getString(2));
 				og.setProductId(rs.getInt(3));
 				og.setUserId(rs.getInt(4));
 				og.setUserFirstName(rs.getString(5));
@@ -460,9 +431,9 @@ public class Dao {
 			while(rs.next()) {
 				OrderBean ot = new  OrderBean();
 				ot.setOrderid(rs.getInt(1));
-				ot.setInvoiceid(rs.getInt(2));
+				ot.setInvoiceid(rs.getString(2));
 				ot.setProductId(rs.getInt(3));
-				ot.setUserId(rs.getInt(4));
+				ot.setUserId( rs.getInt(4));
 				ot.setUserFirstName(rs.getString(5));
 				ot.setUserLastName(rs.getString(6));
 				ot.setClientName(rs.getString(7));
@@ -472,7 +443,7 @@ public class Dao {
 				ot.setProductsize(rs.getString(11));
 				ot.setProductrequired(rs.getInt(12));
 				ot.setTotalProduct(rs.getString(13));
-				ot.setTotalProductPrice(rs.getLong(14));
+				ot.setTotalProductPrice((long) rs.getDouble(14));
 				ot.setOrderPlacedDate(rs.getString(15));
 				ot.setOrderPlacedTime(rs.getString(16));
 				ot.setApprovalDate(rs.getString(17));
@@ -535,7 +506,7 @@ public class Dao {
 			while(rs.next()) {
 				OrderBean ot = new  OrderBean();
 				ot.setOrderid(rs.getInt(1));
-				ot.setInvoiceid(rs.getInt(2));
+				ot.setInvoiceid(rs.getString(2));
 				ot.setProductId(rs.getInt(3));
 				ot.setUserId(rs.getInt(4));
 				ot.setUserFirstName(rs.getString(5));
@@ -704,18 +675,18 @@ public class Dao {
 //		}catch(Exception ex) {ex.printStackTrace();}
 //		return list;
 //	}
-	public int updateProductRequiredByProductId(int product_req, int product_id) {
-		int status = 0;
-		try {
-			Class.forName(driverName);
-			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String sql = "update `ims`.`addtocart` set productrequired="+product_req+" where productid="+product_id;
-			Statement st = con.createStatement();
-			status = st.executeUpdate(sql);
-			
-		}catch(Exception ex) {ex.printStackTrace();}
-		return status;
-	}
+//	public int updateProductRequiredByProductId(int product_req, int product_id) {
+//		int status = 0;
+//		try {
+//			Class.forName(driverName);
+//			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+//			String sql = "update `ims`.`addtocart` set productrequired="+product_req+" where productid="+product_id;
+//			Statement st = con.createStatement();
+//			status = st.executeUpdate(sql);
+//
+//		}catch(Exception ex) {ex.printStackTrace();}
+//		return status;
+//	}
 	public boolean checkInvoiceId(int invoiceid) {
 		boolean check = false;
 		try {
@@ -734,6 +705,7 @@ public class Dao {
 		}catch(Exception ex) {ex.printStackTrace();}
 		return check;
 	}
+
 	public int deleteProductFromCartByUserId(int userid) {
 		int status=0;
 		try {
@@ -808,7 +780,7 @@ String outersql = "";
 			while(rs.next()) {
 				OrderBean ob = new OrderBean();
 				ob.setOrderid(rs.getInt(1));
-				ob.setInvoiceid(rs.getInt(2));
+				ob.setInvoiceid(rs.getString(2));
 				ob.setProductId(rs.getInt(3));
 				ob.setUserId(rs.getInt(4));
 				ob.setUserFirstName(rs.getString(5));
@@ -863,7 +835,7 @@ String outersql = "";
 		try {
 			Class.forName(driverName);
 			Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
-			String query = "select * from `ims`.`orderdetail` where `clientname` = "+"'"+customername+"'"+"  and `orderstatus` = 'pending'";
+			String query = "select * from `ims`.`orderdetail` where `clientname` = "+"'"+customername+"'";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			
@@ -871,7 +843,7 @@ String outersql = "";
 			{
 				OrderBean pd = new OrderBean();
 				
-				pd.setProductId(rs.getInt("productid"));
+
 				pd.setOrderid(rs.getInt("orderid"));
 				pd.setUserId(rs.getInt("userid"));
 				pd.setUserFirstName(rs.getString("userfirstname"));
@@ -890,7 +862,7 @@ String outersql = "";
 				pd.setApprovalTime(rs.getString("approvedtime"));
 				pd.setOrderStatus(rs.getString("orderstatus"));
 				pd.setInvoiceStatus(rs.getString("invoicestatus"));
-				pd.setInvoiceid(rs.getInt("invoiceid"));
+				pd.setInvoiceid(rs.getString("invoiceid"));
 				
 				list.add(pd);
 			}
@@ -929,7 +901,7 @@ String outersql = "";
 				pd.setApprovalTime(rs.getString("approvedtime"));
 				pd.setOrderStatus(rs.getString("orderstatus"));
 				pd.setInvoiceStatus(rs.getString("invoicestatus"));
-				pd.setInvoiceid(rs.getInt("invoiceid"));
+				pd.setInvoiceid(rs.getString("invoiceid"));
 				
 				list.add(pd);
 			}
@@ -1021,5 +993,39 @@ String outersql = "";
 		
 		return list;
 	}
-	
+
+	public int placedOrder(OrderBean ob, String productname, String productsize, String quantity, String price) {
+	int status=0;
+	try{
+		Class.forName(driverName);
+		Connection con = DriverManager.getConnection(dburl,dbusername,dbpassword);
+		String sql = "insert into `ims`.`orderdetail` (`invoiceid`,`userid`,`userfirstname`,`userlastname`,`clientname`,`clientaddress`,`clientemail`,`productname`,`productsize`,`productrequired`,`totalprice`,`orderplaceddate`,`orderplacedtime`,`approveddate`,`approvedtime`,`orderstatus`,`invoicestatus`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1,ob.getInvoiceid());
+		pstmt.setInt(2,ob.getUserId());
+		pstmt.setString(3,ob.getUserFirstName());
+		pstmt.setString(4,ob.getUserLastName());
+		pstmt.setString(5,ob.getclientName());
+		pstmt.setString(6,ob.getClientAddress());
+		pstmt.setString(7,ob.getClientEmail());
+		pstmt.setString(8,productname);
+		pstmt.setString(9,productsize);
+		pstmt.setString(10,quantity);
+		pstmt.setString(11,price);
+		pstmt.setString(12,ob.getOrderPlacedDate());
+		pstmt.setString(13,ob.getOrderPlacedTime());
+		pstmt.setString(14,ob.getApprovalDate());
+		pstmt.setString(15,ob.getApprovalTime());
+		pstmt.setString(16,ob.getOrderStatus());
+		pstmt.setString(17,ob.getInvoiceStatus());
+
+		status = pstmt.executeUpdate();
+
+		con.close();
+		pstmt.close();
+
+	}
+	catch(Exception ex){ex.printStackTrace();}
+	return status;
+	}
 }

@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 //This is Login Servlet
 import java.io.*;
 import javax.servlet.*;

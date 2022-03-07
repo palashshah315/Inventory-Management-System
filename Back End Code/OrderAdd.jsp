@@ -13,16 +13,15 @@
     <link rel='stylesheet' type='text/css' href="style.css" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
      <%
-     
+
         String firstname = (String) session.getAttribute("firstname");
         String lastname =  (String) session.getAttribute("lastname");
         String position = (String) session.getAttribute("position");
        	int user_id = (Integer) session.getAttribute("userid");
-       	
-    %>
+
+     %>
 
 </head>
-
 <body>
 <%@ include file="navbar.jsp" %>
 
@@ -31,6 +30,7 @@
 
             <div class="container-fluid">
             	<div class="row">
+                    <p>* Note this is not for mobile view</p>
             		<img class="img-fluid w-100 h-25" src="0001.jpg">
             	</div>
             </div>
@@ -38,7 +38,7 @@
             <div class="mt-3" id="customer">
                 <div class="mx-2" id="customer-details">
                     <input class="my-2 py-1" type="text" id="customer-name" placeholder="CLIENT NAME" >
-                    <input class="mb-2 py-1" type="text" id="customer-email" placeholder="CLIENT EMAIL" >
+                    <input class="mb-2 py-1" type="email" id="customer-email" placeholder="CLIENT EMAIL" >
                     <textarea id="customer-address" rows="4" cols="51" placeholder="CLIENT ADDRESS" ></textarea>
 
                 </div>
@@ -132,77 +132,65 @@
                 <!-- <h5 class="mx-2">For FITWEL INDUSTRIES,</h5>
                 <p class="margin-top mx-2">__________________</p>
                 <p class="mx-2">Authorized Signatory.</p> -->
-                <button type="button" class="btn btn-outline-info" onclick="placeOrder()">Add Order</button>
+                <button type="button" class="btn btn-outline-info" onclick="placeOrder(`<%= user_id%>`,`<%= firstname %>`, `<%= lastname %>`)">Add Order</button>
                 
             </div>
 
         </div>
     </section>
-    <script type='text/javascript' src='jquery-1.3.2.min.js'></script>
-    <script type='text/javascript' src='order-form-js.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-    function placeOrder(userid, userfirstname, userlastname){
+        <script type="text/javascript">
+            function placeOrder(userid, userfirstname, userlastname){
 
-    	  var table = document.getElementById("items");
-    	  var rows = table.querySelectorAll("tr");
-    	  const d = new Date();
+                var table = document.getElementById("items");
+                var rows = table.querySelectorAll("tr");
+                const d = new Date();
 
-    	  const ordertime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-    	  var items = []
-    	  const month = d.getMonth()+1;
-    	  const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
-  		  const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+                const ordertime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+                var items = [];
+                const month = d.getMonth()+1;
 
-    	  for (var i = 1; i < rows.length-2; i++) {
-    	    var cols = rows[i].querySelectorAll("td");
-    	    items.push(
-    	      {
-    	        productname : cols[0].querySelector("input").value,
-    	        productsize : cols[1].querySelector("input").value,
-    	        unitcost : cols[2].querySelector("input").value,
-    	        quantity : cols[3].querySelector("input").value,
-    	        price: cols[4].querySelector("span").innerText
 
-    	      }
-    	      );
-    	  }
+                for (var i = 1; i < rows.length-2; i++) {
+                    var cols = rows[i].querySelectorAll("td");
+                    items.push( {
+                        productname : cols[0].querySelector("input").value,
+                        productsize : cols[1].querySelector("input").value,
+                        unitcost : cols[2].querySelector("input").value,
+                        quantity : cols[3].querySelector("input").value,
+                        price: cols[4].querySelector("span").innerText
 
-    	  var jsonarr = {
-    		userid : userid,
-    		userfirstname : userfirstname,
-    		userlastname : userlastname,
-    	    clientname : document.getElementById("customer-name").value,
-    	    clientemail : document.getElementById("customer-email").value,
-    	    clientaddress : document.getElementById("customer-address").value,
-    	    invoiceno : document.getElementById("invoice-no").value,
-    	    orderplaceddate : document.getElementById("order-date").value,
-    	    orderplacedtime : ordertime,
-    	    totalprice : document.getElementById("subtotal").innerText,
-    	    approvedate : approvedate,
-    	  	approvetime : approvetime,
-    	  	orderstatus : "Approved",
-    	    productdetails : items
-    	  };
-    	  
-    	  console.log(jsonarr);
-    	  
-    	  var stringjson = JSON.stringify(jsonarr);
-    	  
-    	  console.log(stringjson);
-    	  
-    	  const xhttp = new XMLHttpRequest();
-    	  
-		  xhttp.onload = function() {
-			  var res = this.responseText;
-			  alert(res);
-			  
-		}
-		  
-		  	const url = "Servlet";
-			xhttp.open("GET", url);
-			xhttp.send();
-}
+                    });
+
+                }
+
+                const clientname = document.getElementById("customer-name").value;
+                const clientemail = document.getElementById("customer-email").value;
+                const clientaddress = document.getElementById("customer-address").value;
+                const invoiceno = document.getElementById("invoice-no").value;
+                const orderplaceddate = document.getElementById("order-date").value;
+                const orderplacedtime = ordertime;
+                const approvedate = d.getFullYear()+"-"+month+"-"+d.getDate();
+                const approvetime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+                const orderstatus = "Approved";
+                const totalprice = document.getElementById("subtotal").innerText;
+
+                var stringProductDetail = JSON.stringify(items);
+
+
+                console.log(stringProductDetail.length);
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.onload = function() {
+                    var res = this.responseText;
+                    alert(res);
+                    location.reload();
+                }
+
+                const url = "Servlet";
+                xhttp.open("POST", url, true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("orderdetails="+stringProductDetail+"&userid="+userid+"&userfirstname="+userfirstname+"&userlastname="+userlastname+"&clientname="+clientname+"&clientemail="+clientemail+"&clientaddress="+clientaddress+"&invoiceno="+invoiceno+"&orderplaceddate="+orderplaceddate+"&orderplacedtime="+orderplacedtime+"&approvedate="+approvedate+"&approvetime="+approvetime+"&orderstatus="+orderstatus+"&totalprice="+totalprice);
+            }
     
     </script>
     <script type='text/javascript' src='jquery-1.3.2.min.js'></script>

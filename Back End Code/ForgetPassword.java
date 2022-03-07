@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.io.*;

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@page import="java.sql.*,java.util.*, java.util.stream.*" %>
+<%@page import="java.sql.*,java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
     <%
     String uname = (String) session.getAttribute("username");
 	String pswd=(String) session.getAttribute("password");
-	
+
 
 	if(uname == null || pswd==null){
 		out.println("<script type = \"text/javascript\">");
@@ -132,7 +132,7 @@
                                 <div class="flex-wrap wmin-md-400">
 
                                     <ul class="list list-unstyled text-center mb-0 ml-auto">
-                                        <li>Order Id <p id="orderid"></p></li>
+                                        <li>Purchase Order <p id="orderid"></p></li>
                                        	<li>Client Email <p id="clientemail"></p></li>
 
                                     </ul>
@@ -145,10 +145,11 @@
                             <thead>
                                 <tr>
                                     <th>Product Name</th>
-                                    <th>Product Size</th>
+                                    <th>Product Size(in inches)</th>
                                     <th>Rate</th>
                                     <th>Quantity</th>
                                     <th>Total Price</th>
+
                                 </tr>
                             </thead>
                             <tbody id="tablebody">
@@ -183,6 +184,7 @@
                                             <tr>
                                                 <th class="text-center">Total Value:</th>
                                                 <td class="text-right text-primary">
+
                                                     <h5 class="font-weight-semibold" id="totalvalue">0</h5>
                                                 </td>
                                             </tr>
@@ -292,7 +294,7 @@
 			  document.getElementById("download").style.display="visible";
 			  alert(res);
 			  getPDF();
-	            
+
 		}
 		  
 		const url = "InvoiceStatus";
@@ -334,6 +336,8 @@
 				  document.getElementById("orderid").innerHTML = res[0].invoiceid;
 				  
 				  for(var i=0;i<res.length;i++){
+
+
 					  var obj = res[i];
 					  text = "<tr>";
 					  text+= "<td>"+obj.productname+"</td>";
@@ -355,6 +359,8 @@
 				  document.getElementById("stategst").innerHTML = sgst;
 				  var totalvalue = sum+sum+cgst+sgst;
 				  document.getElementById("totalvalue").innerHTML = totalvalue;
+
+
 				}
 			 const url = "GenerateInvoice";
 			 xhttp.open("POST", url, true);

@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import DAO.*;
 import BeanClass.*;
 import java.util.*;

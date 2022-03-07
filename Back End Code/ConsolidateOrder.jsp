@@ -68,9 +68,9 @@ String position = (String) session.getAttribute("position");
     		<div class="col-lg-6  ">
     			
     		</div>
-    		<div class="col-lg-6 ">
-    			<p class="text-end " id="totalsum"></p>
-    		</div>
+<%--    		<div class="col-lg-6 ">--%>
+<%--    			<p class="text-end " id="totalsum"></p>--%>
+<%--    		</div>--%>
     	</div>
     </div>
 
@@ -104,13 +104,18 @@ String position = (String) session.getAttribute("position");
     
 
  function tableHeader(res) {
-	 
+     debugger;
       var col = "<th> Item Description </th>";
  
-      for(var i=0;i<Object.keys(res[0]).length-2;i++)
-    	  col+="<th>"+Object.keys(res[0])[i]+"</th>";
+      for(var i=0;i<Object.keys(res[0]).length;i++){
+
+          if(Object.keys(res[0])[i] != "productsize")
+            if(Object.keys(res[0])[i] != "productname")
+              col+="<th>"+Object.keys(res[0])[i]+"</th>";
+      }
+
       	
-      col+="<th> Total </th>"
+      col+="<th> PENDING </th>";
      
       return col;
   }
@@ -119,28 +124,45 @@ String position = (String) session.getAttribute("position");
 	var row = "";
 	var sum=0;
 	var totalsum=0;
+    const columnNames = Object.keys(res[0]);
+    debugger;
 	for(var i=0;i<res.length;i++){
 		
 		row+="<tr>";
 		
-		row+="<td>"+res[i][Object.keys(res[0])[Object.keys(res[0]).length-1]]+" "+res[i][Object.keys(res[0])[Object.keys(res[0]).length-2]]+"</td>";	
+		//row+="<td>"+res[i][Object.keys(res[0])[Object.keys(res[0]).length-1]]+" "+res[i][Object.keys(res[0])[Object.keys(res[0]).length-2]]+"</td>";
+        row+="<td>" + res[i].productname + ' ' + res[i].productsize + "</td>";
 		sum=0;
-		for(var j=0;j<Object.keys(res[i]).length-2;j++){
-			
-			row+="<td>"+res[i][Object.keys(res[0])[j]]+"</td>";	
-			sum+=res[i][Object.keys(res[0])[j]];
+		for(var j=0;j<Object.keys(res[i]).length;j++){
+            if(Object.keys(res[0])[j] != "productsize" && Object.keys(res[0])[j] != "productname") {
+                row+="<td>"+res[i][Object.keys(res[0])[j]]+"</td>";
+			    sum+=Number(res[i][Object.keys(res[0])[j]]);
+
+            }
 		}
 		row+="<td>"+sum+"</td>"
 		
 		totalsum+=sum;
-		
+
 		row+="</tr>";
-		
+
 	}
-	
+
+     row+="<tr>";
+     row+="<td>TOTAL</td>";
+     for(var j=0;j<Object.keys(res[0]).length;j++) {
+         if (Object.keys(res[0])[j] != "productsize" && Object.keys(res[0])[j] != "productname") {
+             row+="<td>" + res.reduce((a, b) => Number(a) + Number(b[Object.keys(res[0])[j]]), 0).toString() + "</td>";
+         }
+     }
+     row+="<td>" + totalsum.toString() + "</td>";
+     row+="</tr>";
+
+     //document.getElementById("totalsum").innerHTML = totalsum;
 	return row;
 	
  }
+
  function allConsolidateOrder(){
 	 
 	 const xhttp = new XMLHttpRequest();
@@ -151,6 +173,9 @@ String position = (String) session.getAttribute("position");
 			  alert("Sorry data not found!");
 		  }
 		  else{
+              document.getElementById("tablehead").innerHTML = "";
+              document.getElementById("tablebody").innerHTML = "";
+
 			  var tablehead = tableHeader(res);
 			  
 			  document.getElementById("tablehead").innerHTML = tablehead;
@@ -177,7 +202,7 @@ String position = (String) session.getAttribute("position");
     			 else{
     				 const xhttp = new XMLHttpRequest();
     				  xhttp.onload = function() {
-    					  var res = JSON.parse(this.responseText);
+    					  const res = JSON.parse(this.responseText);
     					  
     					  if(res == ''){
     						  alert("Sorry data not found!");

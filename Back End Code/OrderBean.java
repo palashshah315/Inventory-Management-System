@@ -4,9 +4,9 @@ import java.util.*;
 
 
 public class OrderBean {
-	private String userfirstname,userlastname,productname, productsize, totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime;
+	private String userfirstname,userlastname,productname, productsize, totalProduct,clientName,clientAddress,orderstatus,orderplaceddate,orderplacedtime,invoiceid;
 	private String approvaldate,approvaltime,clientemail,invoicestatus;
-	private int productid,userid,invoiceid,productquantity,orderid;
+	private int productid,userid,productquantity,orderid;
 	private List<ClientProduct> productreq; 
 	
 	public List<ClientProduct> getProductreq() {
@@ -27,11 +27,11 @@ public class OrderBean {
 	private long totalprice;
 	
 	
-	public int getInvoiceid() {
+	public String getInvoiceid() {
 		return invoiceid;
 	}
 
-	public void setInvoiceid(int invoiceid) {
+	public void setInvoiceid(String invoiceid) {
 		this.invoiceid = invoiceid;
 	}
 

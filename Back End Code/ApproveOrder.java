@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import java.io.IOException;
 import DAO.*;
 import javax.servlet.ServletException;

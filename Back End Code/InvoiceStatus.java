@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import DAO.*; 
 import java.io.IOException;
 //import java.io.PrintWriter;

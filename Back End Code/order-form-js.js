@@ -1,14 +1,4 @@
-function print_today() {
 
-  var now = new Date();
-  var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
-  var date = ((now.getDate()<10) ? "0" : "")+ now.getDate();
-  function fourdigits(number) {
-    return (number < 1000) ? number + 1900 : number;
-  }
-  var today =  months[now.getMonth()] + " " + date + ", " + (fourdigits(now.getYear()));
-  return today;
-}
 
 function roundNumber(number,decimals) {
   var newString;// The new rounded number
@@ -81,16 +71,15 @@ function bind() {
   $(".cost").blur(update_price);
   $(".qty").blur(update_price);
 }
-var slno=1;
+
 $(document).ready(function() {
 
   $('input').click(function(){
     $(this).select();
   });
-
    
   $("#addrow").click(function(){
-    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><input placeholder="Item Name And Description" type="text"><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><input placeholder="Item Size" type="text"></td><td><input class="cost" vlaue="0" type="number"></td><td><input class="qty" vlaue="0" type="number"></td><td><span class="price">0</span></td></tr>');
+    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><input placeholder="Item Name And Description" type="text"><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><input placeholder="Item Size" type="text"></td><td><input class="cost" value="0" type="number"></td><td><input class="qty" type="number" value="0"></td><td><span class="price">0</span></td></tr>');
     if ($(".delete").length > 0) $(".delete").show();
     bind();
   });
@@ -99,15 +88,25 @@ $(document).ready(function() {
   
   $(".delete").live('click',function(){
     $(this).parents('.item-row').remove();
-
     update_total();
-    if ($(".delete").length < 1) {
-      $(".delete").hide();
-    }
+    if ($(".delete").length < 0) $(".delete").hide();
   });
   
   $("#cancel-logo").click(function(){
     $("#logo").removeClass('edit');
   });
+  $("#delete-logo").click(function(){
+    $("#logo").remove();
+  });
+  $("#change-logo").click(function(){
+    $("#logo").addClass('edit');
+    $("#imageloc").val($("#image").attr('src'));
+    $("#image").select();
+  });
+  $("#save-logo").click(function(){
+    $("#image").attr('src',$("#imageloc").val());
+    $("#logo").removeClass('edit');
+  });
+
   
 });

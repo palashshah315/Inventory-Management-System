@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import DAO.*;
 import BeanClass.*;
 import java.util.*;
@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.*;
+import org.json.simple.*;
 
 @WebServlet("/ConsolidateOrder")
 public class ConsolidateOrder extends HttpServlet {
@@ -41,7 +41,7 @@ public class ConsolidateOrder extends HttpServlet {
 					jsonobj.put(cp.getCustomername(), cp.getProduct_req());
 				}
 				
-				json.put(jsonobj);
+				json.add(jsonobj);
 			}
 			
 				response.setContentType("application/json");

@@ -1,4 +1,4 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,16 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.*;
 
 import BeanClass.OrderBean;
-import DAO.Dao;
-
-/**
- * Servlet implementation class SalesOrder
- */
+import DAO.*;
 @WebServlet("/SalesOrder")
 public class SalesOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -72,7 +66,7 @@ public class SalesOrder extends HttpServlet {
 				jsonobj.put("approvaltime",ot.getApprovalTime());
 				jsonobj.put("orderstatus",ot.getOrderStatus());
 				jsonobj.put("invoicestatus",ot.getInvoiceStatus());
-				json.put(jsonobj);
+				json.add(jsonobj);
 				
 			}
 			

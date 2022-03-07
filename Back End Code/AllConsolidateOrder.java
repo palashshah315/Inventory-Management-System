@@ -1,7 +1,8 @@
-package Servlets;
+package servlets.inventorymanagementsystem;
 import BeanClass.*;
 import DAO.*;
 import java.util.*;
+import org.json.simple.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * Servlet implementation class AllConsolidateOrder
@@ -37,7 +36,7 @@ public class AllConsolidateOrder extends HttpServlet {
 				jsonobj.put(cp.getCustomername(), cp.getProduct_req());
 			}
 			
-			json.put(jsonobj);
+			json.add(jsonobj);
 		}
 		
 			response.setContentType("application/json");

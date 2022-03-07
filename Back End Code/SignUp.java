@@ -1,15 +1,21 @@
-package Servlets;
-import BeanClass.*;
+package servlets.inventorymanagementsystem;
+
+import BeanClass.UserBean;
+import DAO.Dao;
+
 import javax.mail.*;
-import javax.mail.internet.*;
-import DAO.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
-@SuppressWarnings("serial")
+
 @WebServlet("/SignUp")
 public class SignUp extends HttpServlet {
 	public SignUp() {
@@ -58,7 +64,7 @@ public class SignUp extends HttpServlet {
 			if(status > 0) {
 				sendEmail("palashshah345@gmail.com","yxnpdckqvuhgqior",email,login_username,login_password,out);
 				out.println("<script type = \"text/javascript\">");
-        		out.println("alert('You Registered Successfully');");
+        		out.println("alert('You Registered Successfully and you login username and password has been sent to your registered mail id');");
         		out.println("</script>");	
         		out.println("<meta http-equiv=\"Refresh\" content=\"0;url=index.jsp\">");
 			}
@@ -76,15 +82,16 @@ public class SignUp extends HttpServlet {
 	private void sendEmail(String from, String pass,String to, String login_username, String login_password,PrintWriter out) 
   {
   	Properties props = System.getProperties();
-  	props.put("mail.smtp.starttls.enable","true"); 
+  	props.put("mail.smtp.starttls.enable","true");
   	props.put("mail.smtp.user",from); 
-  	props.put("mail.smtp.host", "smtp.gmail.com");  
-  	props.put("mail.smtp.auth", "true"); 
-  	
-  	props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
+  	props.put("mail.smtp.host", "smtp.gmail.com");
+  	props.put("mail.smtp.auth", "true");
+	props.setProperty("mail.smtp.ssl.enable", "true");
+	props.setProperty("mail.smtp.ssl.required", "true");
+	props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
   	props.setProperty("mail.smtp.socketFactory.fallback", "false"); 
-  	props.setProperty("mail.smtp.port", "465"); 
-  	props.setProperty("mail.smtp.socketFactory.port", "465"); 
+  	props.setProperty("mail.smtp.port", "465");
+  	props.setProperty("mail.smtp.socketFactory.port", "465");
   	
 
   	
